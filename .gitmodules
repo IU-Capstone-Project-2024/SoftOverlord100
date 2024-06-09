@@ -1,3 +1,6 @@
 [submodule "Overlord100-slam"]
 	path = Overlord100-slam
 	url = https://github.com/IU-Capstone-Project-2024/Overlord100-slam.git
+[submodule "Overlord100-PathPlanner"]
+	path = Overlord100-PathPlanner
+	url = https://github.com/IU-Capstone-Project-2024/Overlord100-PathPlanner.git
