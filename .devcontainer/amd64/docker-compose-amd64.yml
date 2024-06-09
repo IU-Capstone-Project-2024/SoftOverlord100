@@ -1,0 +1,33 @@
+version: '2'
+services:
+  ros2:
+    tty: true
+    build:
+      dockerfile: Dockerfile
+      args: {
+        "USERNAME": "mobile"
+      }
+    environment:
+      - DISPLAY=novnc:0.0
+    depends_on:
+      - novnc
+    volumes:
+      - type: bind
+        source: ../../
+        target: /home/ws/src
+    networks:
+      - x11
+  novnc:
+    image: theasp/novnc:latest
+    environment:
+      # Adjust to your screen size
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+      - RUN_XTERM=no
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+
+networks:
+  x11:
