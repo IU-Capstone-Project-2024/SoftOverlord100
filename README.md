@@ -28,8 +28,17 @@ For the sake of development simplicity, DevContainer environment was created to 
 2. Code linting for `Python` and `C++`
 
 
-## Continuous Integration
+## Development: Continuous Integration
 This repository has the following pipelines:
 1. Python `black` linting.
 2. (wip) C++ `clang-tidy` linting.
 3. (wip) ROS2 package build test.
+
+## Development: Code Style
+1. `CPP`
+   1. `Google` style: [link](https://google.github.io/styleguide/cppguide.html)
+   2. `C++ Core Guidelines` style: [link](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
+2. `Python`
+   1. `PEP8` style: [link](https://peps.python.org/pep-0008/)
+3. `Git Flow`
+   1. `Conventional Commits`: [link](https://www.conventionalcommits.org/en/v1.0.0/)
