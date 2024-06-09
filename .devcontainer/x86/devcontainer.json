@@ -18,7 +18,8 @@
                 "twxs.cmake",
                 "donjayamanne.python-extension-pack",
                 "eamodio.gitlens",
-                "ms-iot.vscode-ros"
+                "ms-iot.vscode-ros",
+                "ms-python.black-formatter"
             ]
         }
     },
@@ -26,6 +27,9 @@
         "DISPLAY": "unix:0",
         "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
         "ROS_DOMAIN_ID": "42"
+    },
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/home/mobile/.local/bin"
     },
     "runArgs": [
         "--net=host",
@@ -36,5 +40,5 @@
         "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/.vscode,target=/home/ws/.vscode,type=bind,consistency=cached"
     ],
-    "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ws/"
+    "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ws/ && pip3 install black"
 }
