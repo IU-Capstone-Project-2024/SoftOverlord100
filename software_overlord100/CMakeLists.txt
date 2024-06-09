@@ -23,14 +23,19 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(publisher src/sample_publisher.cpp)
-ament_target_dependencies(talker rclcpp std_msgs)
+ament_target_dependencies(publisher rclcpp std_msgs)
 
 add_executable(subscriber src/sample_subscriber.cpp)
-ament_target_dependencies(listener rclcpp std_msgs)
+ament_target_dependencies(subscriber rclcpp std_msgs)
 
 install(TARGETS
   publisher
   subscriber
   DESTINATION lib/${PROJECT_NAME})
+
+  install(DIRECTORY
+    launch
+    DESTINATION share/${PROJECT_NAME}/
+  )
 
 ament_package()
