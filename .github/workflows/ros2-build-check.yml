@@ -1,0 +1,25 @@
+name: Build ROS2 Workspace
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ros2-build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: cd .devcontainer && docker build -t my-app:latest .
+
+    - name: Run tests
+      run: |
+        docker run --rm my-app:latest /bin/sh --mount type=bind,source=.,target=/home/ws -c "source /opt/ros/humble/setup.bash && cd /home/ws && colcon build"
