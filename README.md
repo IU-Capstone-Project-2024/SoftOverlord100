@@ -1,20 +1,15 @@
 # SimOverlord100
 
-# Software part of Overlord100 Mobile Platform. 
-This repository assembles different ROS packages to implement a backend part of Overlord100 Mobile Platform. This includes:
-1. Controller
-2. SLAM
-3. Path planner
+# Simulator part of Overlord100 Mobile Platform. 
+This repository TBA
 
 ## Dependencies
 The backend is written using ROS2 Humble middleware with the following external dependencies:
-   1. [Slam Toolbox](https://github.com/SteveMacenski/slam_toolbox) 
-   2. [Nav2](https://github.com/ros-navigation/navigation2) 
-   3. [ROS2 Control](https://github.com/ros-controls/ros2_control)
+   1. TBA
 
 They could be installed at:
 ```bash
-RUN apt-get install -y ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-ros2-controllers ros-rolling-ros2-control
+RUN apt-get install TBA
 ```
 
 ## Development: Devcontainer
