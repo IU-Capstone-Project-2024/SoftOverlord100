@@ -33,6 +33,7 @@ def generate_launch_description():
                     "--timeout",
                     "1000",
                     "--req",
+                    ""
                     'name: "test"; sdf_filename:"home/ephy/ros2_ws/install/urdf_dummy/share/urdf_dummy/description/dummy_bot.urdf"'
 
 

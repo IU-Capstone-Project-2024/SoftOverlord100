@@ -9,8 +9,6 @@ from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
-    
-
     pkg_share = launch_ros.substitutions.FindPackageShare(package='urdf_dummy').find('urdf_dummy')
     world_path = os.path.join(pkg_share, 'worlds/dummy_world.sdf')
     model_path = os.path.join(pkg_share, 'description/dummy_bot.urdf')
