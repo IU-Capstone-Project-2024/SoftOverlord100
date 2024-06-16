@@ -1,29 +1,21 @@
 import launch
-import launch_ros.actions
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
+from launch.substitutions import Command, LaunchConfiguration
+import launch_ros
+import os
+
+import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-
-
+from launch.actions import ExecuteProcess
+from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
-    launch_gazebo_arg = IncludeLaunchDescription(
- PythonLaunchDescriptionSource([get_package_share_directory('urdf_dummy'), '/launch', '/gazebo.launch.py']),
- launch_arguments={
-  'ign_args' : "empty.sdf"
- }.items(),
-)
 
-    spawn_robot_arg = Node(
-    package='ros_ign_gazebo',
-    executable='create',
-    output='screen',
-    arguments=["-file", "<path_to_urdf>/dummy_bot.urdf"]
-    )
-
+    pkg_share = launch_ros.substitutions.FindPackageShare(package='urdf_dummy').find('urdf_dummy')
+    world_path = os.path.join(pkg_share, 'worlds/dummy_world.sdf')
+    print(world_path)
     return LaunchDescription([
-    launch_gazebo_arg,
-    spawn_robot_arg
+        ExecuteProcess(
+            cmd=['ign', 'gazebo', "empty.sdf"],
+            output='screen'),
+            
     ])
