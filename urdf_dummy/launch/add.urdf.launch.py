@@ -17,13 +17,27 @@ def generate_launch_description():
     print(world_path)
     swpan_args = '{sdf_filename: \"' + world_path + '\" , name: \"my_robot\"}'
     return LaunchDescription([
+        
+
+
+
         ExecuteProcess(
-            cmd=['ign', 'gazebo', world_path],
-            output='screen'),
+            cmd=['ign',
+                  'service',
+                    "-s",
+                    "/world/dummy/create",
+                    "--reqtype",
+                      "ignition.msgs.EntityFactory",
+                    "--reptype",
+                    "ignition.msgs.Boolean",
+                    "--timeout",
+                    "1000",
+                    "--req",
+                    'name: "test"; sdf_filename:"home/ephy/ros2_ws/install/urdf_dummy/share/urdf_dummy/description/dummy_bot.urdf"'
 
 
-
-            
+                    ],
+            output='screen'),    
 
             
     ])

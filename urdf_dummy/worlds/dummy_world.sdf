@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
-<sdf version='1.5'>
-  <world name='demo'>
+<sdf version='1.9'>
+  <world name='dummy'>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -10,6 +10,17 @@
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>1000</real_time_update_rate>
     </physics>
+    <plugin
+    filename="gz-sim-physics-system"
+    name="gz::sim::systems::Physics">
+</plugin>
+    
+
+
+    <plugin
+    filename="gz-sim-user-commands-system"
+    name="gz::sim::systems::UserCommands">
+    </plugin>
     <plugin
       filename="gz-sim-scene-broadcaster-system"
       name="gz::sim::systems::SceneBroadcaster">
