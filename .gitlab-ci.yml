@@ -4,8 +4,8 @@ default:
 
 stages:
   - checkLintPython
-  - lintC++
   - build
+  - lintC++
 
 lint_black:
   stage: checkLintPython
