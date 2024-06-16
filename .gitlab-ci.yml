@@ -1,0 +1,63 @@
+default:
+  tags:
+    - docker
+
+stages:
+  - checkLintPython
+  - lintC++
+  - build
+
+lint_black:
+  stage: checkLintPython
+  image: python:3.10
+  before_script:
+    - pip install black
+  script:
+    - black --check --diff --verbose .
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request"
+      changes:
+        - "*.py"
+        - "**/*.py"
+
+# lint_tidy is not working yet :(
+lint_tidy:
+  stage: lintC++
+  image: ubuntu:latest
+  script:
+    - apt update
+    - apt-get -y install clang-tidy
+    - find . -name '*.cpp' -exec clang-tidy --fix {} \; | tee clang-tidy.log
+    - ! grep "Found compiler error" clang-tidy.log
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request"
+      changes:
+        - "*.cpp"
+        - "**/*.cpp"
+
+build_image:
+  stage: build
+  image: docker:27.0.0-rc.1-cli
+  services:
+    - docker:27.0.0-rc.1-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+    IMAGE_NAME: my-app
+    IMAGE_TAG: latest
+  before_script:
+    - apk add --no-cache --upgrade bash
+  script:
+    - cd .devcontainer
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker run --rm -v $(pwd):/home/ws $IMAGE_NAME:$IMAGE_TAG /bin/bash -c "source /opt/ros/humble/setup.bash"
+    - apk update
+    - apk upgrade
+    - apk add --no-cache python3 py3-pip build-base python3-dev bash
+    - python3 -m venv /path/to/venv
+    - . /path/to/venv/bin/activate
+    - pip install -U colcon-common-extensions
+    - colcon build
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+
+
