@@ -28,7 +28,7 @@
 
   
 
-  <!-- <link name="chassis">
+  <link name="chassis">
     <visual>
       <geometry>
         <box size="1.5 1.0 0.5"/>
@@ -40,6 +40,12 @@
       <mass value="1"/>
       <inertia ixx="0.1875" ixy="0.0" ixz="0.0" iyy="0.09" iyz="0.0" izz="0.27"/>
     </inertial>
+
+    <collision>
+      <geometry>
+        <box size="1.5 1.0 0.5"/>
+      </geometry>
+    </collision>
 
   
   </link>
@@ -49,13 +55,19 @@
       <geometry>
         <cylinder length="0.3" radius="0.2"/>
       </geometry>
-      <origin rpy="1.57075 0 0" xyz="0 0.65 -0.3"/>
+      
       <material name="white"/>
     </visual>
     <inertial>
       <mass value="1"/>
       <inertia ixx="0.0175" ixy="0.0" ixz="0.0" iyy="0.0175" iyz="0.0" izz="0.02"/>
     </inertial>
+    <collision>
+      <geometry>
+        <cylinder length="0.3" radius="0.2"/>
+      </geometry>
+      
+    </collision>
 
     
   </link>
@@ -64,6 +76,9 @@
     <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5"/>
     <parent link="chassis"/>
     <child link="left_wheel"/>
+    <origin rpy="1.57075 0 0" xyz="0 0.65 -0.3"/>
+
+
   </joint>
 
   <link name="right_wheel">
@@ -71,13 +86,19 @@
       <geometry>
         <cylinder length="0.3" radius="0.2"/>
       </geometry>
-      <origin rpy="-1.57075 0 0" xyz="0 -0.65 -0.3"/>
+      
       <material name="white"/>
     </visual>
     <inertial>
       <mass value="1"/>
       <inertia ixx="0.0175" ixy="0.0" ixz="0.0" iyy="0.0175" iyz="0.0" izz="0.02"/>
     </inertial>
+    <collision>
+      <geometry>
+        <cylinder length="0.3" radius="0.2"/>
+      </geometry>
+      
+    </collision>
 
     
   </link>
@@ -86,6 +107,7 @@
     <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5"/>
     <parent link="chassis"/>
     <child link="right_wheel"/>
+    <origin rpy="-1.57075 0 0" xyz="0 -0.65 -0.3"/>
   </joint>
 
   <link name = "front_left_dummy_wheel">
@@ -93,7 +115,7 @@
       <geometry>
         <sphere radius = "0.2"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0.6 0.25 -0.3"/>
+      
       <material name="white"/>
     </visual>
 
@@ -102,6 +124,13 @@
       <inertia ixx="0.016" ixy="0.0" ixz="0.0" iyy="0.016" iyz="0.0" izz="0.016"/>
     </inertial>
 
+    <collision>
+      <geometry>
+        <sphere radius = "0.2"/>
+      </geometry>
+      
+    </collision>
+
     
   </link>
 
@@ -109,6 +138,7 @@
     <parent link="chassis"/>
     <child link="front_left_dummy_wheel"/>
     <material name="white"/>
+    <origin rpy="0 0 0" xyz="0.6 0.25 -0.3"/>
   </joint>
 
 
@@ -118,7 +148,7 @@
       <geometry>
         <sphere radius = "0.2"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0.6 -0.25 -0.3"/>
+      
       <material name="white"/>
     </visual>
 
@@ -126,12 +156,20 @@
       <mass value="1"/>
       <inertia ixx="0.016" ixy="0.0" ixz="0.0" iyy="0.016" iyz="0.0" izz="0.016"/>
     </inertial>
+
+    <collision>
+      <geometry>
+        <sphere radius = "0.2"/>
+      </geometry>
+      
+    </collision>
     
   </link>
 
   <joint name = "chassis_to_front_right_dummy_wheel" type = "continuous">
     <parent link="chassis"/>
     <child link="front_right_dummy_wheel"/>
+     <origin rpy="0 0 0" xyz="0.6 -0.25 -0.3"/>
   </joint>
 
 
@@ -141,7 +179,7 @@
       <geometry>
         <sphere radius = "0.2"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.6 -0.25 -0.3"/>
+      
       <material name="white"/>
       
     </visual>
@@ -151,11 +189,19 @@
       <mass value="1"/>
       <inertia ixx="0.016" ixy="0.0" ixz="0.0" iyy="0.016" iyz="0.0" izz="0.016"/>
     </inertial>
+
+    <collision>
+      <geometry>
+        <sphere radius = "0.2"/>
+      </geometry>
+      
+    </collision>
   </link>
 
   <joint name = "chassis_to_back_right_dummy_wheel" type = "continuous">
     <parent link="chassis"/>
     <child link="back_right_dummy_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.6 -0.25 -0.3"/>
   </joint>
 
 
@@ -164,13 +210,14 @@
       <geometry>
         <sphere radius = "0.2"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
+      
       <material name="white"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius = "0.2"/>
       </geometry>
+      
     </collision>
 
     <inertial>
@@ -182,61 +229,10 @@
   <joint name = "chassis_to_back_left_dummy_wheel" type = "continuous">
     <parent link="chassis"/>
     <child link="back_left_dummy_wheel"/>
-  </joint> -->
-
-    <link name="block">
-    <visual>
-    <origin xyz="0 0 5" rpy="0 0 0" />
-      <geometry>
-        <box size="1.5 1.0 0.5"/>
-      </geometry>
-      <material name="grey"/>
-      
-    </visual>
-    <inertial>
-      <mass value="1"/>
-      <inertia ixx="0.1875" ixy="0.0" ixz="0.0" iyy="0.09" iyz="0.0" izz="0.27"/>
-    </inertial>
-
-    <collision >
-    <origin xyz="0 0 5" rpy="0 0 0" />
-    <geometry>
-        <box size="1.5 1.0 0.5"/>
-      </geometry>
-    </collision>
-  
-  </link>
-
-  <link name = "back_left_dummy_wheel">
-    <visual>
-      <geometry>
-        <sphere radius = "0.2"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <sphere radius = "0.2"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
-    </collision>
-
-    <inertial>
-      <mass value="1"/>
-      <inertia ixx="0.016" ixy="0.0" ixz="0.0" iyy="0.016" iyz="0.0" izz="0.016"/>
-    </inertial>
-  </link>
-
-  <joint name = "chassis_to_back_left_dummy_wheel" type = "continuous">
-    <parent link="block"/>
-    <child link="back_left_dummy_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
   </joint> 
 
-  <!-- <joint name = "block_to_chassis" type = "continuous">
-  <parent link = "chassis"/>
-  <child link = "block"/>
-  <origin xyz = "0 0 0" rpy="0 0 0" />
-  </joint> -->
+    
+  
 </robot>
 
