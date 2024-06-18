@@ -33,256 +33,36 @@
       <shadows>true</shadows>
     </scene>
 
+    <model name="ground_plane">
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    </plane>
+                </geometry>
+                </collision>
+                <visual name="visual">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>100 100</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.1 1</ambient>
+                    <diffuse>0.2 0.5 0.7 1</diffuse>
+                    <specular>0.2 0.4 0.5 1</specular>
+                </material>
+                </visual>
+            </link>
+        </model>
 
 
 
 
-    <model name='table1'>
-      <pose>-2.4 0 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table2'>
-      <pose>0 0 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table3'>
-      <pose>2.4 0 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table4'>
-      <pose>4.8 0 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table5'>
-      <pose>-2.4 1.55 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table6'>
-      <pose>0 1.55 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table7'>
-      <pose>2.4 1.55 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table8'>
-      <pose>4.8 1.55 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table9'>
-      <pose>2.4 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='table10'>
-      <pose>0 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='table11'>
-      <pose>4.8 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='table12'>
-      <pose>7.2 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='table13'>
-      <pose>-2.4 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='table14'>
-      <pose>-4.8 5.44 0 -3e-06 0 1.57</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Reflective table</uri>
-      </include>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='chair1'>
-      <pose>-2.4 -0.2 0 0 -0 3.14</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair2'>
-      <pose>0 -0.2 0 0 -0 3.14</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair3'>
-      <pose>2.4 -0.2 0 0 -0 3.14</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair4'>
-      <pose>4.8 -0.2 0 0 -0 3.14</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair5'>
-      <pose>-2.4 3.1 0 0 -0 0</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair6'>
-      <pose>0 3.1 0 0 -0 0</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair7'>
-      <pose>2.4 3.1 0 0 -0 0</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='chair8'>
-      <pose>4.8 3.1 0 0 -0 0</pose>
-      <include>
-        <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/OfficeChairGrey</uri>
-      </include>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='wall'>
-      <pose>-4.8 0.65 2.5 0 -0 0</pose>
-      <link name='box_link'>
-        <collision name='box_collision'>
-          <geometry>
-            <box>
-              <size>14.7 0.1 5</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='box_visual'>
-          <geometry>
-            <box>
-              <size>14.7 0.1 5</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.3 1</ambient>
-            <diffuse>0.7 0.7 0.7 1</diffuse>
-            <specular>1 1 1 1</specular>
-          </material>
-        </visual>
-        <pose>6 6.3 0 0 -0 0</pose>
-        <enable_wind>false</enable_wind>
-      </link>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
-    <model name='wall2'>
-      <pose>-6.11 4 2.5 0 0 1.57</pose>
-      <link name='box_link'>
-        <collision name='box_collision'>
-          <geometry>
-            <box>
-              <size>6 0.1 5</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='box_visual'>
-          <geometry>
-            <box>
-              <size>6 0.1 5</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.3 1</ambient>
-            <diffuse>0.7 0.7 0.7 1</diffuse>
-            <specular>1 1 1 1</specular>
-          </material>
-        </visual>
-        <pose>0 0 0 0 -0 0</pose>
-        <enable_wind>false</enable_wind>
-      </link>
-      <static>true</static>
-      <self_collide>true</self_collide>
-    </model>
+    
   </world>
 </sdf>
 

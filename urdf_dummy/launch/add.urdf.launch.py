@@ -34,7 +34,7 @@ def generate_launch_description():
                     "1000",
                     "--req",
                     ""
-                    'name: "test"; sdf_filename:"home/ephy/ros2_ws/install/urdf_dummy/share/urdf_dummy/description/dummy_bot.urdf"; pose: {position: {y: -5}}'
+                    'name: "test"; sdf_filename:"home/ephy/ros2_ws/install/urdf_dummy/share/urdf_dummy/description/dummy_bot.urdf"; pose: {position: {y: -5 z: 1}}'
 
 
                     ],
