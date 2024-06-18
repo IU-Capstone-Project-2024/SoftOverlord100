@@ -270,6 +270,81 @@
     <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
   </joint> 
 
+
+
+
+  <gazebo reference="lidar">
+
+    <sensor name="lidar_sensor" type="gpu_lidar">
+
+        <pose>0 0 0 0 0 0</pose>
+
+        <topic>lidar</topic>
+
+        <update_rate>2</update_rate>
+
+        <ray>
+
+          <scan>
+
+            <horizontal>
+
+              <samples>640</samples>
+
+              <resolution>1</resolution>
+
+              <min_angle>-1.396263</min_angle>
+
+              <max_angle>1.396263</max_angle>
+
+            </horizontal>
+
+            <vertical>
+
+              <samples>1</samples>
+
+              <resolution>1</resolution>
+
+              <min_angle>0</min_angle>
+
+              <max_angle>0</max_angle>
+
+            </vertical>
+
+          </scan>
+
+          <range>
+
+            <min>0.09</min>
+
+            <max>10.0</max>
+
+            <resolution>0.01</resolution>
+
+          </range>
+
+        </ray>
+
+        <always_on>1</always_on>
+
+        <visualize>true</visualize>
+
+      </sensor>     
+
+</gazebo>
+
+ 
+
+<gazebo>
+
+    <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
+
+        <render_engine>ogre</render_engine>
+
+    </plugin>
+
+</gazebo>
+
   
 </robot>
 
