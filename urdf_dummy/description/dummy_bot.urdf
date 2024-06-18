@@ -14,6 +14,30 @@
   <material name="red">
                 <color rgba="1 0 0 1"/>
   </material>
+
+  <gazebo>
+  <plugin filename="gz-sim-imu-system"
+        name="gz::sim::systems::Imu">
+</plugin>
+  </gazebo>
+
+
+  <gazebo reference="chassis">
+  
+    <sensor name="imu_sensor" type="imu">
+    <always_on>1</always_on>
+    <update_rate>1</update_rate>
+    <visualize>true</visualize>
+    <topic>imu</topic>
+</sensor>
+  </gazebo>
+
+
+
+
+
+
+
   <gazebo>
   <plugin
     filename="libignition-gazebo-diff-drive-system.so"
@@ -344,7 +368,5 @@
     </plugin>
 
 </gazebo>
-
-  
 </robot>
 
