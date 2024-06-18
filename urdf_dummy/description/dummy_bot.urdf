@@ -10,6 +10,10 @@
   <material name="white">
                 <color rgba="1 1 1 1"/>
   </material>
+
+  <material name="red">
+                <color rgba="1 0 0 1"/>
+  </material>
   <gazebo>
   <plugin
     filename="libignition-gazebo-diff-drive-system.so"
@@ -77,6 +81,40 @@
     <parent link="chassis"/>
     <child link="left_wheel"/>
     <origin rpy="1.57075 0 0" xyz="0 0.65 -0.3"/>
+
+
+  </joint>
+
+
+
+
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.09"/>
+      </geometry>
+      
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018"/>
+    </inertial>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.09"/>
+      </geometry>
+      
+    </collision>
+
+    
+  </link>
+  <joint name="chassis_to_lidar" type="fixed">
+    
+    
+    <parent link="chassis"/>
+    <child link="lidar"/>
+    <origin rpy="0 0 0" xyz="0 0 0.27"/>
 
 
   </joint>
@@ -232,7 +270,6 @@
     <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3"/>
   </joint> 
 
-    
   
 </robot>
 
