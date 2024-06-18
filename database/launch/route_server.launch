@@ -1,0 +1,5 @@
+<launch>
+    <rosparam file="$(find database_map_server)/param/route_server_params.yaml" command="load"/>
+
+    <node pkg="database_map_server" type="main.py" name="database_map_server"/>
+</launch>

@@ -1,0 +1,5 @@
+string mapID
+---
+bool response
+string errorMessage
+database_map_server/BaseMap map

@@ -1,0 +1,4 @@
+string mapID
+---
+bool response
+string errorMessage
