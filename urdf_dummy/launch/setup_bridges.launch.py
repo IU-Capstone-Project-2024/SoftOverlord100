@@ -19,7 +19,7 @@ def generate_launch_description():
     bridge_lidar = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan/'],
+        arguments=['/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'],
         output='screen'
     )
     bridge_imu = Node(
@@ -29,8 +29,25 @@ def generate_launch_description():
         output='screen'
     )
 
+    bridge_cmd_vel = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=['/model/dummy_bot/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist'],
+        output='screen'
+    )
+
+    config_node = Node(
+        package= 'ros_gz_bridge',
+        executable= 'parameter_bridge',
+        ros_arguments= ['-p config_file:=config.yaml'],
+    
+        
+        output='screen'
+    )
+
     return LaunchDescription([
 
         bridge_lidar,
-        bridge_imu
+        bridge_imu,
+        bridge_cmd_vel
     ])
