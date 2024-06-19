@@ -9,16 +9,16 @@ class DBWorker(metaclass=ABCMeta):
 
     @abstractmethod
     def create_map(self, map_data: str) -> dict:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_map(self, map_id: str) -> dict:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def remove_map(self, map_id: str) -> dict:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def update_map(self, new_map: BaseMap) -> dict:
-        pass
+        raise NotImplementedError

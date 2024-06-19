@@ -42,7 +42,7 @@ pub = rospy.Publisher(name="route/status", data_class=std_msgs.msg.String)
 
 def callback_remove_map(msg):
     try:
-        result = database.remove_map(map_id=msg.mapID)
+        result = database.remove_map(map_id=msg.id)
     except Exception as e:
         result = {"response": False, "errorMessage": str(e)}
         rospy.logerr(msg, result)
@@ -84,7 +84,7 @@ def callback_create_map(msg):
 
 def callback_get_map(msg):
     try:
-        result = database.get_map(msg.mapID)
+        result = database.get_map(msg.id)
     except Exception as e:
         result = {"response": False, "errorMessage": str(e)}
         rospy.logerr(msg, result)
