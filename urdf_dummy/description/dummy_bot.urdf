@@ -29,6 +29,7 @@
     <update_rate>1</update_rate>
     <visualize>true</visualize>
     <topic>imu</topic>
+    
 </sensor>
   </gazebo>
 
@@ -42,12 +43,13 @@
   <plugin
     filename="libignition-gazebo-diff-drive-system.so"
     name="ignition::gazebo::systems::DiffDrive">
-    <left_joint>left_wheel_joint</left_joint>
-    <right_joint>right_wheel_joint</right_joint>
+    <left_joint>chassis_to_left_wheel</left_joint>
+    <right_joint>chassis_to_right_wheel</right_joint>
     <wheel_separation>0.8</wheel_separation>
     <wheel_radius>0.2</wheel_radius>
     <odom_publish_frequency>1</odom_publish_frequency>
-    <topic>cmd_vel</topic>
+    <topic>/cmd_vel</topic>
+    
 </plugin>
   </gazebo>
 
@@ -100,8 +102,8 @@
     
   </link>
   <joint name="chassis_to_left_wheel" type="revolute">
-    <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0"/>
     <parent link="chassis"/>
     <child link="left_wheel"/>
     <origin rpy="1.57075 0 0" xyz="0 0.65 -0.3"/>
@@ -165,11 +167,11 @@
     
   </link>
   <joint name="chassis_to_right_wheel" type="revolute">
-    <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0"/>
     <parent link="chassis"/>
     <child link="right_wheel"/>
-    <origin rpy="-1.57075 0 0" xyz="0 -0.65 -0.3"/>
+    <origin rpy="1.57075 0 0" xyz="0 -0.65 -0.3"/>
   </joint>
 
   <link name = "front_left_dummy_wheel">

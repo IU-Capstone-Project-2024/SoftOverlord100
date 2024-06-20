@@ -25,7 +25,7 @@ def generate_launch_description():
     bridge_imu = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/imu@sensor_msgs/msg/Imu@gz.msgs.IMU'],
+        arguments=['/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU"'],
         output='screen'
     )
 
@@ -36,18 +36,21 @@ def generate_launch_description():
         output='screen'
     )
 
-    config_node = Node(
-        package= 'ros_gz_bridge',
-        executable= 'parameter_bridge',
-        ros_arguments= ['-p config_file:=config.yaml'],
-    
-        
-        output='screen'
+    bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
+            '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+        ],
+        #remappings=[('/model/dummy_bot/cmd_vel', '/cmd_vel')],
+        output="screen"
     )
+
+
 
     return LaunchDescription([
 
-        bridge_lidar,
-        bridge_imu,
-        bridge_cmd_vel
+        bridge
     ])
