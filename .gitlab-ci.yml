@@ -20,21 +20,6 @@ lint_black:
         - "*.py"
         - "**/*.py"
 
-# lint_tidy is not working yet :(
-lint_tidy:
-  stage: lintC++
-  image: ubuntu:latest
-  script:
-    - apt update
-    - apt-get -y install clang-tidy
-    - find . -name '*.cpp' -exec clang-tidy --fix {} \; | tee clang-tidy.log
-    - ! grep "Found compiler error" clang-tidy.log
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request"
-      changes:
-        - "*.cpp"
-        - "**/*.cpp"
-
 build_image:
   stage: build
   image: docker:27.0.0-rc.1-cli
@@ -53,8 +38,8 @@ build_image:
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
-    - python3 -m venv /path/to/venv
-    - . /path/to/venv/bin/activate
+    - python3 -m venv /venv
+    - . /venv/bin/activate
     - pip install -U colcon-common-extensions
     - colcon build
   rules:
