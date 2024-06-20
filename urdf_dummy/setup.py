@@ -24,6 +24,10 @@ setup(
             os.path.join("share", package_name, "worlds"),
             glob(os.path.join("worlds", "*sdf")),
         ),
+        (
+            os.path.join("share", package_name, "rviz"),
+            glob("rviz/simulator.rviz"),
+        ),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
