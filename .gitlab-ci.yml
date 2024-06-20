@@ -13,7 +13,7 @@ lint_black:
   before_script:
     - pip install black
   script:
-    - black --check --diff --verbose .
+    - black --check --diff .
   rules:
     - if: $CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request"
       changes:
