@@ -43,8 +43,17 @@ def generate_launch_description():
             "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
             '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+            '/world/dummy/model/test/joint_state@'
+            'sensor_msgs/msg/JointState[gz.msgs.Model',
+            '/model/test/pose@'
+            'tf2_msgs/msg/TFMessage[gz.msgs.Pose_V'
+
         ],
-        #remappings=[('/model/dummy_bot/cmd_vel', '/cmd_vel')],
+        remappings=[
+            ('/model/test/pose', '/tf'),
+            ('/world/dummy/model/test/joint_state', '/joint_states')
+        ],
+        
         output="screen"
     )
 
