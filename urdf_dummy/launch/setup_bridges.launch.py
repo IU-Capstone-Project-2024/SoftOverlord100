@@ -44,14 +44,13 @@ def generate_launch_description():
             "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
             "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
-            "/world/default/model/dummy_robot/joint_state@"
-            "sensor_msgs/msg/JointState[gz.msgs.Model",
+            "/world/default/model/dummy_robot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
             "/model/dummy_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
         ],
         remappings=[
             ("/odom/tf", "/tf"),
-            ("/world/dummy/model/test/joint_state", "/joint_states"),
+            ("/world/default/model/dummy_robot/joint_state", "/joint_states"),
         ],
         output="screen",
     )
