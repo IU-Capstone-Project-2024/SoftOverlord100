@@ -21,7 +21,7 @@ def generate_launch_description():
 
     # Spawn robot
     ignition_spawn_entity = Node(
-        package="ros_ign_gazebo",
+        package="ros_gz_sim",
         executable="create",
         output="screen",
         arguments=[
@@ -48,7 +48,7 @@ def generate_launch_description():
 
     # Spawn world
     ignition_spawn_world = Node(
-        package="ros_ign_gazebo",
+        package="ros_gz_sim",
         executable="create",
         output="screen",
         arguments=[
@@ -68,14 +68,14 @@ def generate_launch_description():
                     [
                         PathJoinSubstitution(
                             [
-                                get_package_share_directory("ros_ign_gazebo"),
+                                get_package_share_directory("ros_gz_sim"),
                                 "launch",
-                                "ign_gazebo.launch.py",
+                                "gz_sim.launch.py",
                             ]
                         )
                     ]
                 ),
-                launch_arguments=[("ign_args", [" -r"])],
+                launch_arguments=[("ign_args", [" -r -v 3"])],
             ),
             ignition_spawn_world,
             ignition_spawn_entity,
