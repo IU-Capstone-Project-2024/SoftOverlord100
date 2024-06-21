@@ -46,7 +46,7 @@ def generate_launch_description():
             "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
             "/world/dummy/model/test/joint_state@"
             "sensor_msgs/msg/JointState[gz.msgs.Model",
-            "/model/test/pose@" "tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
+            "/model/test/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
         ],
         remappings=[
             ("/model/test/pose", "/tf"),
