@@ -43,8 +43,14 @@
   <plugin 
         filename="libignition-gazebo-pose-publisher-system"
         name="ignition::gazebo::systems::PosePublisher">
-        <publish_nested_model_pose>true</publish_nested_model_pose>
         <publish_link_pose>true</publish_link_pose>
+        <publish_sensor_pose>true</publish_sensor_pose>
+        <publish_collision_pose>false</publish_collision_pose>
+        <publish_visual_pose>false</publish_visual_pose>
+        <publish_nested_model_pose>true</publish_nested_model_pose> 
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <static_publisher>true</static_publisher>
+        <static_update_frequency>1</static_update_frequency>
     </plugin>
 
   <plugin
@@ -319,7 +325,7 @@
 
     <sensor name="lidar_sensor" type="gpu_lidar">
 
-        <pose>0 0 0 0 0 0</pose>
+        
 
         <topic>lidar</topic>
 
@@ -386,5 +392,272 @@
     </plugin>
 
 </gazebo>
+
+    <!-- <joint name="sonar_joint" type="fixed">
+      
+      <parent link="chassis"/>
+      <child link="sonar_link"/>
+    </joint>
+
+    <link name="sonar_link">
+      <inertial>
+        <mass value="0.001" />
+        
+        <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
+      </inertial>
+      <visual>
+        
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </visual>
+      <collision>
+       
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="sonar_link">
+      <sensor type="ray" name="sonar">
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>20</samples>
+              <resolution>1</resolution>
+              <min_angle>-45</min_angle>
+              <max_angle> 45</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>20</samples>
+              <resolution>1</resolution>
+              <min_angle>-45</min_angle>
+              <max_angle> 45</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>10</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+
+        <plugin name="gazebo_ros_sonar_controller" filename="libhector_gazebo_ros_sonar.so">
+          <gaussianNoise>0.005</gaussianNoise>
+          <topicName>sonar</topicName>
+          <frameId>sonar_link</frameId>
+        </plugin>
+      </sensor>
+    </gazebo> -->
+
+
+    <joint name="camera_front_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.77 0 0"/>
+      <parent link="chassis"/>
+      <child link="camera_front_link"/>
+    </joint>
+
+    <link name="camera_front_link">
+      <inertial>
+        <mass value="0.001" />
+        
+        <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
+      </inertial>
+      <visual>
+        
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </visual>
+      <collision>
+       
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="camera_front_link">
+        <sensor name='front_camera' type='camera'>
+            <visualize>true</visualize>
+            <update_rate>5</update_rate>
+            <topic>camera_front/camera_image</topic>
+            <camera>
+                <!-- <horizontal_fov>1.047</horizontal_fov> -->
+                <image>
+                    <!-- <width>320</width>
+                    <height>240</height> -->
+                    <width>640</width>
+                    <height>420</height>
+                    <!-- <format>B8G8R8</format> -->
+                </image>
+                <!-- <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip> -->
+            </camera>
+        </sensor>
+    </gazebo>
+
+
+
+    <joint name="camera_left_joint" type="fixed">
+      <origin rpy="0 0 1.57075" xyz="0 0.52 0"/>
+      <parent link="chassis"/>
+      <child link="camera_left_link"/>
+    </joint>
+
+    <link name="camera_left_link">
+      <inertial>
+        <mass value="0.001" />
+        
+        <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
+      </inertial>
+      <visual>
+        
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </visual>
+      <collision>
+       
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="camera_left_link">
+        <sensor name='left_camera' type='camera'>
+            <visualize>true</visualize>
+            <update_rate>5</update_rate>
+            <topic>camera_left/camera_image</topic>
+            <camera>
+                <!-- <horizontal_fov>1.047</horizontal_fov> -->
+                <image>
+                    <!-- <width>320</width>
+                    <height>240</height> -->
+                    <width>640</width>
+                    <height>420</height>
+                    <!-- <format>B8G8R8</format> -->
+                </image>
+                <!-- <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip> -->
+            </camera>
+        </sensor>
+    </gazebo>
+
+
+    <joint name="camera_right_joint" type="fixed">
+      <origin rpy="0 0 -1.57075" xyz="0 -0.52 0"/>
+      <parent link="chassis"/>
+      <child link="camera_right_link"/>
+    </joint>
+
+    <link name="camera_right_link">
+      <inertial>
+        <mass value="0.001" />
+        
+        <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
+      </inertial>
+      <visual>
+        
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </visual>
+      <collision>
+       
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="camera_right_link">
+        <sensor name='right_camera' type='camera'>
+            <visualize>true</visualize>
+            <update_rate>5</update_rate>
+            <topic>camera_right/camera_image</topic>
+            <camera>
+                <!-- <horizontal_fov>1.047</horizontal_fov> -->
+                <image>
+                    <!-- <width>320</width>
+                    <height>240</height> -->
+                    <width>640</width>
+                    <height>420</height>
+                    <!-- <format>B8G8R8</format> -->
+                </image>
+                <!-- <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip> -->
+            </camera>
+        </sensor>
+    </gazebo>
+
+
+    <joint name="camera_back_joint" type="fixed">
+      <origin rpy="0 0 3.1415" xyz="-0.77 0 0"/>
+      <parent link="chassis"/>
+      <child link="camera_back_link"/>
+    </joint>
+
+    <link name="camera_back_link">
+      <inertial>
+        <mass value="0.001" />
+        
+        <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
+      </inertial>
+      <visual>
+        
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </visual>
+      <collision>
+       
+        <geometry>
+          <box size="0.01 0.01 0.01" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="camera_back_link">
+        <sensor name='back_camera' type='camera'>
+            <visualize>true</visualize>
+            <update_rate>5</update_rate>
+            <topic>camera_back/camera_image</topic>
+            <camera>
+                <!-- <horizontal_fov>1.047</horizontal_fov> -->
+                <image>
+                    <!-- <width>320</width>
+                    <height>240</height> -->
+                    <width>640</width>
+                    <height>420</height>
+                    <!-- <format>B8G8R8</format> -->
+                </image>
+                <!-- <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip> -->
+            </camera>
+        </sensor>
+    </gazebo>
+
+
+
+
+
+
+
+
 </robot>
 
