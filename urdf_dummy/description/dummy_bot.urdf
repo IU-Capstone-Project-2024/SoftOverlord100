@@ -205,7 +205,7 @@
 
   </link>
 
-  <joint name="chassis_to_front_left_dummy_wheel" type="continuous">
+  <joint name="chassis_to_front_left_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="front_left_dummy_wheel" />
     <material name="white" />
@@ -236,7 +236,7 @@
 
   </link>
 
-  <joint name="chassis_to_front_right_dummy_wheel" type="continuous">
+  <joint name="chassis_to_front_right_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="front_right_dummy_wheel" />
     <origin rpy="0 0 0" xyz="0.6 -0.25 -0.3" />
@@ -267,7 +267,7 @@
     </collision>
   </link>
 
-  <joint name="chassis_to_back_right_dummy_wheel" type="continuous">
+  <joint name="chassis_to_back_right_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="back_right_dummy_wheel" />
     <origin rpy="0 0 0" xyz="-0.6 -0.25 -0.3" />
@@ -295,7 +295,7 @@
     </inertial>
   </link>
 
-  <joint name="chassis_to_back_left_dummy_wheel" type="continuous">
+  <joint name="chassis_to_back_left_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="back_left_dummy_wheel" />
     <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3" />
@@ -556,6 +556,25 @@
       </camera>
     </sensor>
   </gazebo>
+
+
+  <gazebo reference="chassis_to_back_left_dummy_wheel">
+    <mu1 value="0.001"/>
+    <mu2 value="0.001"/>
+</gazebo>
+
+<gazebo reference="chassis_to_back_right_dummy_wheel">
+    <mu1 value="0.001"/>
+    <mu2 value="0.001"/>
+</gazebo>
+<gazebo reference="chassis_to_front_left_dummy_wheel">
+    <mu1 value="0.001"/>
+    <mu2 value="0.001"/>
+</gazebo>
+<gazebo reference="chassis_to_front_right_dummy_wheel">
+    <mu1 value="0.001"/>
+    <mu2 value="0.001"/>
+</gazebo>
 
 
 </robot>
