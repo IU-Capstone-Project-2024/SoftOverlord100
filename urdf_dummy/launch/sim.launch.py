@@ -9,21 +9,11 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    world_spawner_node = IncludeLaunchDescription(
+    spawn_models_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
                 os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
-                "/gazebo.launch.py",
-            ]
-        ),
-        launch_arguments={"target_frame": "carrot1"}.items(),
-    )
-
-    model_spawner_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [
-                os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
-                "/put_urdf.launch.py",
+                "/spawn_models.launch.py",
             ]
         ),
     )
@@ -35,6 +25,15 @@ def generate_launch_description():
                 "/setup_bridges.launch.py",
             ]
         ),
+    )
+
+    robot_state_publisher_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [
+                os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
+                "/robot_state_publisher.launch.py",
+            ]
+        )
     )
 
     rqt_steering_node = Node(
@@ -62,10 +61,10 @@ def generate_launch_description():
     )
     return LaunchDescription(
         [
-            world_spawner_node,
-            model_spawner_node,
+            spawn_models_node,
             bridge_setup_node,
             rqt_steering_node,
+            robot_state_publisher_node,
             rviz_node,
         ]
     )
