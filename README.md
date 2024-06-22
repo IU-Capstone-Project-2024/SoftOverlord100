@@ -14,14 +14,19 @@ For the sake of development simplicity, DevContainer environment was created to 
 
 ### Prerequisites
 
- - [Ubuntu 22.04 (Jammy Jellyfish)](https://releases.ubuntu.com/jammy/) or [Windows 11 pro](https://www.microsoft.com/en-gb/software-download/windows11) or [Windows 10 pro](https://www.microsoft.com/en-gb/software-download/windows10ISO) or [MacOS ](https://support.apple.com/en-us/102662)
+ - [Ubuntu 22.04 (Jammy Jellyfish)](https://releases.ubuntu.com/jammy/) or [Windows 11 Pro](https://www.microsoft.com/en-gb/software-download/windows11) or [Windows 10 Pro](https://www.microsoft.com/en-gb/software-download/windows10ISO) or [MacOS ](https://support.apple.com/en-us/102662)
+ - [Visual Studio Code](https://code.visualstudio.com/)
  - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
  - [Git](https://git-scm.com/downloads)
- - [Visual Studio Code](https://code.visualstudio.com/)
+ - [X Server or VcXsrv](https://sourceforge.net/projects/vcxsrv/) (Only for Windows)
+)
+
+> *note:* The Apple Sillicon architecture is criticaly unstable and the preferred OS is Ubuntu
+
 
 ### Build the packages
 
-#### For MacOS and Ubuntu:
+#### For MacOS and Ubuntu
 
 1. Clone the repository to your workspace folder
 ```
@@ -31,13 +36,42 @@ git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
 3. Open cloned repository in VS Code
 4. Press `Ctrl+Shift+P` and choose option `DevContainers: Reopen in Container`.
 5. Choose the platform you are working on (`arm64` if you are using Apple Sillicon, otherwise `x86`)
-6. Source ROS 2 workspace in 
+6. Source ROS 2 workspace
 ```
 source opt/ros/humble/setup.bash
 ```
-6. Run main launch file
+7. Build package
+```
+cd <path_to_package>
+colcon build
+```
 
-> *note:* The Apple Sillicon is criticaly unstable
+#### For Windows 10/11 Pro
+
+1. Clone the repository to your workspace folder
+```
+git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
+```
+2. Launch Docker Desktop app
+3. Build image
+```
+docker build -t <name_of_image> .
+```
+4. Run Container
+```
+docker run -it X:/<path_to_repository_on_computer>:/develop <name_of_image> bash
+```
+5. Launch XLaunch app
+6. Source ROS workspace in container
+```
+source opt/ros/humble/setup.bash
+```
+7. Build package
+```
+cd develop/simoverlord100/test_software_overlord100/
+colcon build
+```
+
 
 
 ### Features
