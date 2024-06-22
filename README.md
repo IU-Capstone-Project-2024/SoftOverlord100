@@ -82,6 +82,13 @@ Now you can move on to [Starting simultion](#starting-simulation)
 
 ## Starting simulation
 
+To start simulation, open terminal and `ros2 launch`:
+```
+ros2 launch urdf_dummy sim.launch.py
+```
+
+The `sim.launch.py` is Python launch script that automatically start all necessary programs
+
 ## Features
 1. Different processors architectures are supported (yet, `x86` works much better)
 2. Code linting for `Python` and `C++`
