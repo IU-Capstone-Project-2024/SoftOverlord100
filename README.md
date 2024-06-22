@@ -9,10 +9,10 @@
 
 This repository allows the software development team to test the developed algorithms without the risk of damaging the real equipment, as well as to conduct tests in parallel and without the need for personal presence in the laboratory.
 
-## Installation
+# Installation
 For the sake of development simplicity, DevContainer environment was created to preserve dependencies integrity and allow to avoid damaging system with local installation.
 
-### Prerequisites
+## Prerequisites
 
  - [Ubuntu 22.04 (Jammy Jellyfish)](https://releases.ubuntu.com/jammy/) or [Windows 11 Pro](https://www.microsoft.com/en-gb/software-download/windows11) or [Windows 10 Pro](https://www.microsoft.com/en-gb/software-download/windows10ISO) or [MacOS ](https://support.apple.com/en-us/102662)
  - [Visual Studio Code](https://code.visualstudio.com/)
@@ -23,13 +23,13 @@ For the sake of development simplicity, DevContainer environment was created to 
 > *note:* The Apple Sillicon architecture is criticaly unstable and the preferred OS is Ubuntu
 
 
-### Build the packages
+## Build the packages
 
 The **simoverlord100** is a [colcon](http://design.ros2.org/articles/build_tool.html) package. 
 
 To install it, follow the instructions below for your operating system
 
-#### For MacOS and Ubuntu
+### For MacOS and Ubuntu
 
 1. Clone the repository to your workspace folder
 ```
@@ -52,7 +52,7 @@ colcon build
 Then you can move on to Starting simultion
 
 
-#### For Windows 10/11 Pro
+### For Windows 10/11 Pro
 
 1. Clone the repository to your workspace folder
 ```
@@ -78,9 +78,9 @@ cd develop/simoverlord100/test_software_overlord100/
 colcon build
 ```
 
-### Starting simulation
+## Starting simulation
 
-### Features
+## Features
 1. Different processors architectures are supported (yet, `x86` works much better)
 2. Code linting for `Python` and `C++`
 
