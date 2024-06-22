@@ -7,3 +7,6 @@
 [submodule "Overlord100-controller"]
 	path = Overlord100-controller
 	url = git@github.com:IU-Capstone-Project-2024/Overlord100-controller.git
+[submodule "Overlord100-database"]
+	path = Overlord100-database
+	url = https://github.com/IU-Capstone-Project-2024/Overlord100-database.git
