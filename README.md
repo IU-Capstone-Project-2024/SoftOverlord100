@@ -1,16 +1,13 @@
-# SimOverlord100
+<h1 align="center">
+   Overlord100 Simulation
+</h1>
+
+<p align="center">
+  ROS 2 packages for simulation Autonomus Mobile Platform Overlord100.<br>
+</p>
 
 # Simulator part of Overlord100 Mobile Platform. 
-This repository TBA
-
-## Dependencies
-The backend is written using ROS2 Humble middleware with the following external dependencies:
-   1. TBA
-
-They could be installed at:
-```bash
-RUN apt-get install TBA
-```
+This repository allows the software development team to test the developed algorithms without the risk of damaging the real equipment, as well as to conduct tests in parallel and without the need for personal presence in the laboratory.
 
 ## Development: Devcontainer
 For the sake of development simplicity, DevContainer environment was created to preserve dependencies integrity and allow to avoid damaging system with local installation.
@@ -18,7 +15,12 @@ For the sake of development simplicity, DevContainer environment was created to 
 ### Usage
 1. Install VS Code and Dev Container extension
 2. Press `Ctrl+Shift+P` and choose option `DevContainers: Reopen in Container`.
-3. Choose the platform you are working on (`amd64` if you are using Apple Sillicon, otherwise `x86`)
+3. Choose the platform you are working on (`arm64` if you are using Apple Sillicon, otherwise `x86`)
+4. Run main launch file
+```
+ros2 launch urdf_dummy gazebo.launch.py
+```
+> *note:* The Apple Sillicon is criticaly unstable
 
 ### Features
 1. Different processors architectures are supported (yet, `x86` works much better)
