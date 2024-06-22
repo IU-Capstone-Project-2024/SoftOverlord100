@@ -6,7 +6,7 @@
   ROS 2 packages for simulation Autonomus Mobile Platform Overlord100.<br>
 </p>
 
-# Simulator part of Overlord100 Mobile Platform. 
+
 This repository allows the software development team to test the developed algorithms without the risk of damaging the real equipment, as well as to conduct tests in parallel and without the need for personal presence in the laboratory.
 
 ## Development: Devcontainer
