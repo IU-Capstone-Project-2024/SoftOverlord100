@@ -19,7 +19,6 @@ For the sake of development simplicity, DevContainer environment was created to 
  - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
  - [Git](https://git-scm.com/downloads)
  - [X Server or VcXsrv](https://sourceforge.net/projects/vcxsrv/) (Only for Windows)
-)
 
 > *note:* The Apple Sillicon architecture is criticaly unstable and the preferred OS is Ubuntu
 
