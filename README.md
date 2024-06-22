@@ -9,18 +9,36 @@
 
 This repository allows the software development team to test the developed algorithms without the risk of damaging the real equipment, as well as to conduct tests in parallel and without the need for personal presence in the laboratory.
 
-## Development: Devcontainer
+## Installation
 For the sake of development simplicity, DevContainer environment was created to preserve dependencies integrity and allow to avoid damaging system with local installation.
 
-### Usage
-1. Install VS Code and Dev Container extension
-2. Press `Ctrl+Shift+P` and choose option `DevContainers: Reopen in Container`.
-3. Choose the platform you are working on (`arm64` if you are using Apple Sillicon, otherwise `x86`)
-4. Run main launch file
+### Prerequisites
+
+ - [Ubuntu 22.04 (Jammy Jellyfish)](https://releases.ubuntu.com/jammy/) or [Windows 11 pro](https://www.microsoft.com/en-gb/software-download/windows11) or [Windows 10 pro](https://www.microsoft.com/en-gb/software-download/windows10ISO) or [MacOS ](https://support.apple.com/en-us/102662)
+ - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+ - [Git](https://git-scm.com/downloads)
+ - [Visual Studio Code](https://code.visualstudio.com/)
+
+### Build the packages
+
+#### For MacOS and Ubuntu:
+
+1. Clone the repository to your workspace folder
 ```
-ros2 launch urdf_dummy gazebo.launch.py
+git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
 ```
+2. Launch Docker Desktop app
+3. Open cloned repository in VS Code
+4. Press `Ctrl+Shift+P` and choose option `DevContainers: Reopen in Container`.
+5. Choose the platform you are working on (`arm64` if you are using Apple Sillicon, otherwise `x86`)
+6. Source ROS 2 workspace in 
+```
+source opt/ros/humble/setup.bash
+```
+6. Run main launch file
+
 > *note:* The Apple Sillicon is criticaly unstable
+
 
 ### Features
 1. Different processors architectures are supported (yet, `x86` works much better)
