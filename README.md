@@ -25,6 +25,10 @@ For the sake of development simplicity, DevContainer environment was created to 
 
 ### Build the packages
 
+The **simoverlord100** is a [colcon](http://design.ros2.org/articles/build_tool.html) package. 
+
+To install it, follow the instructions below for your operating system
+
 #### For MacOS and Ubuntu
 
 1. Clone the repository to your workspace folder
@@ -44,6 +48,9 @@ source opt/ros/humble/setup.bash
 cd <path_to_package>
 colcon build
 ```
+
+Then you can move on to Starting simultion
+
 
 #### For Windows 10/11 Pro
 
@@ -71,7 +78,7 @@ cd develop/simoverlord100/test_software_overlord100/
 colcon build
 ```
 
-
+### Starting simulation
 
 ### Features
 1. Different processors architectures are supported (yet, `x86` works much better)
