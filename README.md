@@ -49,7 +49,7 @@ cd <path_to_package>
 colcon build
 ```
 
-Now you can move on to [Starting simultion](https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100/-/tree/urdf-dummy?ref_type%253Dheads#starting-simulation)
+Now you can move on to [Starting simultion](#starting-simulation)
 
 
 ### For Windows 10/11 Pro
@@ -78,7 +78,7 @@ cd develop/simoverlord100/test_software_overlord100/
 colcon build
 ```
 
-Now you can move on to [Starting simultion](https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100/-/tree/urdf-dummy?ref_type%253Dheads#starting-simulation)
+Now you can move on to [Starting simultion](#starting-simulation)
 
 ## Starting simulation
 
