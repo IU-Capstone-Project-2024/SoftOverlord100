@@ -19,6 +19,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time", default="true")
     world_name = LaunchConfiguration("world_name", default="mvp_world.sdf")
+    pack_dir = get_package_share_directory("urdf_dummy")
     # Spawn robot
     ignition_spawn_entity = Node(
         package="ros_gz_sim",
@@ -60,11 +61,23 @@ def generate_launch_description():
             "false",
         ],
     )
+    set_env_vars_resources = AppendEnvironmentVariable(
+        'IGN_GAZEBO_RESOURCE_PATH', pack_dir + '/models' )
 
-   
+    print(pack_dir)
+    
+
+    
 
     return LaunchDescription(
-        [
+        
+        [   
+            
+            set_env_vars_resources,
+            ExecuteProcess(
+            cmd=['python3', pack_dir+'/launch/test.py'],
+            output='screen'),
+
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     [
