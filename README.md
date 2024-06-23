@@ -86,10 +86,15 @@ sudo colcon build
 
 Now you can move on to [Starting simultion](#starting-simulation)
 
+### For installation without a container on Ubuntu 22
+
+
+
 ## Starting simulation
 
-To start simulation, open terminal and `ros2 launch`:
+To start simulation, open terminal and run `ros2 launch` command:
 ```
+source /opt/ros/humble/setup.bash
 ros2 launch urdf_dummy sim.launch.py
 ```
 
