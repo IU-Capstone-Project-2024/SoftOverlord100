@@ -35,7 +35,7 @@
     
   <model name = "mvp_world">
   <include>
-      <uri>model.sdf</uri>
+      <uri>install/urdf_dummy/share/urdf_dummy/models/mvp_world.sdf</uri>
    </include>      
    </model>     
   

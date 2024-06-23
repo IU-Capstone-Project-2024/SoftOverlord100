@@ -20,7 +20,7 @@
         <geometry>
           <mesh>
           <scale>4 4 4</scale>
-            <uri>inno_3rd_floor.dae</uri>
+            <uri>install/urdf_dummy/share/urdf_dummy/models/inno_3rd_floor.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -29,7 +29,7 @@
         <geometry>
           <mesh>
             <scale>4 4 4</scale>
-            <uri>inno_3rd_floor.dae</uri>
+            <uri>install/urdf_dummy/share/urdf_dummy/models/inno_3rd_floor.dae</uri>
           </mesh>
         </geometry>
       </visual>

@@ -61,8 +61,7 @@ def generate_launch_description():
         ],
     )
 
-    set_env_vars_resources = SetEnvironmentVariable(
-        'GZ_SIM_RESOURCE_PATH',"/home/ephy/ros2_ws/install/urdf_dummy/share/urdf_dummy/models" )
+   
 
     return LaunchDescription(
         [
