@@ -12,7 +12,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time", default="true")
 
     urdf = os.path.join(
-        get_package_share_directory("urdf_dummy"), "description", "dummy_bot.urdf"
+        get_package_share_directory("urdf_dummy"), "description", "overlord100.urdf"
     )
 
     doc = xacro.parse(open(urdf))

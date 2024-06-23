@@ -27,13 +27,13 @@ def generate_launch_description():
         output="screen",
         arguments=[
             "-name",
-            "dummy_robot",
+            "overlord100",
             "-file",
             PathJoinSubstitution(
                 [
                     get_package_share_directory("urdf_dummy"),
                     "description",
-                    "dummy_bot.urdf",
+                    "overlord100.urdf",
                 ]
             ),
             "-allow_renaming",
@@ -43,7 +43,7 @@ def generate_launch_description():
             "-y",
             "-0.5",
             "-z",
-            "0.5",
+            "3",
         ],
     )
 
