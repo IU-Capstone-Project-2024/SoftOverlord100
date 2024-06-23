@@ -9,6 +9,7 @@
 
   <depend>rclpy</depend>
   <depend>ign</depend>
+  <depend>gazebo_ros</depend>
   
 
   <test_depend>ament_copyright</test_depend>
@@ -17,6 +18,7 @@
   <test_depend>python3-pytest</test_depend>
 
   <export>
+
     <build_type>ament_python</build_type>
   </export>
 </package>

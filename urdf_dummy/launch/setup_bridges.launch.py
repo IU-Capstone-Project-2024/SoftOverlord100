@@ -15,28 +15,6 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     # Bridge
-    bridge_lidar = Node(
-        package="ros_gz_bridge",
-        executable="parameter_bridge",
-        arguments=["/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan"],
-        output="screen",
-    )
-    bridge_imu = Node(
-        package="ros_gz_bridge",
-        executable="parameter_bridge",
-        arguments=['/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU"'],
-        output="screen",
-    )
-
-    bridge_cmd_vel = Node(
-        package="ros_gz_bridge",
-        executable="parameter_bridge",
-        arguments=[
-            "/model/dummy_bot/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist"
-        ],
-        output="screen",
-    )
-
     bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
