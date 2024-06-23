@@ -65,13 +65,13 @@ ENV DISPLAY=host.docker.internal:0.0
 ```
 5. Launch XLaunch app. Left settings as is.
 2. Launch Docker Desktop app
-3. Open cmd.exe in project folder and execute: 
+3. Open cmd.exe in .devcontainer folder of the project folder and execute: 
 ```
 docker build -t <name_of_image> .
 ```
 4. Run Container
 ```
-docker run -it X:/<path_to_repository_on_computer>:/develop <name_of_image> bash
+docker run -it -v X:/<path_to_repository_on_computer>:/develop <name_of_image> bash
 ```
 
 6. Source ROS workspace in container
@@ -80,7 +80,7 @@ source /opt/ros/humble/setup.bash
 ```
 7. Build package
 ```
-cd develop/simoverlord100/test_software_overlord100/
+cd /develop/test_software_overlord100
 sudo colcon build
 ```
 
