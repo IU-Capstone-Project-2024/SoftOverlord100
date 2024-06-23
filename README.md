@@ -16,7 +16,7 @@ For the sake of development simplicity, DevContainer environment was created to 
 
  - [Ubuntu 22.04 (Jammy Jellyfish)](https://releases.ubuntu.com/jammy/) or [Windows 11 Pro](https://www.microsoft.com/en-gb/software-download/windows11) or [Windows 10 Pro](https://www.microsoft.com/en-gb/software-download/windows10ISO) or [MacOS ](https://support.apple.com/en-us/102662)
  - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
- - [Visual Studio Code](https://code.visualstudio.com/)
+ - [VS Code](https://code.visualstudio.com/)
  - [Dev Containers for VS Code](https://code.visualstudio.com/docs/devcontainers/containers#_installation)
  - [Git](https://git-scm.com/downloads)
  - [X Server or VcXsrv](https://sourceforge.net/projects/vcxsrv/) (Only for Windows)
