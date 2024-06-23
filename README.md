@@ -24,7 +24,7 @@ For the sake of development simplicity, DevContainer environment was created to 
 > *note:* The Apple Sillicon architecture is criticaly unstable and the preferred OS is Ubuntu
 
 
-## Build the packages
+## Build the packages 
 
 The **simoverlord100** is a [colcon](http://design.ros2.org/articles/build_tool.html) package. 
 
