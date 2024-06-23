@@ -59,8 +59,13 @@ Now you can move on to [Starting simultion](#starting-simulation)
 ```
 git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
 ```
+2. Add the following line to your Dockerfile (in .devcontainer folder):
+```
+ENV DISPLAY=host.docker.internal:0.0
+```
+5. Launch XLaunch app. Left settings as is.
 2. Launch Docker Desktop app
-3. Build image
+3. Open cmd.exe in project folder and execute: 
 ```
 docker build -t <name_of_image> .
 ```
@@ -68,15 +73,15 @@ docker build -t <name_of_image> .
 ```
 docker run -it X:/<path_to_repository_on_computer>:/develop <name_of_image> bash
 ```
-5. Launch XLaunch app
+
 6. Source ROS workspace in container
 ```
-source opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.bash
 ```
 7. Build package
 ```
 cd develop/simoverlord100/test_software_overlord100/
-colcon build
+sudo colcon build
 ```
 
 Now you can move on to [Starting simultion](#starting-simulation)
