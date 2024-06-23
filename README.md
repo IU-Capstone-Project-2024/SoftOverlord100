@@ -163,6 +163,7 @@ Now you can move on to [Starting simultion](#starting-simulation)
 
 To start simulation, open terminal and run `ros2 launch` command:
 ```
+cd ros2_ws
 source /opt/ros/humble/setup.bash
 source install/local_setup.bash
 ros2 launch urdf_dummy sim.launch.py
