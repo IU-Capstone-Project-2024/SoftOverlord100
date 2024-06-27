@@ -40,5 +40,5 @@
         "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/.vscode,target=/home/ws/.vscode,type=bind,consistency=cached"
     ],
-    "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ws/ && pip3 install black"
+    "postCreateCommand": "sudo rosdep update && sudo chown -R $(whoami) /home/ws/ && pip3 install black && sudo rosdep install --from-paths src --ignore-src -y "
 }
