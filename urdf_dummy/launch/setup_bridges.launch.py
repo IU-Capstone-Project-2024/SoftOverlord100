@@ -21,7 +21,7 @@ def generate_launch_description():
         arguments=[
             "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
-            "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
+            "/wheels_control@geometry_msgs/msg/Twist@ignition.msgs.Twist",
             "/world/default/model/dummy_robot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
             "/model/dummy_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
