@@ -23,5 +23,5 @@ jobs:
     - name: Run tests
       run: |
         
-        docker run --rm --mount type=bind,source=.,target=/home/ws my-app:latest /home/ws/start.sh
+        docker run --rm --mount type=bind,source=.,target=/home/ws my-app:latest /home/ws/.github/scripts/start.sh
 
