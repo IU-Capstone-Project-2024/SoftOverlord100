@@ -12,9 +12,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install cpplint
-  
-      - name: run linter
-        if: ${{cpplint --recursive --quiet .}} == ""
-        run: |
-          exit 1
+          cpplint --recursive --quiet .
+      # - name: run linter
+      #   if: ${{cpplint --recursive --quiet .}} == ""
+      #   run: |
+      #     exit 1
           
