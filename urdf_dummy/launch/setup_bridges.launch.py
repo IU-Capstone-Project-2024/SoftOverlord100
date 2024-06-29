@@ -32,15 +32,19 @@ def generate_launch_description():
             '/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo',
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
             "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
-            "/world/default/model/dummy_robot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
-            "/model/dummy_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+            "/world/mvp_world/model/overlord100/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
+            "/model/overlord100/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+            "/model/overlord100/joint/chassis_to_left_joint/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double",
+            "/model/overlord100/joint/chassis_to_right_joint/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double",
 
         ],
         remappings=[
             ("/odom/tf", "/tf"),
-            ("/world/default/model/dummy_robot/joint_state", "/joint_states"),
-            ('/camera_info', '/depth_camera_info')
+            ("/world/mvp_world/model/overlord100/joint_state", "/joint_states"),
+            ('/camera_info', '/depth_camera_info'),
+            ('/model/overlord100/joint/chassis_to_left_joint/cmd_vel', '/left_wheel'),
+            ('/model/overlord100/joint/chassis_to_right_joint/cmd_vel', '/right_wheel')
         ],
         output="screen",
     )

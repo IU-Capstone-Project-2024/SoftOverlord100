@@ -15,7 +15,10 @@
       </attenuation>
       <direction>-0.5 0.1 -0.9</direction>
     </light>
-    <actor name="actor_walking">
+
+
+
+    <!-- <actor name="actor_walking">
     <skin>
         <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
         <scale>1.0</scale>
@@ -69,7 +72,7 @@
         </trajectory>
     </script>
 
-</actor>
+</actor> -->
 
 
 

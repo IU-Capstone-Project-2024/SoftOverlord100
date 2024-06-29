@@ -47,7 +47,22 @@
       <robot_base_frame>chassis</robot_base_frame>
       <tf_topic>/odom/tf</tf_topic>
     </plugin>
+
     <plugin
+        filename="ignition-gazebo-joint-controller-system"
+        name="ignition::gazebo::systems::JointController">
+        <joint_name>chassis_to_left_wheel</joint_name>
+        <initial_velocity>0</initial_velocity>
+      </plugin>
+
+      <plugin
+        filename="ignition-gazebo-joint-controller-system"
+        name="ignition::gazebo::systems::JointController">
+        <joint_name>chassis_to_right_wheel</joint_name>
+        <initial_velocity>0</initial_velocity>
+      </plugin>
+    
+    <!-- <plugin
       filename="libignition-gazebo-diff-drive-system.so"
       name="ignition::gazebo::systems::DiffDrive">
       <left_joint>chassis_to_left_wheel</left_joint>
@@ -57,7 +72,7 @@
       <odom_publish_frequency>1</odom_publish_frequency>
       <topic>/cmd_vel</topic>
 
-    </plugin>
+    </plugin> -->
 
     <plugin filename="libignition-gazebo-sensors-system.so"
       name="ignition::gazebo::systems::Sensors">

@@ -40,6 +40,6 @@ setup(
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": ["controller = urdf_dummy.controller:main"],
+        "console_scripts": ["converter = urdf_dummy.converter:main"],
     },
 )

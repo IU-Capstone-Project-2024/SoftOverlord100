@@ -64,7 +64,7 @@ def generate_launch_description():
 
     # Spawn world using sdf with world tag
     start_world = ExecuteProcess(
-        cmd=['ign', 'gazebo', "-r", PathJoinSubstitution(
+        cmd=['ign', 'gazebo', "-v 4", "-r", PathJoinSubstitution(
                 [
                     get_package_share_directory("urdf_dummy"),
                     "worlds",
