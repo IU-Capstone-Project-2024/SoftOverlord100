@@ -10,10 +10,13 @@ from launch.actions import ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, AppendEnvironmentVariable
+from launch.actions import (
+    IncludeLaunchDescription,
+    SetEnvironmentVariable,
+    AppendEnvironmentVariable,
+)
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
-
 
 
 def generate_launch_description():
@@ -64,31 +67,33 @@ def generate_launch_description():
 
     # Spawn world using sdf with world tag
     start_world = ExecuteProcess(
-        cmd=['ign', 'gazebo', "-v 4", "-r", PathJoinSubstitution(
+        cmd=[
+            "ign",
+            "gazebo",
+            "-v 4",
+            "-r",
+            PathJoinSubstitution(
                 [
                     get_package_share_directory("urdf_dummy"),
                     "worlds",
                     "mvp_world.sdf",
                 ]
-            ),]
+            ),
+        ]
     )
     set_env_vars_resources = AppendEnvironmentVariable(
-        'IGN_GAZEBO_RESOURCE_PATH', os.getenv("PWD") + '/simoverlord100/urdf_dummy/models' )
+        "IGN_GAZEBO_RESOURCE_PATH",
+        os.getenv("PWD") + "/simoverlord100/urdf_dummy/models",
+    )
 
     print(pack_dir)
-    
-
-    
 
     return LaunchDescription(
-        
-        [   
-            
+        [
             set_env_vars_resources,
             ExecuteProcess(
-            cmd=['python3', pack_dir+'/launch/test.py'],
-            output='screen'),
-
+                cmd=["python3", pack_dir + "/launch/test.py"], output="screen"
+            ),
             # IncludeLaunchDescription(
             #     PythonLaunchDescriptionSource(
             #         [
@@ -114,6 +119,5 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "world_name", default_value=world_name, description="World name"
             ),
-
         ]
     )

@@ -3,7 +3,6 @@ import os
 from glob import glob
 
 
-
 package_name = "urdf_dummy"
 
 setup(
@@ -28,9 +27,6 @@ setup(
             os.path.join("share", package_name, "rviz"),
             glob("rviz/simulator.rviz"),
         ),
-        
-        
-        
     ],
     install_requires=["setuptools"],
     zip_safe=True,
