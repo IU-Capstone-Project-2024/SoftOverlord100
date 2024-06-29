@@ -14,7 +14,7 @@ jobs:
           pip install cpplint
   
       - name: run linter
-        if: cpplint --recursive --quiet . == ""
+        if: ${{cpplint --recursive --quiet .}} == ""
         run: |
           exit 1
           
