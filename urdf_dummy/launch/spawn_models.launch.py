@@ -81,35 +81,26 @@ def generate_launch_description():
             ),
         ]
     )
+    
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in dirs:
+                return os.path.join(root, name)
+    
+    model_path = find("models", os.getenv("PWD"))
+    print(model_path)
     set_env_vars_resources = AppendEnvironmentVariable(
-        "IGN_GAZEBO_RESOURCE_PATH",
-        os.getenv("PWD") + "/simoverlord100/urdf_dummy/models",
-    )
+        'IGN_GAZEBO_RESOURCE_PATH', model_path)
 
-    print(pack_dir)
+    
 
     return LaunchDescription(
         [
             set_env_vars_resources,
-            ExecuteProcess(
-                cmd=["python3", pack_dir + "/launch/test.py"], output="screen"
-            ),
-            # IncludeLaunchDescription(
-            #     PythonLaunchDescriptionSource(
-            #         [
-            #             PathJoinSubstitution(
-            #                 [
-            #                     get_package_share_directory("ros_gz_sim"),
-            #                     "launch",
-            #                     "gz_sim.launch.py",
-            #                 ]
-            #             )
-            #         ]
-            #     ),
-            #     launch_arguments=[("ign_args", [" -r -v 3"])],
-            # ),
+            # ExecuteProcess(
+            # cmd=['python3', pack_dir+'/launch/test.py'],
+            # output='screen'),
             start_world,
-            # ignition_spawn_world,
             ignition_spawn_entity,
             DeclareLaunchArgument(
                 "use_sim_time",

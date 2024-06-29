@@ -24,7 +24,7 @@ class Converter(Node):
 
     def encoders_callback(self, msg: JointState):
         encoders = WheelsData()
-        self.get_logger().info(str(msg.velocity[0]) + " " + str(msg.velocity[1]))
+        #self.get_logger().info(str(msg.velocity[0]) + " " + str(msg.velocity[1]))
         # TO_DO:check order in the array
         encoders.left = float(msg.velocity[0])
         encoders.right = float(msg.velocity[1])

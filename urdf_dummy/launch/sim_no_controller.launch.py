@@ -51,6 +51,12 @@ def generate_launch_description():
         ],
     )
 
+    converter = Node(
+        package="urdf_dummy",
+        executable="converter"
+    )
+
+
     rviz_node = Node(
         package="rviz2",
         namespace="",
@@ -73,6 +79,7 @@ def generate_launch_description():
             bridge_setup_node,
             static_tf_node,
             robot_state_publisher_node,
+            converter,
             rviz_node,
         ]
     )
