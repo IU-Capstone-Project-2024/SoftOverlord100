@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turtlesim Web Control</title>
+    <!-- Import the ROSLIB library from a CDN to interact with ROS from the web -->
+    <script src="https://cdn.jsdelivr.net/npm/roslib/build/roslib.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+      }
+
+      .App {
+        text-align: center;
+        background-color: #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+      }
+
+      .connected,
+      .connecting {
+        display: none;
+      }
+
+      .connecting.visible {
+        display: block;
+      }
+
+      .connected.visible {
+        display: block;
+      }
+
+      canvas {
+        border: 1px solid white;
+        background-color: black;
+      }
+
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #61dafb;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #21a1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="App">
+      <header class="App-header">
+        <h1>Control Turtlesim</h1>
+      </header>
+      <p class="connected">Connected to ROS</p>
+      <p class="connecting visible">Connecting to ROS...</p>
+      <canvas id="turtleCanvas" width="500" height="500"></canvas>
+      <div class="btns">
+      <!-- Buttons for sending movement commands to the turtle -->
+      <button onclick="sendCommand('up')">Up</button>
+      <button onclick="sendCommand('down')">Down</button>
+      <button onclick="sendCommand('left')">Left</button>
+      <button onclick="sendCommand('right')">Right</button>
+      </div>
+    </div>
+
+    <script>
+      // Establish a connection to the ROS bridge websocket server
+      var ros = new ROSLIB.Ros({
+        url: "ws://localhost:9090", // URL of the ROS bridge server
+      });
+
+      // Event handler for successful connection to the websocket server
+      ros.on("connection", function () {
+        console.log("Connected to websocket server.");
+        document.querySelector(".connecting").classList.remove("visible");
+        document.querySelector(".connected").classList.add("visible");
+      });
+
+      // Event handler for connection errors
+      ros.on("error", function (error) {
+        console.log("Error connecting to websocket server: ", error);
+        document.querySelector(".connecting").classList.add("visible");
+        document.querySelector(".connected").classList.remove("visible");
+      });
+
+      // Event handler for connection closure
+      ros.on("close", function () {
+        console.log("Connection to websocket server closed.");
+        document.querySelector(".connecting").classList.add("visible");
+        document.querySelector(".connected").classList.remove("visible");
+      });
+
+      // Create a ROS topic object for publishing velocity commands to the turtle
+      var turtle1_velocity_publisher = new ROSLIB.Topic({
+        ros: ros, // ROS connection instance
+        name: "/turtle1/cmd_vel", // Topic name
+        messageType: "geometry_msgs/msg/Twist", // Message type for velocity commands
+      });
+
+      // Function to send movement commands to the turtle based on button clicks
+      function sendCommand(direction) {
+        console.log("Sending command: " + direction); // Log the command being sent
+
+        // Create a new Twist message with default values of zero
+        var twist = new ROSLIB.Message({
+          linear: {
+            x: 0.0, // Linear velocity in x-direction
+            y: 0.0, // Linear velocity in y-direction
+            z: 0.0, // Linear velocity in z-direction
+          },
+          angular: {
+            x: 0.0, // Angular velocity around x-axis
+            y: 0.0, // Angular velocity around y-axis
+            z: 0.0, // Angular velocity around z-axis
+          },
+        });
+
+        // Set the appropriate velocity values based on the direction
+        switch (direction) {
+          case "up":
+            twist.linear.x = 2.0; // Move forward
+            break;
+          case "down":
+            twist.linear.x = -2.0; // Move backward
+            break;
+          case "left":
+            twist.angular.z = 2.0; // Rotate counterclockwise
+            break;
+          case "right":
+            twist.angular.z = -2.0; // Rotate clockwise
+            break;
+        }
+
+        // Publish the Twist message to the /turtle1/cmd_vel topic
+        turtle1_velocity_publisher.publish(twist);
+      }
+
+      // Create a ROS topic object for subscribing to the turtle's pose
+      var turtlePoseListener = new ROSLIB.Topic({
+        ros: ros, // ROS connection instance
+        name: "/turtle1/pose", // Topic name
+        messageType: "turtlesim/msg/Pose", // Message type for pose updates
+      });
+
+      // Subscribe to the turtle's pose and update the canvas whenever a new pose is received
+      turtlePoseListener.subscribe(function (message) {
+        console.log("Received pose: ", message); // Log the received pose
+        drawTurtle(message.x, message.y, message.theta); // Draw the turtle at the new position
+      });
+
+      // Create a ROS topic object for subscribing to the map
+      var mapListener = new ROSLIB.Topic({
+        ros: ros,
+        name: "/map", // Make sure this is the correct topic name for your map
+        messageType: "nav_msgs/msg/OccupancyGrid", // Message type for map data
+      });
+
+      // Subscribe to the map and update the canvas whenever a new map is received
+      mapListener.subscribe(function (message) {
+        console.log("Received map: ", message); // Log the received map
+        drawMap(message); // Draw the map on the canvas
+      });
+
+      // Get the canvas element and its context for drawing
+      var canvas = document.getElementById("turtleCanvas");
+      var ctx = canvas.getContext("2d");
+
+      // Function to draw the map on the canvas
+      function drawMap(map) {
+        var mapWidth = map.info.width;
+        var mapHeight = map.info.height;
+        var data = map.data;
+
+        // Scale the map to fit the canvas
+        var scaleX = canvas.width / mapWidth;
+        var scaleY = canvas.height / mapHeight;
+
+        // Clear the entire canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the map as blue lines
+        const imageData = ctx.createImageData(mapWidth, mapHeight);
+        for (let y = 0; y < mapHeight; y++) {
+          for (let x = 0; x < mapWidth; x++) {
+            const i = y * mapWidth + x;
+            const value = data[i];
+            const color = value === -1 ? 127 : value > 50 ? 0 : 255;
+            const index = (y * mapWidth + x) * 4;
+            imageData.data[index] = color;
+            imageData.data[index + 1] = color;
+            imageData.data[index + 2] = color;
+            imageData.data[index + 3] = 255;
+          }
+        }
+        // Scale the image data to fit the canvas
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = mapWidth;
+        tempCanvas.height = mapHeight;
+        const tempCtx = tempCanvas.getContext("2d");
+        tempCtx.putImageData(imageData, 0, 0);
+
+        ctx.save();
+        ctx.scale(scaleX, scaleY);
+        ctx.drawImage(tempCanvas, 0, 0);
+        ctx.restore();
+
+        // Draw axes
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(canvas.width, 0);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, canvas.height);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+
+        // Label axes
+        ctx.fillStyle = "black";
+        ctx.fillText("X", canvas.width - 20, 20);
+        ctx.fillText("Y", 20, canvas.height - 20);
+      }
+
+      // Function to draw the turtle's position on the canvas
+      function drawTurtle(x, y, theta) {
+        // Define the size of the turtle (as a triangle)
+        var turtleSize = 20;
+
+        // Convert Turtlesim coordinates to canvas coordinates
+        var canvasX = x * (canvas.width / 11.0); // Scale x-coordinate to canvas width
+        var canvasY = canvas.height - y * (canvas.height / 11.0); // Scale y-coordinate to canvas height (invert y-axis)
+
+        // Save the current context state
+        ctx.save();
+        // Move the origin to the turtle's position
+        ctx.translate(canvasX, canvasY);
+        // Rotate the canvas to the turtle's orientation
+        ctx.rotate(-theta);
+        // Draw the turtle as a triangle
+        ctx.beginPath();
+        ctx.moveTo(-turtleSize / 2, -turtleSize / 2); // Start at the bottom-left corner
+        ctx.lineTo(turtleSize / 2, 0); // Draw to the tip (front)
+        ctx.lineTo(-turtleSize / 2, turtleSize / 2); // Draw to the bottom-right corner
+        ctx.closePath(); // Close the triangle path
+        ctx.fill(); // Fill the triangle
+        // Restore the previous context state
+        ctx.restore();
+      }
+    </script>
+  </body>
+</html>
