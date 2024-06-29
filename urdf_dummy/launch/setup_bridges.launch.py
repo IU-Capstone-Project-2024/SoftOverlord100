@@ -19,16 +19,28 @@ def generate_launch_description():
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
-            "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/laser_scan_back@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/laser_scan_front@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_1@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_2@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_3@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_4@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_5@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_6@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_7@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_8@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            '/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo',
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
-            "/wheels_control@geometry_msgs/msg/Twist@ignition.msgs.Twist",
+            "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
             "/world/default/model/dummy_robot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
             "/model/dummy_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+
         ],
         remappings=[
             ("/odom/tf", "/tf"),
             ("/world/default/model/dummy_robot/joint_state", "/joint_states"),
+            ('/camera_info', '/depth_camera_info')
         ],
         output="screen",
     )

@@ -21,8 +21,8 @@ setup(
             glob(os.path.join("description", "*urdf")),
         ),
         (
-            os.path.join("share", package_name, "models"),
-            glob(os.path.join("models", "*")),
+            os.path.join("share", package_name, "worlds"),
+            glob(os.path.join("worlds", "*")),
         ),
         (
             os.path.join("share", package_name, "rviz"),

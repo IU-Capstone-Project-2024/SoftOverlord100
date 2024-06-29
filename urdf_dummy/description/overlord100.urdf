@@ -52,16 +52,17 @@
       name="ignition::gazebo::systems::DiffDrive">
       <left_joint>chassis_to_left_wheel</left_joint>
       <right_joint>chassis_to_right_wheel</right_joint>
-      <wheel_separation>0.8</wheel_separation>
-      <wheel_radius>0.2</wheel_radius>
-      <odom_publish_frequency>0</odom_publish_frequency>
-      <topic>/wheels_control</topic>
+      <wheel_separation>0.6</wheel_separation>
+      <wheel_radius>0.065</wheel_radius>
+      <odom_publish_frequency>1</odom_publish_frequency>
+      <topic>/cmd_vel</topic>
 
     </plugin>
 
     <plugin filename="libignition-gazebo-sensors-system.so"
       name="ignition::gazebo::systems::Sensors">
-      <render_engine>ogre</render_engine>
+      <render_engine>ogre2</render_engine>
+      
     </plugin>
 
   </gazebo>
@@ -69,20 +70,26 @@
 
   <link name="chassis">
     <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.20" /> 
+    
       <geometry>
-        <box size="1.5 1.0 0.5" />
+      
+        
+        <mesh filename = "model://base.dae"/>  
+        
       </geometry>
-      <material name="grey" />
+      
 
     </visual>
     <inertial>
-      <mass value="1" />
-      <inertia ixx="0.1875" ixy="0.0" ixz="0.0" iyy="0.09" iyz="0.0" izz="0.27" />
+      <mass value="60.5" />
+      <inertia ixx="0.45375" ixy="0.0" ixz="0.0" iyy="2.263304" iyz="0.0" izz="2.716954" />
     </inertial>
 
     <collision>
+    
       <geometry>
-        <box size="1.5 1.0 0.5" />
+        <box size="0.67 0.93  0.2" />
       </geometry>
     </collision>
 
@@ -91,19 +98,21 @@
 
   <link name="left_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.07" /> 
       <geometry>
-        <cylinder length="0.3" radius="0.2" />
+        <mesh filename = "model://left_wheel.dae"  />  
       </geometry>
 
-      <material name="white" />
+      
     </visual>
     <inertial>
       <mass value="1" />
       <inertia ixx="0.0175" ixy="0.0" ixz="0.0" iyy="0.0175" iyz="0.0" izz="0.02" />
     </inertial>
     <collision>
+    <origin rpy="0 1.57075 0" xyz="0 0 0" /> 
       <geometry>
-        <cylinder length="0.3" radius="0.2" />
+        <cylinder radius = "0.07" length = "0.06" />
       </geometry>
 
     </collision>
@@ -111,23 +120,25 @@
 
   </link>
   <joint name="chassis_to_left_wheel" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="10.0" />
     <parent link="chassis" />
     <child link="left_wheel" />
-    <origin rpy="1.57075 0 0" xyz="0 0.65 -0.3" />
+    <origin rpy="0 0 3.14" xyz="0.33 -0.045 -0.15" /> 
+    
 
 
   </joint>
 
 
-  <link name="lidar">
+  <link name="lidar_front">
     <visual>
       <geometry>
-        <cylinder length="0.06" radius="0.09" />
+        <mesh filename = "model://front_lidar.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
 
-      <material name="red" />
+      
     </visual>
     <inertial>
       <mass value="0.1" />
@@ -135,38 +146,81 @@
     </inertial>
     <collision>
       <geometry>
-        <cylinder length="0.06" radius="0.09" />
+        <box size = "0.061 0.041 0.055" />
       </geometry>
 
     </collision>
 
 
   </link>
-  <joint name="chassis_to_lidar" type="fixed">
+  <joint name="chassis_to_lidar_front" type="fixed">
 
 
     <parent link="chassis" />
-    <child link="lidar" />
-    <origin rpy="0 0 0" xyz="0 0 0.27" />
+    <child link="lidar_front" />
+    <origin rpy="0 0 0" xyz="0.26 0.43 0" /> 
+
+
+  </joint>
+
+
+  <link name="lidar_back">
+    <visual>
+      <geometry>
+        <mesh filename = "model://back_lidar.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+  <joint name="chassis_to_lidar_back" type="fixed">
+
+
+    <parent link="chassis" />
+    <child link="lidar_back" />
+    <origin rpy="0 0 0" xyz="-0.26 -0.42 0" /> 
 
 
   </joint>
 
   <link name="right_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz="0 0 -0.07" />
+      
+      
       <geometry>
-        <cylinder length="0.3" radius="0.2" />
+        
+        
+        <mesh filename = "model://right_wheel.dae"  />  
+        
       </geometry>
 
-      <material name="white" />
+      
     </visual>
     <inertial>
       <mass value="1" />
+      
       <inertia ixx="0.0175" ixy="0.0" ixz="0.0" iyy="0.0175" iyz="0.0" izz="0.02" />
     </inertial>
     <collision>
+    <origin rpy="0 1.57075 0" xyz="0 0 0" />
+    
       <geometry>
-        <cylinder length="0.3" radius="0.2" />
+        
+        <cylinder radius = "0.07" length = "0.06" />
       </geometry>
 
     </collision>
@@ -174,20 +228,23 @@
 
   </link>
   <joint name="chassis_to_right_wheel" type="revolute">
-    <axis xyz="0 0 1" />
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="1.0" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="10.0" />
     <parent link="chassis" />
     <child link="right_wheel" />
-    <origin rpy="1.57075 0 0" xyz="0 -0.65 -0.3" />
+  
+    <origin rpy="0 0 3.14" xyz="-0.33 -0.045 -0.15" />
   </joint>
 
   <link name="front_left_dummy_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz=" 0 0 -0.07" /> 
       <geometry>
-        <sphere radius="0.2" />
+        <mesh filename = "model://front_left_wheel.dae" />
+        <!-- <sphere radius="0.2" /> -->
       </geometry>
 
-      <material name="white" />
+      
     </visual>
 
     <inertial>
@@ -196,11 +253,14 @@
     </inertial>
 
     <collision>
+      
       <geometry>
-        <sphere radius="0.2" />
+       <sphere radius= "0.07" />
       </geometry>
 
     </collision>
+
+    
 
 
   </link>
@@ -208,18 +268,20 @@
   <joint name="chassis_to_front_left_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="front_left_dummy_wheel" />
-    <material name="white" />
-    <origin rpy="0 0 0" xyz="0.6 0.25 -0.3" />
+    <origin rpy="0 0 0" xyz="0.23 0.40 -0.15" /> 
+     
   </joint>
 
 
   <link name="front_right_dummy_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz=" 0 0 -0.07" /> 
       <geometry>
-        <sphere radius="0.2" />
+      <mesh filename = "model://front_right_wheel.dae" />
+        <!-- <sphere radius="0.2" /> -->
       </geometry>
 
-      <material name="white" />
+      
     </visual>
 
     <inertial>
@@ -228,28 +290,33 @@
     </inertial>
 
     <collision>
+      
       <geometry>
-        <sphere radius="0.2" />
+       <sphere radius= "0.07" />
       </geometry>
 
     </collision>
+
+    
 
   </link>
 
   <joint name="chassis_to_front_right_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="front_right_dummy_wheel" />
-    <origin rpy="0 0 0" xyz="0.6 -0.25 -0.3" />
+    <origin rpy="0 0 0" xyz="-0.23 0.40 -0.15" /> 
   </joint>
 
 
   <link name="back_right_dummy_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz=" 0 0 -0.07" /> 
       <geometry>
-        <sphere radius="0.2" />
+      <mesh filename = "model://back_right_wheel.dae"  />  
+        <!-- <sphere radius="0.2" /> -->
       </geometry>
 
-      <material name="white" />
+      
 
     </visual>
 
@@ -260,8 +327,9 @@
     </inertial>
 
     <collision>
+    
       <geometry>
-        <sphere radius="0.2" />
+       <sphere radius= "0.07" />
       </geometry>
 
     </collision>
@@ -270,21 +338,24 @@
   <joint name="chassis_to_back_right_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="back_right_dummy_wheel" />
-    <origin rpy="0 0 0" xyz="-0.6 -0.25 -0.3" />
+    <origin rpy="0 0 0" xyz="-0.27 -0.42 -0.15" /> 
   </joint>
 
 
   <link name="back_left_dummy_wheel">
     <visual>
+    <origin rpy="0 0 0" xyz=" 0 0 -0.07" /> 
       <geometry>
-        <sphere radius="0.2" />
+      <mesh filename = "model://back_left_wheel.dae"  />  
+        <!-- <sphere radius="0.2" /> -->
       </geometry>
 
-      <material name="white" />
+      
     </visual>
     <collision>
+    
       <geometry>
-        <sphere radius="0.2" />
+        <sphere radius= "0.07" />
       </geometry>
 
     </collision>
@@ -298,264 +369,718 @@
   <joint name="chassis_to_back_left_dummy_wheel" type="fixed">
     <parent link="chassis" />
     <child link="back_left_dummy_wheel" />
-    <origin rpy="0 0 0" xyz="-0.6 0.25 -0.3" />
+    <origin rpy="0 0 0" xyz="0.27 -0.42 -0.15" /> 
   </joint>
 
 
-  <gazebo reference="lidar">
+  <gazebo reference="lidar_front">
 
-    <sensor name="lidar_sensor" type="gpu_lidar">
-
-
-      <topic>lidar</topic>
-
+    <sensor name="lidar_sensor_front" type="gpu_lidar">
+      <topic>laser_scan_front</topic>
       <update_rate>10</update_rate>
-
       <ray>
-
         <scan>
-
           <horizontal>
-
-            <samples>640</samples>
-
+            <samples>500</samples>
             <resolution>1</resolution>
-
-            <min_angle>-1.396263</min_angle>
-
-            <max_angle>1.396263</max_angle>
-
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
           </horizontal>
-
-          <vertical>
-
-            <samples>1</samples>
-
-            <resolution>1</resolution>
-
-            <min_angle>0</min_angle>
-
-            <max_angle>0</max_angle>
-
-          </vertical>
-
         </scan>
-
         <range>
-
-          <min>0.09</min>
-
-          <max>10.0</max>
-
+          <min>0.05</min>
+          <max>12.0</max>
           <resolution>0.01</resolution>
-
         </range>
-
       </ray>
-
       <always_on>1</always_on>
-
       <visualize>true</visualize>
-
     </sensor>
-
   </gazebo>
 
 
-  <joint name="camera_front_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.77 0 0" />
-    <parent link="chassis" />
-    <child link="camera_front_link" />
-  </joint>
+  <gazebo reference="lidar_back">
 
-  <link name="camera_front_link">
-    <inertial>
-      <mass value="0.001" />
+    <sensor name="lidar_sensor_back" type="gpu_lidar">
+      <topic>laser_scan_back</topic>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>500</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
 
-      <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
-    </inertial>
+
+
+  <gazebo reference = "sonar1">
+  <sensor name='sonar_1' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_1</topic>
+  <pose>0 0 0 0 0 1.57075</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar2">
+  <sensor name='sonar_2' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_2</topic>
+  <pose>0 0 0 0 0 1.57075</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar3">
+  <sensor name='sonar_3' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_3</topic>
+  <pose>0 0 0 0 0.5 3.1415</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar4">
+  <sensor name='sonar_4' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_4</topic>
+  <pose>0 0 0 0 0.5 3.1415</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar5">
+  <sensor name='sonar_5' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_5</topic>
+  <pose>0 0 0 0 0 -1.57075</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar6">
+  <sensor name='sonar_6' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_6</topic>
+  <pose>0 0 0 0 0 -1.57075</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+  <gazebo reference = "sonar7">
+  <sensor name='sonar_7' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_7</topic>
+  <pose>0 0 0 0 0.5 0</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+
+  <gazebo reference = "sonar8">
+  <sensor name='sonar_8' type='gpu_lidar'>
+  <always_on>1</always_on>
+  <update_rate>20</update_rate>
+  <visualize>1</visualize>
+  <topic>sonar_8</topic>
+  <pose>0 0 0 0 0.5 0</pose>
+  <ray>
+    <scan>
+      <horizontal>
+        <samples>5</samples>
+        <resolution>1</resolution>
+        <min_angle>-0.14835</min_angle>
+        <max_angle>0.14835</max_angle>
+      </horizontal>
+      <vertical>
+        <samples>3</samples>
+        <resolution>1</resolution>
+        <min_angle>0</min_angle>
+        <max_angle>0.14835</max_angle>
+      </vertical>
+    </scan>
+    <range>
+      <min>0.01</min>
+      <max>4</max>
+      <resolution>0.02</resolution>
+    </range>
+    <noise>
+      <type>gaussian</type>
+      <mean>0.1</mean>
+      <stddev>0.005</stddev>
+    </noise>
+  </ray>
+</sensor>
+  </gazebo>
+
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+  <link name="realsense">
     <visual>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <mesh filename = "model://realsense.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
+
+      
     </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
     <collision>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <box size = "0.061 0.041 0.055" />
       </geometry>
+
     </collision>
   </link>
 
-  <gazebo reference="camera_front_link">
-    <sensor name='front_camera' type='camera'>
-      <visualize>true</visualize>
-      <update_rate>5</update_rate>
-      <topic>camera_front/camera_image</topic>
-      <camera>
-        <!-- <horizontal_fov>1.047</horizontal_fov> -->
-        <image>
-          <!-- <width>320</width>
-                    <height>240</height> -->
-          <width>640</width>
-          <height>420</height>
-          <!-- <format>B8G8R8</format> -->
-        </image>
-        <!-- <clip>
-                    <near>0.1</near>
-                    <far>100</far>
-                </clip> -->
-      </camera>
-    </sensor>
-  </gazebo>
-
-
-  <joint name="camera_left_joint" type="fixed">
-    <origin rpy="0 0 1.57075" xyz="0 0.52 0" />
-    <parent link="chassis" />
-    <child link="camera_left_link" />
+  <joint name = "chassis_to_realsense" type = "fixed">
+  <parent link="chassis" />
+    <child link="realsense" />
+    <origin xyz = "0 0.48 -0.032"/>
   </joint>
 
-  <link name="camera_left_link">
-    <inertial>
-      <mass value="0.001" />
 
-      <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
-    </inertial>
+
+  <link name="sonar1">
     <visual>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <mesh filename = "model://sonar1.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
+
+      
     </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
     <collision>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <box size = "0.061 0.041 0.055" />
       </geometry>
+
     </collision>
+
+
   </link>
 
-  <gazebo reference="camera_left_link">
-    <sensor name='left_camera' type='camera'>
-      <visualize>true</visualize>
-      <update_rate>5</update_rate>
-      <topic>camera_left/camera_image</topic>
-      <camera>
-        <!-- <horizontal_fov>1.047</horizontal_fov> -->
-        <image>
-          <!-- <width>320</width>
-                    <height>240</height> -->
-          <width>640</width>
-          <height>420</height>
-          <!-- <format>B8G8R8</format> -->
-        </image>
-        <!-- <clip>
-                    <near>0.1</near>
-                    <far>100</far>
-                </clip> -->
-      </camera>
-    </sensor>
-  </gazebo>
-
-
-  <joint name="camera_right_joint" type="fixed">
-    <origin rpy="0 0 -1.57075" xyz="0 -0.52 0" />
-    <parent link="chassis" />
-    <child link="camera_right_link" />
+  <joint name = "chassis_to_sonar1" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar1" />
+    <origin xyz = "0.138 0.45 -0.032"/> 
   </joint>
 
-  <link name="camera_right_link">
-    <inertial>
-      <mass value="0.001" />
 
-      <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
-    </inertial>
+  <link name="sonar2">
     <visual>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <mesh filename = "model://sonar2.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
+
+      
     </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
     <collision>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <box size = "0.061 0.041 0.055" />
       </geometry>
+
     </collision>
+
+
   </link>
 
-  <gazebo reference="camera_right_link">
-    <sensor name='right_camera' type='camera'>
-      <visualize>true</visualize>
-      <update_rate>5</update_rate>
-      <topic>camera_right/camera_image</topic>
-      <camera>
-        <!-- <horizontal_fov>1.047</horizontal_fov> -->
-        <image>
-          <!-- <width>320</width>
-                    <height>240</height> -->
-          <width>640</width>
-          <height>420</height>
-          <!-- <format>B8G8R8</format> -->
-        </image>
-        <!-- <clip>
-                    <near>0.1</near>
-                    <far>100</far>
-                </clip> -->
-      </camera>
-    </sensor>
-  </gazebo>
-
-
-  <joint name="camera_back_joint" type="fixed">
-    <origin rpy="0 0 3.1415" xyz="-0.77 0 0" />
-    <parent link="chassis" />
-    <child link="camera_back_link" />
+  <joint name = "chassis_to_sonar2" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar2" />
+    <origin xyz = "-0.138 0.45 -0.032"/> 
   </joint>
 
-  <link name="camera_back_link">
-    <inertial>
-      <mass value="0.001" />
 
-      <inertia ixx="0.000000017" ixy="0" ixz="0" iyy="0.000000017" iyz="0" izz="0.000000017" />
-    </inertial>
+  <link name="sonar5">
     <visual>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <mesh filename = "model://sonar5.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
+
+      
     </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
     <collision>
-
       <geometry>
-        <box size="0.01 0.01 0.01" />
+        <box size = "0.061 0.041 0.055" />
       </geometry>
+
     </collision>
+
+
   </link>
 
-  <gazebo reference="camera_back_link">
-    <sensor name='back_camera' type='camera'>
-      <visualize>true</visualize>
-      <update_rate>5</update_rate>
-      <topic>camera_back/camera_image</topic>
-      <camera>
-        <!-- <horizontal_fov>1.047</horizontal_fov> -->
-        <image>
-          <!-- <width>320</width>
-                    <height>240</height> -->
-          <width>640</width>
-          <height>420</height>
-          <!-- <format>B8G8R8</format> -->
-        </image>
-        <!-- <clip>
-                    <near>0.1</near>
-                    <far>100</far>
-                </clip> -->
-      </camera>
-    </sensor>
+  <joint name = "chassis_to_sonar5" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar5" />
+    <origin xyz = "-0.138 -0.45 -0.032"/> 
+  </joint>
+
+  <link name="sonar6">
+    <visual>
+      <geometry>
+        <mesh filename = "model://sonar6.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+
+  <joint name = "chassis_to_sonar6" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar6" />
+    <origin xyz = "0.138 -0.45 -0.032"/> 
+  </joint>
+  
+
+
+  <link name="sonar3">
+    <visual>
+      <geometry>
+        <mesh filename = "model://sonar3.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+
+  <joint name = "chassis_to_sonar3" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar3" />
+    <origin xyz = "-0.3 0.24 -0.032"/> 
+  </joint>
+
+
+  <link name="sonar4">
+    <visual>
+      <geometry>
+        <mesh filename = "model://sonar4.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+
+  <joint name = "chassis_to_sonar4" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar4" />
+    <origin xyz = "-0.3 -0.23 -0.032"/> 
+  </joint>
+
+
+
+  <link name="sonar8">
+    <visual>
+      <geometry>
+        <mesh filename = "model://sonar8.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+
+  <joint name = "chassis_to_sonar8" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar8" />
+    <origin xyz = "0.3 0.24 -0.032"/> 
+  </joint>
+
+
+  <link name="sonar7">
+    <visual>
+      <geometry>
+        <mesh filename = "model://sonar7.dae"  />  
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
+      </geometry>
+
+      
+    </visual>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.000158" ixy="0.0" ixz="0.0" iyy="0.000158" iyz="0.0" izz="0.00018" />
+    </inertial>
+    <collision>
+      <geometry>
+        <box size = "0.061 0.041 0.055" />
+      </geometry>
+
+    </collision>
+
+
+  </link>
+
+  <joint name = "chassis_to_sonar7" type = "fixed">
+  <parent link="chassis" />
+    <child link="sonar7" />
+    <origin xyz = "0.3 -0.23 -0.032"/> 
+  </joint>
+
+  <gazebo reference = "realsense">
+    <sensor name="d435_color" type="camera">
+				<always_on>1</always_on>
+				<update_rate>30</update_rate>
+				<visualize>1</visualize>
+        <pose>0 0 0 0 0 1.57075</pose>
+				<topic>/color_camera</topic>
+				<camera name="d435">
+					<horizontal_fov>1.21126</horizontal_fov>
+					<image>
+						<width>640</width>
+						<height>480</height>
+						<format>RGB_INT8</format>
+					</image>
+					<clip>
+						<near>0.1</near>
+						<far>100</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<mean>0</mean>
+						<stddev>0.007</stddev>
+					</noise>
+				</camera>
+			</sensor>
+
+
+
+
+      <sensor name="d435_depth" type="depth_camera">
+				<always_on>1</always_on>
+				<update_rate>90</update_rate>
+				<visualize>0</visualize>
+        <pose>0 0 0 0 0 1.57075</pose>
+				<topic>/depth_camera</topic>
+				<camera name="d435">
+					<horizontal_fov>1.48702</horizontal_fov>
+					<image>
+						<width>1280</width>
+						<height>720</height>
+					</image>
+					<clip>
+						<near>0.1</near>
+						<far>100</far>
+					</clip>
+					<noise>
+						<type>gaussian</type>
+						<mean>0</mean>
+						<stddev>0.1</stddev>
+					</noise>
+				</camera>
+			</sensor>
   </gazebo>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
   <gazebo reference="chassis_to_back_left_dummy_wheel">

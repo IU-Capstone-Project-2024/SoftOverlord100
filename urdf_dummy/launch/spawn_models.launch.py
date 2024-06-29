@@ -43,7 +43,7 @@ def generate_launch_description():
             "-y",
             "-0.5",
             "-z",
-            "3",
+            "1",
         ],
     )
 
@@ -55,14 +55,25 @@ def generate_launch_description():
         arguments=[
             "-file",
             PathJoinSubstitution(
-                [get_package_share_directory("urdf_dummy"), "models", world_name]
+                [get_package_share_directory("urdf_dummy"), "worlds", world_name]
             ),
             "-allow_renaming",
             "false",
         ],
     )
+
+    # Spawn world using sdf with world tag
+    start_world = ExecuteProcess(
+        cmd=['ign', 'gazebo', "-r", PathJoinSubstitution(
+                [
+                    get_package_share_directory("urdf_dummy"),
+                    "worlds",
+                    "mvp_world.sdf",
+                ]
+            ),]
+    )
     set_env_vars_resources = AppendEnvironmentVariable(
-        'IGN_GAZEBO_RESOURCE_PATH', pack_dir + '/models' )
+        'IGN_GAZEBO_RESOURCE_PATH', os.getenv("PWD") + '/simoverlord100/urdf_dummy/models' )
 
     print(pack_dir)
     
@@ -78,22 +89,22 @@ def generate_launch_description():
             cmd=['python3', pack_dir+'/launch/test.py'],
             output='screen'),
 
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    [
-                        PathJoinSubstitution(
-                            [
-                                get_package_share_directory("ros_gz_sim"),
-                                "launch",
-                                "gz_sim.launch.py",
-                            ]
-                        )
-                    ]
-                ),
-                launch_arguments=[("ign_args", [" -r -v 3"])],
-            ),
-            
-            ignition_spawn_world,
+            # IncludeLaunchDescription(
+            #     PythonLaunchDescriptionSource(
+            #         [
+            #             PathJoinSubstitution(
+            #                 [
+            #                     get_package_share_directory("ros_gz_sim"),
+            #                     "launch",
+            #                     "gz_sim.launch.py",
+            #                 ]
+            #             )
+            #         ]
+            #     ),
+            #     launch_arguments=[("ign_args", [" -r -v 3"])],
+            # ),
+            start_world,
+            # ignition_spawn_world,
             ignition_spawn_entity,
             DeclareLaunchArgument(
                 "use_sim_time",

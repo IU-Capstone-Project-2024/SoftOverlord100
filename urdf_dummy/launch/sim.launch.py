@@ -44,6 +44,13 @@ def generate_launch_description():
     )
 
 
+
+    static_tf_node = Node(
+        package = "tf2_ros", 
+        executable = "static_transform_publisher",
+        arguments = ["0", "0", "0", "0", "0", "0", "lidar", "overlord100/chassis/lidar_sensor"],
+    )
+
     rqt_steering_node = Node(
         package="rqt_robot_steering",
         namespace="rqt_robot_steering",
