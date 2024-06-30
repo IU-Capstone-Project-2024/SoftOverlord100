@@ -4,6 +4,7 @@ default:
 
 stages:
   - checkLintPython
+  - push
   - build
 
 lint_black:
@@ -18,6 +19,23 @@ lint_black:
       changes:
         - "*.py"
         - "**/*.py"
+
+push:
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - docker info
+    - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
+  script:
+    - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
+    - devcontainer build --workspace-folder . --image-name simoverlord:latest
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 build_image:
   stage: build
