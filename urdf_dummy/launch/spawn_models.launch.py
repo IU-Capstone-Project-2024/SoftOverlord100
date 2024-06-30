@@ -10,10 +10,13 @@ from launch.actions import ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, AppendEnvironmentVariable
+from launch.actions import (
+    IncludeLaunchDescription,
+    SetEnvironmentVariable,
+    AppendEnvironmentVariable,
+)
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
-
 
 
 def generate_launch_description():
@@ -43,7 +46,7 @@ def generate_launch_description():
             "-y",
             "-0.5",
             "-z",
-            "3",
+            "1",
         ],
     )
 
@@ -55,45 +58,49 @@ def generate_launch_description():
         arguments=[
             "-file",
             PathJoinSubstitution(
-                [get_package_share_directory("urdf_dummy"), "models", world_name]
+                [get_package_share_directory("urdf_dummy"), "worlds", world_name]
             ),
             "-allow_renaming",
             "false",
         ],
     )
-    set_env_vars_resources = AppendEnvironmentVariable(
-        'IGN_GAZEBO_RESOURCE_PATH', pack_dir + '/models' )
 
-    print(pack_dir)
+    # Spawn world using sdf with world tag
+    start_world = ExecuteProcess(
+        cmd=[
+            "ign",
+            "gazebo",
+            "-v 4",
+            "-r",
+            PathJoinSubstitution(
+                [
+                    get_package_share_directory("urdf_dummy"),
+                    "worlds",
+                    "mvp_world.sdf",
+                ]
+            ),
+        ]
+    )
     
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in dirs:
+                return os.path.join(root, name)
+    
+    model_path = find("models", os.getenv("PWD"))
+    print(model_path)
+    set_env_vars_resources = AppendEnvironmentVariable(
+        'IGN_GAZEBO_RESOURCE_PATH', model_path)
 
     
 
     return LaunchDescription(
-        
-        [   
-            
+        [
             set_env_vars_resources,
-            ExecuteProcess(
-            cmd=['python3', pack_dir+'/launch/test.py'],
-            output='screen'),
-
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    [
-                        PathJoinSubstitution(
-                            [
-                                get_package_share_directory("ros_gz_sim"),
-                                "launch",
-                                "gz_sim.launch.py",
-                            ]
-                        )
-                    ]
-                ),
-                launch_arguments=[("ign_args", [" -r -v 3"])],
-            ),
-            
-            ignition_spawn_world,
+            # ExecuteProcess(
+            # cmd=['python3', pack_dir+'/launch/test.py'],
+            # output='screen'),
+            start_world,
             ignition_spawn_entity,
             DeclareLaunchArgument(
                 "use_sim_time",
@@ -103,6 +110,5 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "world_name", default_value=world_name, description="World name"
             ),
-
         ]
     )

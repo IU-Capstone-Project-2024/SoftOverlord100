@@ -198,7 +198,3 @@ This repository has the following pipelines:
    1. `PEP8` style: [link](https://peps.python.org/pep-0008/)
 3. `Git Flow`
    1. `Conventional Commits`: [link](https://www.conventionalcommits.org/en/v1.0.0/)
-
-
-
-

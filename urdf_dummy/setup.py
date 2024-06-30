@@ -3,7 +3,6 @@ import os
 from glob import glob
 
 
-
 package_name = "urdf_dummy"
 
 setup(
@@ -21,16 +20,13 @@ setup(
             glob(os.path.join("description", "*urdf")),
         ),
         (
-            os.path.join("share", package_name, "models"),
-            glob(os.path.join("models", "*")),
+            os.path.join("share", package_name, "worlds"),
+            glob(os.path.join("worlds", "*")),
         ),
         (
             os.path.join("share", package_name, "rviz"),
             glob("rviz/simulator.rviz"),
         ),
-        
-        
-        
     ],
     install_requires=["setuptools"],
     zip_safe=True,
@@ -40,6 +36,6 @@ setup(
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": ["controller = urdf_dummy.controller:main"],
+        "console_scripts": ["converter = urdf_dummy.converter:main"],
     },
 )

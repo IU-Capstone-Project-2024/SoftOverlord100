@@ -19,17 +19,36 @@ def generate_launch_description():
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
-            "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/laser_scan_back@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/laser_scan_front@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_1@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_2@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_3@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_4@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_5@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_6@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_7@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/sonar_8@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            "/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
-            "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
-            "/world/default/model/dummy_robot/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
-            "/model/dummy_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+            "/regular_driver@geometry_msgs/msg/Twist@ignition.msgs.Twist",
+            "/world/mvp_world/model/overlord100/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
+            "/model/overlord100/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+            "/model/overlord100/joint/chassis_to_left_wheel/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double",
+            "/model/overlord100/joint/chassis_to_right_wheel/cmd_vel@std_msgs/msg/Float64@ignition.msgs.Double",
         ],
+
+
         remappings=[
             ("/odom/tf", "/tf"),
-            ("/world/default/model/dummy_robot/joint_state", "/joint_states"),
+            ("/world/mvp_world/model/overlord100/joint_state", "/joint_states"),
+            ("/camera_info", "/depth_camera_info"),
+            ("/model/overlord100/joint/chassis_to_left_wheel/cmd_vel", "/left_wheel"),
+            ("/model/overlord100/joint/chassis_to_right_wheel/cmd_vel", "/right_wheel"),
         ],
+
+        
         output="screen",
     )
 
