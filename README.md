@@ -63,22 +63,22 @@ git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
 ```
 ENV DISPLAY=host.docker.internal:0.0
 ```
-5. Launch XLaunch app. Left settings as is.
-2. Launch Docker Desktop app
-3. Open cmd.exe in .devcontainer folder of the project folder and execute: 
+3. Launch XLaunch app. Left settings as is.
+4. Launch Docker Desktop app
+5. Open cmd.exe in .devcontainer folder of the project folder and execute: 
 ```
 docker build -t <name_of_image> .
 ```
-4. Run Container
+6. Run Container
 ```
 docker run -it -v X:/<path_to_repository_on_computer>:/develop <name_of_image> bash
 ```
 
-6. Source ROS workspace in container
+7. Source ROS workspace in container
 ```
 source /opt/ros/humble/setup.bash
 ```
-7. Build package
+8. Build package
 ```
 cd /develop/test_software_overlord100
 sudo colcon build
@@ -88,17 +88,96 @@ Now you can move on to [Starting simultion](#starting-simulation)
 
 ### For installation without a container on Ubuntu 22
 
+1. Open Terminal
+2. Verify your settings
+```
+locale  # check for UTF-8
 
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+locale  # verify settings
+```
+3. Now add the ROS 2 GPG key with apt.
+```
+sudo apt update && sudo apt install curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+```
+4. Then add the repository to your sources list.
+```
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
+5. Update your system
+```
+sudo apt update
+```
+```
+sudo apt upgrade
+```
+6. Install ROS 2
+```
+sudo apt install ros-humble-desktop
+```
+7. Source ROS 2 environment
+```
+source /opt/ros/humble/setup.bash
+```
+8. Create new directory
+```
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+```
+9. Clone repo
+```
+git clone https://gitlab.pg.innopolis.university/e.shlomov/simoverlord100.git
+```
+10. Resolve dependencies
+```
+# cd if you're still in the ``src`` directory with the ``simoverlord100`` clone
+cd ..
+rosdep install -i --from-path src --rosdistro humble -y
+```
+11. Download Gazebo
+```
+sudo apt-get install ros-humble-ros-gz
+sudo apt install ros-humble-rqt-robot-steering
+```
+12. Download Colcon
+```
+sudo apt install python3-colcon-common-extensions
+```
+13. Build workspace with Colcon
+```
+colcon build
+```
+14. Source the overlay
+```
+source /opt/ros/humble/setup.bash
+```
+
+Now you can move on to [Starting simultion](#starting-simulation)
 
 ## Starting simulation
 
 To start simulation, open terminal and run `ros2 launch` command:
 ```
+cd ros2_ws
 source /opt/ros/humble/setup.bash
+source install/local_setup.bash
 ros2 launch urdf_dummy sim.launch.py
 ```
 
 The `sim.launch.py` is Python launch script that automatically start all necessary programs
+
+After that, you will have several windows open. 
+
+In the `RViz` window, the readings of sensors and other systems are visualized.
+
+In the `rqt_robot_steering` window, you can control the robot by setting the speed and direction of movement. 
+
+To display the simulation window, you need to close the `Gazebo` window, after which a new one will open, with a scene.
 
 ## Features
 1. Different processors architectures are supported (yet, `x86` works much better)
@@ -119,7 +198,3 @@ This repository has the following pipelines:
    1. `PEP8` style: [link](https://peps.python.org/pep-0008/)
 3. `Git Flow`
    1. `Conventional Commits`: [link](https://www.conventionalcommits.org/en/v1.0.0/)
-
-
-
-
