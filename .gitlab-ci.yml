@@ -34,7 +34,7 @@ push:
     - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push simoverlord
+    - docker push simoverlord:latest
     - docker push simoverlord
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
