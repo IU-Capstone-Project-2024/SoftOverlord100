@@ -32,8 +32,8 @@ push:
     - npm install -g @devcontainers/cli
   script:
     - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest
-    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
-    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker push simoverlord
     - docker push simoverlord
   rules:
