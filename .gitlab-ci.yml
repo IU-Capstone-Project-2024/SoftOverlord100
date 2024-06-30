@@ -35,7 +35,6 @@ push:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
-    - docker push simoverlord
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
