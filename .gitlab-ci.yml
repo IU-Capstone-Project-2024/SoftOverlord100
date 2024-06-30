@@ -25,11 +25,13 @@ build_image:
   services:
     - docker:27.0.0-rc.1-dind
   before_script:
-    - apk add --no-cache --upgrade bash
+    - apk add --no-cache --upgrade sudo
   script:
     - cd .devcontainer
+    - mkdir /container
+    - sudo chown -R $(whoami) /container
     - sudo docker build -t my-app:latest .
-    - sudo docker run --rm -v $(pwd):/home/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
+    - sudo docker run --rm --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
@@ -38,4 +40,5 @@ build_image:
     - pip install -U colcon-common-extensions
     - colcon build
   rules:
-    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+
