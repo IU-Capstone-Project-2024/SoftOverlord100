@@ -28,8 +28,8 @@ build_image:
     - apk add --no-cache --upgrade bash
   script:
     - cd .devcontainer
-    - docker build -t my-app:latest .
-    - docker run --rm -v $(pwd):/home/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
+    - sudo docker build -t my-app:latest .
+    - sudo docker run --rm -v $(pwd):/home/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
