@@ -62,7 +62,7 @@
         <initial_velocity>0</initial_velocity>
       </plugin>
     
-    <!-- <plugin
+     <plugin
       filename="libignition-gazebo-diff-drive-system.so"
       name="ignition::gazebo::systems::DiffDrive">
       <left_joint>chassis_to_left_wheel</left_joint>
@@ -70,9 +70,9 @@
       <wheel_separation>0.6</wheel_separation>
       <wheel_radius>0.065</wheel_radius>
       <odom_publish_frequency>1</odom_publish_frequency>
-      <topic>/cmd_vel</topic>
+      <topic>/regular_driver</topic>
 
-    </plugin> -->
+    </plugin>
 
     <plugin filename="libignition-gazebo-sensors-system.so"
       name="ignition::gazebo::systems::Sensors">
@@ -136,7 +136,7 @@
   </link>
   <joint name="chassis_to_left_wheel" type="revolute">
     <axis xyz="1 0 0" />
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="10.0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="100.0" />
     <parent link="chassis" />
     <child link="left_wheel" />
     <origin rpy="0 0 3.14" xyz="0.33 -0.045 -0.15" /> 
@@ -244,7 +244,7 @@
   </link>
   <joint name="chassis_to_right_wheel" type="revolute">
     <axis xyz="1 0 0" />
-    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="10.0" />
+    <limit effort="1000.0" lower="-1.79769e+308" upper="1.79769e+308" velocity="100.0" />
     <parent link="chassis" />
     <child link="right_wheel" />
   
@@ -398,12 +398,12 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-3.14</min_angle>
+            <min_angle>-1.57075</min_angle>
             <max_angle>3.14</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.05</min>
+          <min>0.5</min>
           <max>12.0</max>
           <resolution>0.01</resolution>
         </range>
@@ -424,12 +424,12 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-3.14</min_angle>
-            <max_angle>3.14</max_angle>
+            <min_angle>-4.71</min_angle>
+            <max_angle>0</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.05</min>
+          <min>0.5</min>
           <max>12.0</max>
           <resolution>0.01</resolution>
         </range>

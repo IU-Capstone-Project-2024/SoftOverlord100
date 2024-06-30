@@ -36,7 +36,7 @@ def generate_launch_description():
         )
     )
 
-    static_tf_node = Node(
+    static_tf_node_lidar_back = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         arguments=[
@@ -46,12 +46,13 @@ def generate_launch_description():
             "0",
             "0",
             "0",
-            "lidar",
-            "overlord100/chassis/lidar_sensor",
+            "lidar_back",
+            "overlord100/chassis/lidar_sensor_back",
         ],
     )
 
-    static_tf_node = Node(
+
+    static_tf_node_lidar_front = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         arguments=[
@@ -61,11 +62,12 @@ def generate_launch_description():
             "0",
             "0",
             "0",
-            "lidar",
-            "overlord100/chassis/lidar_sensor",
+            "lidar_front",
+            "overlord100/chassis/lidar_sensor_front",
         ],
     )
 
+   
     rqt_steering_node = Node(
         package="rqt_robot_steering",
         namespace="rqt_robot_steering",
@@ -94,7 +96,8 @@ def generate_launch_description():
             spawn_models_node,
             bridge_setup_node,
             rqt_steering_node,
-            static_tf_node,
+            static_tf_node_lidar_back,
+            static_tf_node_lidar_front,
             robot_state_publisher_node,
             rviz_node,
         ]

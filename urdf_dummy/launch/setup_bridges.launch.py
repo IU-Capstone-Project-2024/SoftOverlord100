@@ -31,7 +31,7 @@ def generate_launch_description():
             "/sonar_8@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo",
             "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU",
-            #"/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
+            "/regular_driver@geometry_msgs/msg/Twist@ignition.msgs.Twist",
             "/world/mvp_world/model/overlord100/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model",
             "/model/overlord100/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
             "/odom/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
