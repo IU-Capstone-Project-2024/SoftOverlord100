@@ -19,7 +19,7 @@ lint_black:
       changes:
         - "*.py"
         - "**/*.py"
-
+        
 push:
   image: docker:24.0.5
   services:
@@ -28,12 +28,11 @@ push:
     - docker info
     - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
   script:
-    - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
-    - devcontainer build --workspace-folder . --image-name simoverlord:latest
+    - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
-    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:$CI_JOB_ID
-    - docker push $HARBOR_HOST/$HARBOR_PROJECT/$APP:latest
+    - docker push simoverlord
+    - docker push simoverlord
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
