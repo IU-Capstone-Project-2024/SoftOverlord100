@@ -1,7 +1,6 @@
 default:
   tags:
-    - dev-env
-    - docker
+    - dev-env || docker
 
 stages:
   - checkLintPython
