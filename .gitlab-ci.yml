@@ -31,7 +31,6 @@ push:
     - apk add --update nodejs npm python3 make g++
     - npm install -g @devcontainers/cli
   script:
-    - docker login
     - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
