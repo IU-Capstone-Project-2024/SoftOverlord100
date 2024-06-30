@@ -33,8 +33,8 @@ class Converter(Node):
         encoders = WheelsData()
         #self.get_logger().info(str(msg.velocity[0]) + " " + str(msg.velocity[1]))
         # TO_DO:check order in the array
-        encoders.left = float(msg.velocity[0])
-        encoders.right = float(msg.velocity[1])
+        encoders.left = (float(msg.velocity[0]) * 60) / (2 * math.pi)
+        encoders.right = (float(msg.velocity[1]) * 60)/ (2 * math.pi)
         self.encoders_pub.publish(encoders)
 
 
