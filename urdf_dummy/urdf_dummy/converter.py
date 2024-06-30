@@ -1,4 +1,5 @@
 import rclpy
+import math
 from rclpy.node import Node
 from overlord100_msgs.msg import WheelsData
 from std_msgs.msg import Float64
@@ -19,10 +20,12 @@ class Converter(Node):
         self.encoders_pub = self.create_publisher(WheelsData, "/wheels_encoders", 10)
 
     def wheels_callback(self, msg: WheelsData):
+
+
         left = Float64()
-        left.data = msg.left
+        left.data = (msg.left * 2 * math.pi)/60
         right = Float64()
-        right.data = msg.right
+        right.data = (msg.right * 2 * math.pi)/60
         self.left_wheel.publish(left)
         self.right_wheel.publish(right)
 
