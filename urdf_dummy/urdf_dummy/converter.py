@@ -19,8 +19,12 @@ class Converter(Node):
         self.encoders_pub = self.create_publisher(WheelsData, "/wheels_encoders", 10)
 
     def wheels_callback(self, msg: WheelsData):
-        self.left_wheel.publish(msg.left)
-        self.right_wheel.publish(msg.right)
+        left = Float64()
+        left.data = msg.left
+        right = Float64()
+        right.data = msg.right
+        self.left_wheel.publish(left)
+        self.right_wheel.publish(right)
 
     def encoders_callback(self, msg: JointState):
         encoders = WheelsData()
