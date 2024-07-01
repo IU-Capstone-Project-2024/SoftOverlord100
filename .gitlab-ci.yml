@@ -37,7 +37,7 @@ push:
     - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
     - echo "$DOCKER_HUB_PASSWORD" | docker login -u simoverlord100 --password-stdin
     - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD"
-    - docker push simoverlord:latest
+    - docker push simoverlord100/simoverlord:latest
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
