@@ -4,7 +4,8 @@ default:
 
 stages:
   - checkLintPython
-  - push
+  - pushHarbor
+  - pushDockerHub
   - build
 
 lint_black:
@@ -20,8 +21,8 @@ lint_black:
         - "*.py"
         - "**/*.py"
 
-push:
-  stage: push
+pushHarbor:
+  stage: pushHarbor
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
@@ -35,11 +36,24 @@ push:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
-    - echo "$DOCKER_HUB_PASSWORD" | docker login -u simoverlord100 --password-stdin
-    - docker push simoverlord100/simoverlord:latest
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
+pushDockerHub:
+  stage: pushDockerHub 
+  image: docker:24.0.5 
+  services: 
+    - docker:24.0.5-dind 
+  before_script: 
+    - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD" 
+    - apk add --update nodejs npm python3 make g++ 
+    - npm install -g @devcontainers/cli 
+  script: 
+    - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest 
+ 
+    - docker push simoverlord100/simoverlord:latest 
+  rules: 
+    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 
 build_image:
