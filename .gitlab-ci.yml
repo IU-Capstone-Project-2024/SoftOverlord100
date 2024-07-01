@@ -51,7 +51,7 @@ pushDockerHub:
   script: 
     - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest 
  
-    - docker push simoverlord100/simoverlord:latest 
+    - docker push simoverlord:latest 
   rules: 
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
