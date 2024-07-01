@@ -45,7 +45,7 @@ pushDockerHub:
   services: 
     - docker:24.0.5-dind 
   before_script: 
-    - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD" 
+    - $ echo "$DOCKER_HUB_PASSWORD" | docker login -u simoverlord100 --password-stdin 
     - apk add --update nodejs npm python3 make g++ 
     - npm install -g @devcontainers/cli 
   script: 
