@@ -35,6 +35,7 @@ push:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u simoverlord100 --password-stdin
     - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD"
     - docker push simoverlord:latest
   rules:
