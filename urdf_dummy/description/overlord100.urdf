@@ -62,7 +62,7 @@
         <initial_velocity>0</initial_velocity>
       </plugin>
     
-     <plugin
+     <!-- <plugin
       filename="libignition-gazebo-diff-drive-system.so"
       name="ignition::gazebo::systems::DiffDrive">
       <left_joint>chassis_to_left_wheel</left_joint>
@@ -72,7 +72,7 @@
       <odom_publish_frequency>1</odom_publish_frequency>
       <topic>/regular_driver</topic>
 
-    </plugin>
+    </plugin> -->
 
     <plugin filename="libignition-gazebo-sensors-system.so"
       name="ignition::gazebo::systems::Sensors">
@@ -398,8 +398,8 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-1.57075</min_angle>
-            <max_angle>3.14</max_angle>
+            <min_angle>-1.4</min_angle>
+            <max_angle>3.0</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -424,8 +424,8 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-4.71</min_angle>
-            <max_angle>0</max_angle>
+            <min_angle>-4.5</min_angle>
+            <max_angle>-0.1</max_angle>
           </horizontal>
         </scan>
         <range>
