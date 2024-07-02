@@ -31,7 +31,7 @@ push:
   script:
     - docker build -t simoverlord .
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest
   rules:
