@@ -11,9 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(overlord100_interfaces REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-# add_executable(mode_switcher src/mode_switcher.cpp)
-add_executable(mode_switcher src/test2.cpp)
-
+add_executable(mode_switcher src/mode_switcher.cpp)
 
 ament_target_dependencies(
   mode_switcher 
