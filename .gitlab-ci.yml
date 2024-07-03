@@ -28,13 +28,10 @@ push:
   before_script:
     - docker info
     - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
-    - apk add --update nodejs npm python3 make g++
-    - npm install -g @devcontainers/cli
   script:
-    - devcontainer build --config .devcontainer/x86/devcontainer.json --workspace-folder . --image-name simoverlord:latest
-    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:$CI_JOB_ID
+    - docker build -t simoverlord .
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
+    - docker push $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest
   rules:
@@ -51,7 +48,7 @@ build_image:
     - cd .devcontainer
     - mkdir /container
     - sudo chown -R $(whoami) /container
-    - sudo docker build -t my-app:latest .
+    - sudo docker build -t my-app:latest .devcontainer/
     - sudo docker run --rm --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
     - apk update
     - apk upgrade
