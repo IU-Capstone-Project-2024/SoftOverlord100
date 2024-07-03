@@ -22,4 +22,6 @@ jobs:
 
     - name: Run tests
       run: |
-        docker run --rm my-app:latest /bin/sh --mount type=bind,source=.,target=/home/ws -c "source /opt/ros/humble/setup.bash && cd /home/ws && colcon build"
+        
+        docker run --rm --mount type=bind,source=.,target=/home/ws my-app:latest /home/ws/.github/scripts/start.sh
+
