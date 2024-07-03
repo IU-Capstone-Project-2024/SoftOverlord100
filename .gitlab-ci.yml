@@ -72,4 +72,5 @@ build_image:
     - colcon build
   rules:
     - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    
 
