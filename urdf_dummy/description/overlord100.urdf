@@ -48,7 +48,7 @@
       <tf_topic>/odom/tf</tf_topic>
     </plugin>
 
-    <plugin
+     <plugin
         filename="ignition-gazebo-joint-controller-system"
         name="ignition::gazebo::systems::JointController">
         <joint_name>chassis_to_left_wheel</joint_name>
@@ -60,7 +60,7 @@
         name="ignition::gazebo::systems::JointController">
         <joint_name>chassis_to_right_wheel</joint_name>
         <initial_velocity>0</initial_velocity>
-      </plugin>
+      </plugin> 
     
      <!-- <plugin
       filename="libignition-gazebo-diff-drive-system.so"
@@ -446,8 +446,7 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_1</topic>
-  <pose>0 0 0 0 0 1.57075</pose>
+  <topic>sonar_1_scan</topic>
   <ray>
     <scan>
       <horizontal>
@@ -482,8 +481,7 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_2</topic>
-  <pose>0 0 0 0 0 1.57075</pose>
+  <topic>sonar_2_scan</topic>
   <ray>
     <scan>
       <horizontal>
@@ -518,8 +516,8 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_3</topic>
-  <pose>0 0 0 0 0.5 3.1415</pose>
+  <topic>sonar_3_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
@@ -554,8 +552,8 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_4</topic>
-  <pose>0 0 0 0 0.5 3.1415</pose>
+  <topic>sonar_4_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
@@ -590,8 +588,8 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_5</topic>
-  <pose>0 0 0 0 0 -1.57075</pose>
+  <topic>sonar_5_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
@@ -626,8 +624,8 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_6</topic>
-  <pose>0 0 0 0 0 -1.57075</pose>
+  <topic>sonar_6_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
@@ -662,8 +660,8 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_7</topic>
-  <pose>0 0 0 0 0.5 0</pose>
+  <topic>sonar_7_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
@@ -699,14 +697,14 @@
   <always_on>1</always_on>
   <update_rate>20</update_rate>
   <visualize>1</visualize>
-  <topic>sonar_8</topic>
-  <pose>0 0 0 0 0.5 0</pose>
+  <topic>sonar_8_scan</topic>
+  
   <ray>
     <scan>
       <horizontal>
         <samples>5</samples>
         <resolution>1</resolution>
-        <min_angle>-0.14835</min_angle>
+        <min_angle>-0f.14835</min_angle>
         <max_angle>0.14835</max_angle>
       </horizontal>
       <vertical>
@@ -807,7 +805,7 @@
   <joint name = "chassis_to_sonar1" type = "fixed">
   <parent link="chassis" />
     <child link="sonar1" />
-    <origin xyz = "0.138 0.45 -0.032"/> 
+    <origin xyz = "0.138 0.45 -0.032" rpy = "0 0 1.57075 "/> 
   </joint>
 
 
@@ -837,7 +835,7 @@
   <joint name = "chassis_to_sonar2" type = "fixed">
   <parent link="chassis" />
     <child link="sonar2" />
-    <origin xyz = "-0.138 0.45 -0.032"/> 
+    <origin xyz = "-0.138 0.45 -0.032" rpy = "0 0 1.57075"/> 
   </joint>
 
 
@@ -867,7 +865,7 @@
   <joint name = "chassis_to_sonar5" type = "fixed">
   <parent link="chassis" />
     <child link="sonar5" />
-    <origin xyz = "-0.138 -0.45 -0.032"/> 
+    <origin xyz = "-0.138 -0.45 -0.032" rpy = "0 0 -1.57075"/> 
   </joint>
 
   <link name="sonar6">
@@ -896,7 +894,7 @@
   <joint name = "chassis_to_sonar6" type = "fixed">
   <parent link="chassis" />
     <child link="sonar6" />
-    <origin xyz = "0.138 -0.45 -0.032"/> 
+    <origin xyz = "0.138 -0.45 -0.032" rpy = "0 0 -1.57075"/> 
   </joint>
   
 
@@ -927,7 +925,7 @@
   <joint name = "chassis_to_sonar3" type = "fixed">
   <parent link="chassis" />
     <child link="sonar3" />
-    <origin xyz = "-0.3 0.24 -0.032"/> 
+    <origin xyz = "-0.3 0.24 -0.032" rpy = "0 0.5 3.1415"/> 
   </joint>
 
 
@@ -957,7 +955,7 @@
   <joint name = "chassis_to_sonar4" type = "fixed">
   <parent link="chassis" />
     <child link="sonar4" />
-    <origin xyz = "-0.3 -0.23 -0.032"/> 
+    <origin xyz = "-0.3 -0.23 -0.032" rpy = "0 0.5 3.1415"/> 
   </joint>
 
 
@@ -988,7 +986,7 @@
   <joint name = "chassis_to_sonar8" type = "fixed">
   <parent link="chassis" />
     <child link="sonar8" />
-    <origin xyz = "0.3 0.24 -0.032"/> 
+    <origin xyz = "0.3 0.24 -0.032" rpy= "0 0.5 0"/> 
   </joint>
 
 
@@ -1018,7 +1016,7 @@
   <joint name = "chassis_to_sonar7" type = "fixed">
   <parent link="chassis" />
     <child link="sonar7" />
-    <origin xyz = "0.3 -0.23 -0.032"/> 
+    <origin xyz = "0.3 -0.23 -0.032" rpy = "0 0.5 0"/> 
   </joint>
 
   <gazebo reference = "realsense">

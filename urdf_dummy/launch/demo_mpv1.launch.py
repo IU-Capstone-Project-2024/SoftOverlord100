@@ -31,7 +31,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             spawn_models_node,
-            diff_drive_controller,
+            #diff_drive_controller,
             rqt_robot_steering,
         ]
     )
