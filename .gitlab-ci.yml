@@ -35,7 +35,7 @@ push:
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 build_image:
   stage: build
@@ -45,7 +45,6 @@ build_image:
   before_script:
     - apk add --no-cache --upgrade sudo
   script:
-    - cd .devcontainer
     - mkdir /container
     - sudo chown -R $(whoami) /container
     - sudo docker build -t my-app:latest .devcontainer/
