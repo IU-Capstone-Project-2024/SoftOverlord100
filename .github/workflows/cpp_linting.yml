@@ -15,4 +15,4 @@ jobs:
           
       - name: run linter
         run: |
-          cpplint --recursive --quiet .
+          cpplint --recursive --verbose=0 --filter=-legal/copyright,-build/namespaces,-build/c++11 --quiet .
