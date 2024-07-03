@@ -4,8 +4,8 @@ default:
 
 stages:
   - checkLintPython
-  - pushDockerHub
   - pushHarbor
+  - pushDockerHub
   - build
 
 lint_black:
@@ -32,7 +32,7 @@ pushHarbor:
   script:
     - docker build -t simoverlord .
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push simoverlord100/simoverlord:latest
+    - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
   rules:
     - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
