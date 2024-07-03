@@ -4,9 +4,10 @@ default:
 
 stages:
   - checkLintPython
+  - build
   - pushHarbor
   - pushDockerHub
-  - build
+
 
 lint_black:
   stage: checkLintPython
