@@ -4,8 +4,9 @@ default:
 
 stages:
   - checkLintPython
-  - push
   - build
+  - pushDockerHub
+  - pushHarbor
 
 lint_black:
   stage: checkLintPython
@@ -20,8 +21,8 @@ lint_black:
         - "*.py"
         - "**/*.py"
 
-push:
-  stage: push
+pushHarbor:
+  stage: pushHarbor
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
@@ -31,11 +32,24 @@ push:
   script:
     - docker build -t simoverlord .
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+
+pushDockerHub:
+  stage: pushDockerHub 
+  image: docker:24.0.5 
+  services: 
+    - docker:24.0.5-dind 
+  before_script: 
+    - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD" 
+  script: 
+    - docker build -t simoverlord .
+    - docker tag simoverlord simoverlord100/simoverlord:latest
+    - docker push simoverlord100/simoverlord:latest 
+  rules: 
+    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+
 
 build_image:
   stage: build
@@ -57,5 +71,5 @@ build_image:
     - pip install -U colcon-common-extensions
     - colcon build
   rules:
-    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "yml_tests" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
 
