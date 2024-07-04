@@ -36,7 +36,7 @@ def generate_launch_description():
                 [
                     get_package_share_directory("urdf_dummy"),
                     "description",
-                    "overlord100.urdf",
+                    "overlord100_with_diffdrive.urdf",
                 ]
             ),
             "-allow_renaming",
@@ -51,7 +51,7 @@ def generate_launch_description():
     )
 
     
-    
+
     # Spawn world using sdf with world tag
     start_world = ExecuteProcess(
         cmd=[
@@ -84,6 +84,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             set_env_vars_resources,
+            
             start_world,
             ignition_spawn_entity,
             DeclareLaunchArgument(

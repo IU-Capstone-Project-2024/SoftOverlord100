@@ -66,6 +66,21 @@ def generate_launch_description():
             ],
         ],
     )
+
+    controller = Node(
+        package="overlord100_controller",
+        executable="diff_drive_controller",
+        
+    )
+
+    rqt_node = Node(
+        package= "rqt_robot_steering",
+        executable="rqt_robot_steering",
+    )
+
+
+
+
     return LaunchDescription(
         [
             spawn_models_node,
@@ -74,5 +89,7 @@ def generate_launch_description():
             robot_state_publisher_node,
             converter,
             rviz_node,
+            controller,
+            rqt_node
         ]
     )
