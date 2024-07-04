@@ -27,7 +27,7 @@ ENV SHELL /bin/bash
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
-COPY setup.bash .
+COPY startup.bash .
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
