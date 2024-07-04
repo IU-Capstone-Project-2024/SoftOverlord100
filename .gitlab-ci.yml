@@ -65,7 +65,7 @@ build_image:
   script:
     - docker build -t simoverlord .
     - docker tag simoverlord simoverlord100/simoverlord:latest
-    - docker run -rm /bin/bash -c "source /opt/ros/humble/setup.bash"
+    - docker run --rm -it simoverlord:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
