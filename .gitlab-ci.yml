@@ -60,10 +60,9 @@ build_image:
   before_script:
     - apk add --no-cache --upgrade sudo
   script:
-    - mkdir /container
-    - sudo chown -R $(whoami) /container
-    - sudo docker build -t my-app:latest .devcontainer/
-    - sudo docker run --rm --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash"
+    - docker build -t simoverlord .
+    - docker tag simoverlord simoverlord100/simoverlord:latest
+    - docker run -rm /bin/bash -c "source /opt/ros/humble/setup.bash"
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
