@@ -4,7 +4,7 @@ default:
 
 stages:
   - checkLintPython
-  - build
+  - docker
   - pushHarbor
   - pushDockerHub
 
@@ -53,8 +53,8 @@ pushDockerHub:
   rules: 
     - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push")
     
-docker:
-  stage: build
+build_image:
+  stage: docker
   image: docker:27.0.0-rc.1-cli
   services:
     - docker:27.0.0-rc.1-dind
