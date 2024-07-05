@@ -11,6 +11,7 @@ from sensor_msgs.msg import LaserScan
 class Converter(Node):
     def __init__(self):
         super().__init__("converter")
+        self.get_logger().info("converter is up")
         self.wheels_sub = self.create_subscription(
             WheelsData, "/wheels_control", self.wheels_callback, 10
         )
@@ -78,7 +79,7 @@ class Converter(Node):
     def encoders_callback(self, msg: JointState):
         encoders = WheelsData()
         #self.get_logger().info(str(msg.velocity[0]) + " " + str(msg.velocity[1]))
-        # TO_DO:check order in the array
+        
         encoders.left = (float(msg.velocity[0]) * 60) / (2 * math.pi)
         encoders.right = (float(msg.velocity[1]) * 60)/ (2 * math.pi)
         self.encoders_pub.publish(encoders)
