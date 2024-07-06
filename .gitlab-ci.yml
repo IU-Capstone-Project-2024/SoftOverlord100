@@ -36,7 +36,7 @@ pushHarbor:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push")
 
 pushDockerHub:
   stage: pushDockerHub 
@@ -51,7 +51,7 @@ pushDockerHub:
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest 
   rules: 
-    - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push")
     
 build_image:
   stage: docker
@@ -68,5 +68,5 @@ build_image:
 
 
   rules:
-    - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
     
