@@ -62,6 +62,19 @@ build_image:
     - apk add --no-cache --upgrade sudo
     - apk add --update --no-cache git
   script:
+    - sudo apk add install snapd
+    - sudo apk remove docker*
+    - sudo apk add autoremove
+    - for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apk remove $pkg; done
+    - sudo apk add ca-certificates curl
+    - sudo install -m 0755 -d /etc/apt/keyrings
+    - sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    - sudo chmod a+r /etc/apt/keyrings/docker.asc
+    - echo \ "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \ sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    - sudo apt-get update
+    - sudo apk add docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    
+
     - sudo docker build -t my-app:latest .devcontainer/
     - stat /builds/v.levasheva/sim-overlord-100-yml-special
     - sudo docker run --rm --privileged --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
