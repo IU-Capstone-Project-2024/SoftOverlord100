@@ -3,8 +3,8 @@ ARG USERNAME=mobile
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-WORKDIR /home/ws
-COPY . /home/ws
+WORKDIR /home/ws/src
+COPY . /home/ws/src
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -15,20 +15,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
-RUN chown -R $USERNAME:$USERNAME /home/ws
+RUN chown -R $USERNAME:$USERNAME /home/ws/src
 RUN apt-get update && apt-get upgrade -y && apt-get install -y python3-pip ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-rqt-robot-steering ros-humble-ros-gz --fix-missing
-
-RUN apt-get update \
-  && apt-get -y install build-essential \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/* \
-  && wget https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-Linux-x86_64.sh \
-      -q -O /tmp/cmake-install.sh \
-      && chmod u+x /tmp/cmake-install.sh \
-      && mkdir /opt/cmake-3.24.1 \
-      && /tmp/cmake-install.sh --skip-license --prefix=/opt/cmake-3.24.1 \
-      && rm /tmp/cmake-install.sh \
-      && ln -s /opt/cmake-3.24.1/bin/* /usr/local/bin
 
 ENV DISPLAY unix:0
 ENV ROS_AUTOMATIC_DISCOVERY_RANGE LOCALHOST
