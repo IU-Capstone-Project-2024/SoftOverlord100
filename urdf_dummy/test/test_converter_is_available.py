@@ -8,6 +8,9 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_testing.actions import ReadyToTest
 from sensor_msgs.msg import LaserScan
+from sensor_msgs.msg import Image
+from sensor_msgs.msg import PointCloud2
+from tf2_msgs.msg import TFMessage
 
 from overlord100_msgs.msg import WheelsData
 
@@ -109,11 +112,7 @@ class TestSimulationTopics(unittest.TestCase):
     def tearDown(self):
         self.node.destroy_node()
 
-
-
-
-
-    def test_converter_lidars_data_recieved(self):
+    def test_converter_lidars_data_received(self):
         messages = []
         wheels = self.node.create_subscription(LaserScan, 
             "/laser_scan_front",
@@ -123,7 +122,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time() + 10
+            end_time = time.time() + 20
             while time.time()< end_time:
                 rclpy.spin_once(self.node, timeout_sec= 0.1)
                 if len(messages) > 2:
@@ -133,6 +132,87 @@ class TestSimulationTopics(unittest.TestCase):
             
         finally:
             self.node.destroy_subscription(wheels)        
-        
 
+    def test_converter_color_camera_data_received(self):
+        messages = []
+        test_subscription = self.node.create_subscription(Image, 
+            "/color_camera",
+            lambda response: messages.append(response),
+            10
 
+        )
+
+        try:
+            end_time = time.time() + 20
+            while time.time()< end_time:
+                rclpy.spin_once(self.node, timeout_sec= 0.1)
+                if len(messages) > 2:
+                    break
+
+            self.assertGreater(len(messages), 2)
+            
+        finally:
+            self.node.destroy_subscription(test_subscription)        
+
+    def test_converter_depth_camera_data_received(self):
+        messages = []
+        test_subscription = self.node.create_subscription(PointCloud2, 
+            "/depth_camera/points",
+            lambda response: messages.append(response),
+            10
+
+        )
+
+        try:
+            end_time = time.time() + 20
+            while time.time()< end_time:
+                rclpy.spin_once(self.node, timeout_sec= 0.1)
+                if len(messages) > 2:
+                    break
+
+            self.assertGreater(len(messages), 2)
+            
+        finally:
+            self.node.destroy_subscription(test_subscription)        
+
+    def test_converter_tf_data_received(self):
+            messages = []
+            test_subscription = self.node.create_subscription(TFMessage, 
+                "/tf",
+                lambda response: messages.append(response),
+                10
+
+            )
+
+            try:
+                end_time = time.time() + 20
+                while time.time()< end_time:
+                    rclpy.spin_once(self.node, timeout_sec= 0.1)
+                    if len(messages) > 2:
+                        break
+
+                self.assertGreater(len(messages), 2)
+                
+            finally:
+                self.node.destroy_subscription(test_subscription)        
+
+    def test_converter_sonar_data_received(self):
+            messages = []
+            test_subscription = self.node.create_subscription(LaserScan, 
+                "/sonar_1_scan",
+                lambda response: messages.append(response),
+                10
+
+            )
+
+            try:
+                end_time = time.time() + 20
+                while time.time()< end_time:
+                    rclpy.spin_once(self.node, timeout_sec= 0.1)
+                    if len(messages) > 2:
+                        break
+
+                self.assertGreater(len(messages), 2)
+                
+            finally:
+                self.node.destroy_subscription(test_subscription)        
