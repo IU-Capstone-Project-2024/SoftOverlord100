@@ -67,8 +67,6 @@ build_image:
     - sudo docker run --rm my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build" 
 
 
-    - source /usr/local/share/colcon_cd/function/colcon_cd.sh
-    - colcon build
   rules:
     - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
     
