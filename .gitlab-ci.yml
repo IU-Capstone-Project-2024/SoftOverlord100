@@ -73,6 +73,7 @@ build_image:
     - python3 -m venv /venv
     - . /venv/bin/activate
     - pip install -U colcon-common-extensions
+    - apk add cmake
     - colcon build
   rules:
     - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
