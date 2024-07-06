@@ -63,7 +63,7 @@ build_image:
     - apk add --update --no-cache git
   script:
     - sudo docker build -t my-app:latest .devcontainer/
-    - export TMPDIR=$(pwd)
+    - stat /builds/v.levasheva/sim-overlord-100-yml-special
     - sudo docker run --rm --privileged --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
     - apk update
     - apk upgrade
