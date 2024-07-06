@@ -63,7 +63,6 @@ build_image:
     - apk add --update --no-cache git
   script:
     - sudo docker build -t my-app:latest .devcontainer/
-    - stat /builds/v.levasheva/sim-overlord-100-yml-special
 
 
     - sudo docker run -u 0 --rm my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
@@ -73,7 +72,7 @@ build_image:
     - python3 -m venv /venv
     - . /venv/bin/activate
     - pip install -U colcon-common-extensions
-    - apk add cmake
+    - echo "source /usr/local/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc
     - colcon build
   rules:
     - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
