@@ -70,4 +70,3 @@ build_image:
   rules:
     - if: ($CI_COMMIT_BRANCH == "main") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
     
-
