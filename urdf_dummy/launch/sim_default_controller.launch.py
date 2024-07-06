@@ -44,11 +44,7 @@ def generate_launch_description():
             ]
         )
     )
-    converter = Node(
-        package="urdf_dummy",
-        executable="converter"
-    )
-
+    converter = Node(package="urdf_dummy", executable="converter")
 
     rviz_node = Node(
         package="rviz2",
@@ -68,21 +64,13 @@ def generate_launch_description():
     )
 
     rqt_node = Node(
-        package= "rqt_robot_steering",
+        package="rqt_robot_steering",
         executable="rqt_robot_steering",
+        remappings=[
+            ("/cmd_vel", "/regular_driver"),
+        ],
     )
 
-    
-
-
     return LaunchDescription(
-        [
-            spawn_models_node,
-            bridge_setup_node,
-            transforms,
-            robot_state_publisher_node,
-            converter,
-            rviz_node,
-            rqt_node
-        ]
+        [spawn_models_node, bridge_setup_node, transforms, robot_state_publisher_node, converter, rviz_node, rqt_node]
     )
