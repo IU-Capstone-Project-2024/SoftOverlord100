@@ -64,18 +64,8 @@ build_image:
   script:
     - sudo docker build -t my-app:latest .devcontainer/
 
+    - sudo docker run --rm my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build" 
 
-    - sudo docker run -u 0 --rm my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
-    - apk update
-    - apk upgrade
-    - apk add --no-cache python3 py3-pip build-base python3-dev bash
-    - python3 -m venv /venv
-    - . /venv/bin/activate
-    - pip install -U colcon-common-extensions
-    - pip show colcon-common-extensions
-    - find /venv -name colcon_cd.sh
-    - pwd
-    - ls
 
     - source /usr/local/share/colcon_cd/function/colcon_cd.sh
     - colcon build
