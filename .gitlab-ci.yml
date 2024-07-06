@@ -73,9 +73,10 @@ build_image:
     - . /venv/bin/activate
     - pip install -U colcon-common-extensions
     - pip show colcon-common-extensions
+    - echo $VIRTUAL_ENV
     - pwd
     - ls
-    - source /venv/lib/python3.12/site-packages/colcon-common-extensions/colcon_cd/function/colcon_cd.sh
+
     - source /usr/local/share/colcon_cd/function/colcon_cd.sh
     - colcon build
   rules:
