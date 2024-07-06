@@ -62,10 +62,11 @@ build_image:
     - apk add --no-cache --upgrade sudo
     - apk add --update --no-cache git
   script:
-
     - sudo docker build -t my-app:latest .devcontainer/
     - stat /builds/v.levasheva/sim-overlord-100-yml-special
-    - sudo docker run --rm --privileged --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
+
+
+    - sudo docker run -u 0 --rm --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
     - apk update
     - apk upgrade
     - apk add --no-cache python3 py3-pip build-base python3-dev bash
