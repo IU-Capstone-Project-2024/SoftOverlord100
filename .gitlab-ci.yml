@@ -75,6 +75,7 @@ build_image:
     - pip show colcon-common-extensions
     - pwd
     - ls
+    - source /venv/lib/python3.12/site-packages/colcon-common-extensions/colcon_cd/function/colcon_cd.sh
     - source /usr/local/share/colcon_cd/function/colcon_cd.sh
     - colcon build
   rules:
