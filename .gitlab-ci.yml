@@ -63,7 +63,7 @@ build_image:
     - apk add --update --no-cache git
   script:
     - sudo docker build -t my-app:latest .devcontainer/
-    - export TMPDIR=$PWD
+    - export TMPDIR=$(pwd)
     - sudo docker run --rm --privileged --mount  type=bind,source=$(pwd),target=/home/mobile/ws my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash" 
     - apk update
     - apk upgrade
