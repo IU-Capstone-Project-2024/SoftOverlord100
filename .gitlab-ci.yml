@@ -4,10 +4,10 @@ default:
 
 stages:
   - checkLintPython
-  - docker
+  - build
   - pushHarbor
   - pushDockerHub
-
+  
 
 lint_black:
   stage: checkLintPython
@@ -24,49 +24,48 @@ lint_black:
 
 pushHarbor:
   stage: pushHarbor
-  image: docker:24.0.5
+  image: docker:27.0.0-rc.1-cli
   services:
-    - docker:24.0.5-dind
+    - docker:27.0.0-rc.1-dind
   before_script:
-    - apk add --update --no-cache git
+    - docker system prune -f -a --volumes
     - docker info
     - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
   script:
     - docker build -t simoverlord .
-    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/my-app:latest
-    - docker push harbor.pg.innopolis.university/sim_overlord100/my-app:latest
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/simoverlord:latest
+    - docker push harbor.pg.innopolis.university/sim_overlord100/simoverlord:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 pushDockerHub:
   stage: pushDockerHub 
-  image: docker:24.0.5 
+  image: docker:27.0.0-rc.1-cli 
   services: 
-    - docker:24.0.5-dind 
-  before_script:
-    - apk add --update --no-cache git
+    - docker:27.0.0-rc.1-dind
+  before_script: 
+    - docker system prune -f -a --volumes
     - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD" 
   script: 
     - docker build -t simoverlord .
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest 
   rules: 
-    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push")
-    
+    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+
+
 build_image:
-  stage: docker
+  stage: build
   image: docker:27.0.0-rc.1-cli
   services:
     - docker:27.0.0-rc.1-dind
   before_script:
+    - docker system prune -f -a --volumes
     - apk add --no-cache --upgrade sudo
-    - apk add --update --no-cache git
   script:
-    - sudo docker build -t my-app:latest .devcontainer/
-
-    - sudo docker run --rm my-app:latest /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build" 
-
-
+    - docker build -t my-app:latest .
+    - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build"
+    - exit
+    - docker ps -a
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf_dummy") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
-    
+    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
