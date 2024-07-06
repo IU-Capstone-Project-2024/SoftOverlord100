@@ -62,7 +62,7 @@ build_image:
     - apk add --no-cache --upgrade sudo
     - apk add --update --no-cache git
   script:
-    - sudo apk add install snapd
+    - sudo apk add snapd
     - sudo apk remove docker*
     - sudo apk add autoremove
     - for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apk remove $pkg; done
