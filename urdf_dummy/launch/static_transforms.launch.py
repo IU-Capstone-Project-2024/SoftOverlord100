@@ -10,7 +10,6 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-
     static_tf_node_lidar_back = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
@@ -25,7 +24,6 @@ def generate_launch_description():
             "overlord100/chassis/lidar_sensor_back",
         ],
     )
-
 
     static_tf_node_lidar_front = Node(
         package="tf2_ros",
@@ -185,16 +183,11 @@ def generate_launch_description():
         ],
     )
 
-
-   
-    
     return LaunchDescription(
         [
-           
             static_tf_node_realsense, 
             static_tf_node_lidar_back,
             static_tf_node_lidar_front,
-
             static_tf_node_sonar_1,
             static_tf_node_sonar_2,
             static_tf_node_sonar_3,
@@ -202,8 +195,6 @@ def generate_launch_description():
             static_tf_node_sonar_5,
             static_tf_node_sonar_6,
             static_tf_node_sonar_7,
-            static_tf_node_sonar_8
-
-           
+            static_tf_node_sonar_8,
         ]
     )

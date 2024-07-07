@@ -50,8 +50,6 @@ def generate_launch_description():
         ],
     )
 
-    
-    
     # Spawn world using sdf with world tag
     start_world = ExecuteProcess(
         cmd=[
@@ -68,18 +66,17 @@ def generate_launch_description():
             ),
         ]
     )
-    
+
     def find(name, path):
         for root, dirs, files in os.walk(path):
             if name in dirs:
                 return os.path.join(root, name)
-    
+
     model_path = find("models", os.getenv("PWD"))
     print(model_path)
     set_env_vars_resources = AppendEnvironmentVariable(
-        'IGN_GAZEBO_RESOURCE_PATH', model_path)
-
-    
+        "IGN_GAZEBO_RESOURCE_PATH", model_path
+    )
 
     return LaunchDescription(
         [
