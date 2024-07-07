@@ -353,3 +353,4 @@ class TestSimulationTopics(unittest.TestCase):
             
         finally:
             self.node.destroy_subscription(sonar)        
+            
