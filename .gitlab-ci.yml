@@ -80,6 +80,7 @@ unit_test:
   script:
     - docker build -t my-app:latest .
     - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build && source install/local_setup.bash"
+    - ls
     - launch_test urdf_dummy/test/urdf_dummy/test/test_converter_is_available.py
     - exit
   rules:
