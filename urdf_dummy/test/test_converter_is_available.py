@@ -100,257 +100,277 @@ class TestSimulationTopics(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls) -> None:
-      rclpy.init()
-
+        rclpy.init()
 
     @classmethod
     def tearDownClass(cls) -> None:
         rclpy.shutdown()
 
-
     def setUp(self):
         self.node = rclpy.create_node("test_simulation_topics")
-
 
     def tearDown(self):
         self.node.destroy_node()
 
-
     def test_converter_lidar_front_data_received(self):
         messages = []
-        lidar = self.node.create_subscription(LaserScan, "/laser_scan_front", 
-                                              lambda response: messages.append(response), 10)
+        lidar = self.node.create_subscription(
+            LaserScan,
+            "/laser_scan_front",
+            lambda response: messages.append(response),
+            10,
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(lidar)           
-            
+            self.node.destroy_subscription(lidar)
+
     def test_converter_lidar_back_data_received(self):
         messages = []
-        lidar = self.node.create_subscription(LaserScan, "/laser_scan_back", 
-                                              lambda response: messages.append(response), 10)
+        lidar = self.node.create_subscription(
+            LaserScan,
+            "/laser_scan_back",
+            lambda response: messages.append(response),
+            10,
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
             self.node.destroy_subscription(lidar)
 
     def test_converter_imu_data_received(self):
         messages = []
-        imu = self.node.create_subscription(Imu, "/imu", 
-                                            lambda response: messages.append(response), 10)
+        imu = self.node.create_subscription(
+            Imu, "/imu", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 40
+            end_time = time.time()  40
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(imu)     
+            self.node.destroy_subscription(imu) 
 
     def test_converter_color_camera_data_received(self):
         messages = []
-        image = self.node.create_subscription(Image, "/color_camera", 
-                                              lambda response: messages.append(response), 10)
-        
+        image = self.node.create_subscription(
+            Image, "/color_camera", lambda response: messages.append(response), 10
+        )
+
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(image)        
+            self.node.destroy_subscription(image)
 
     def test_converter_depth_camera_data_received(self):
         messages = []
-        point_cloud = self.node.create_subscription(PointCloud2, "/depth_camera/points", 
-                                                    lambda response: messages.append(response), 10)
+        point_cloud = self.node.create_subscription(
+            PointCloud2,
+            "/depth_camera/points",
+            lambda response: messages.append(response),
+            10,
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(point_cloud)        
+            self.node.destroy_subscription(point_cloud)
 
     def test_converter_tf_data_received(self):
         messages = []
-        transform = self.node.create_subscription(TFMessage, "/tf", 
-                                                  lambda response: messages.append(response), 10)
+        transform = self.node.create_subscription(
+            TFMessage, "/tf", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(transform)        
+            self.node.destroy_subscription(transform)
 
     def test_converter_sonar1_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_1_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_1_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
             self.node.destroy_subscription(sonar)
+
                 
     def test_converter_sonar2_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_2_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_2_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)          
-                
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar3_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_3_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_3_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-                
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar4_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_4_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_4_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
-            while time.time()< end_time:
+            end_time = time.time()  20
+            while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-            
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar5_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_5_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_5_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-                
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar6_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_6_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_6_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-                
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar7_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_7_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_7_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-    
+            self.node.destroy_subscription(sonar)
+
     def test_converter_sonar8_data_received(self):
         messages = []
-        sonar = self.node.create_subscription(LaserScan, "/sonar_8_scan", 
-                                              lambda response: messages.append(response), 10)
+        sonar = self.node.create_subscription(
+            LaserScan, "/sonar_8_scan", lambda response: messages.append(response), 10
+        )
 
         try:
-            end_time = time.time() + 20
+            end_time = time.time()  20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
                     break
 
             self.assertGreater(len(messages), 2)
-            
+
         finally:
-            self.node.destroy_subscription(sonar)        
-            
+            self.node.destroy_subscription(sonar)
+
