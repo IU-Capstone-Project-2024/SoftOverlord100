@@ -73,12 +73,12 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-+            spawn_models_node,
-+            bridge_setup_node,
-+            transforms,
-+            robot_state_publisher_node,
-+            converter,
-+            rviz_node,
-+            rqt_node,
-+        ]
+            spawn_models_node,
+            bridge_setup_node,
+            transforms,
+            robot_state_publisher_node,
+            converter,
+            rviz_node,
+            rqt_node,
+        ]
     )
