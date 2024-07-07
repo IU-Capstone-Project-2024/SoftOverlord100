@@ -32,5 +32,6 @@
     "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
     "C_Cpp.vcFormat.newLine.scopeBracesOnSeparateLines": true,
     "C_Cpp.vcFormat.space.afterCastCloseParenthesis": true,
+    "ros.distro": "humble",
 }
 
