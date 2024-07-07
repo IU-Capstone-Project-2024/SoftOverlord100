@@ -71,9 +71,9 @@ build_image:
 
 unit_test:
   stage: unitTest
-  image: docker:27.0.0-rc.1-cli
+  image: docker:24.0.9-cli
   services:
-    - docker:27.0.0-rc.1-dind
+    - docker:24.0.9-dind
   before_script:
     - docker system prune -f -a --volumes
   script:
