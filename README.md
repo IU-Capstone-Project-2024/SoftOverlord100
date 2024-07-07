@@ -46,24 +46,22 @@ For the sake of development simplicity, DevContainer environment was created to 
       ```
       2. Build container
       ```
-      docker build -t simoverlord .
+      docker build -t <name_of_image> .
       ```
 
       ### Run container
       ```
       docker run -it \
-         --env=QT_X11_NO_MITSHM=1 \
          -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
          -v /dev/dri:/dev/dri:rw \
-         <name_of_container> bash
+         <name_of_image> bash
       ```
 
       ### Setup workspace
 
       1. Source ROS2 workspace
       ```
-      cd /
-      source opt/ros/humble/setup.bash
+      source /opt/ros/humble/setup.bash
       ```
       2. Build ROS2 package
       ```
@@ -117,8 +115,7 @@ For the sake of development simplicity, DevContainer environment was created to 
       6. Choose the platform you are working on (`arm64` if you are using Apple Sillicon, otherwise `x86`)
       7. Source ROS 2 workspace
       ```
-      cd /
-      source opt/ros/humble/setup.bash
+      source /opt/ros/humble/setup.bash
       ```
       8. Build package
       ```
@@ -221,6 +218,16 @@ In the `rqt_robot_steering` window (for launching `sim_default_controller.launch
 
 To display the simulation window, you need to close the `Gazebo` window, after which a new one will open, with a scene.
 
+## Unit testing
+
+To launch unit testing, open terminal and run `launch_test` command:
+```
+source install/local_setup.bash
+launch_test urdf_dummy/test/test_converter_is_available.py
+```
+
+These unit tests checks connection to each sensor that installed on robot.
+
 ## Features
 1. Different processors architectures are supported (yet, `x86` works much better)
 2. Code linting for `Python`
@@ -230,6 +237,7 @@ This repository has the following pipelines:
 1. Python `black` linting.
 2. (wip) ROS2 package build test.
 3. Container deployment on Docker Hub and Harbor Registry.
+4. Unit testing.
 
 ## Development: Code Style
 1. `CPP`

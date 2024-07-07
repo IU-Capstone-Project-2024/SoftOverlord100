@@ -4,6 +4,7 @@ default:
 
 stages:
   - checkLintPython
+  - unitTest
   - build
   - pushHarbor
   - pushDockerHub
@@ -65,5 +66,18 @@ build_image:
   script:
     - docker build -t my-app:latest .
     - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+
+unit_test:
+  stage: unitTest
+  image: docker:27.0.0-rc.1-cli
+  services:
+    - docker:27.0.0-rc.1-dind
+  before_script:
+    - docker system prune -f -a --volumes
+  script:
+    - docker build -t my-app:latest .
+    - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build && source install/local_setup.bash && launch_test urdf_dummy/test/test_converter_is_available.py"
   rules:
     - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")

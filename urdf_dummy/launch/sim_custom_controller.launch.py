@@ -44,11 +44,7 @@ def generate_launch_description():
             ]
         )
     )
-    converter = Node(
-        package="urdf_dummy",
-        executable="converter"
-    )
-
+    converter = Node(package="urdf_dummy", executable="converter")
 
     rviz_node = Node(
         package="rviz2",
@@ -70,16 +66,12 @@ def generate_launch_description():
     controller = Node(
         package="overlord100_controller",
         executable="diff_drive_controller",
-        
     )
 
     rqt_node = Node(
-        package= "rqt_robot_steering",
+        package="rqt_robot_steering",
         executable="rqt_robot_steering",
     )
-
-
-
 
     return LaunchDescription(
         [
@@ -90,6 +82,6 @@ def generate_launch_description():
             converter,
             rviz_node,
             controller,
-            rqt_node
+            rqt_node,
         ]
     )
