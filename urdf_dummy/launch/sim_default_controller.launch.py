@@ -13,7 +13,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             [
                 os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
-                "/spawn_models.launch.py",
+                "/spawn_model_with_diffdrive.launch.py",
             ]
         ),
     )
@@ -36,42 +36,15 @@ def generate_launch_description():
         )
     )
 
-    static_tf_node_lidar_back = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        arguments=[
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "lidar_back",
-            "overlord100/chassis/lidar_sensor_back",
-        ],
+    transforms = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [
+                os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
+                "/static_transforms.launch.py",
+            ]
+        )
     )
-
-
-    static_tf_node_lidar_front = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        arguments=[
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "lidar_front",
-            "overlord100/chassis/lidar_sensor_front",
-        ],
-    )
-
-    converter = Node(
-        package="urdf_dummy",
-        executable="converter"
-    )
-
+    converter = Node(package="urdf_dummy", executable="converter")
 
     rviz_node = Node(
         package="rviz2",
@@ -89,14 +62,23 @@ def generate_launch_description():
             ],
         ],
     )
+
+    rqt_node = Node(
+        package="rqt_robot_steering",
+        executable="rqt_robot_steering",
+        remappings=[
+            ("/cmd_vel", "/regular_driver"),
+        ],
+    )
+
     return LaunchDescription(
         [
             spawn_models_node,
             bridge_setup_node,
-            static_tf_node_lidar_back,
-            static_tf_node_lidar_front,
+            transforms,
             robot_state_publisher_node,
             converter,
             rviz_node,
+            rqt_node,
         ]
     )

@@ -62,7 +62,7 @@
         <initial_velocity>0</initial_velocity>
       </plugin> 
     
-     <!-- <plugin
+      <plugin
       filename="libignition-gazebo-diff-drive-system.so"
       name="ignition::gazebo::systems::DiffDrive">
       <left_joint>chassis_to_left_wheel</left_joint>
@@ -72,7 +72,7 @@
       <odom_publish_frequency>1</odom_publish_frequency>
       <topic>/regular_driver</topic>
 
-    </plugin> -->
+    </plugin>
 
     <plugin filename="libignition-gazebo-sensors-system.so"
       name="ignition::gazebo::systems::Sensors">
@@ -150,7 +150,6 @@
     <visual>
       <geometry>
         <mesh filename = "model://front_lidar.dae"  />  
-        
       </geometry>
 
       
@@ -183,7 +182,7 @@
     <visual>
       <geometry>
         <mesh filename = "model://back_lidar.dae"  />  
-       
+        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
 
       
@@ -206,7 +205,7 @@
 
     <parent link="chassis" />
     <child link="lidar_back" />
-    <origin rpy="0 0 0" xyz="0 0 0" /> 
+    <origin rpy="0 0 0" xyz="-0.26 -0.42 0" /> 
 
 
   </joint>
@@ -424,12 +423,12 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-3.14</min_angle>
-            <max_angle>3.14</max_angle>
+            <min_angle>-4.5</min_angle>
+            <max_angle>-0.1</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.7</min>
+          <min>0.5</min>
           <max>12.0</max>
           <resolution>0.01</resolution>
         </range>

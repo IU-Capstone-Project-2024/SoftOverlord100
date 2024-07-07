@@ -36,7 +36,7 @@ def generate_launch_description():
                 [
                     get_package_share_directory("urdf_dummy"),
                     "description",
-                    "overlord100.urdf",
+                    "overlord100_with_diffdrive.urdf",
                 ]
             ),
             "-allow_renaming",

@@ -34,7 +34,7 @@ setup(
     maintainer_email="d.kuznetsov@innopolis.university",
     description="TODO: Package description",
     license="TODO: License declaration",
-    tests_require=["pytest"],
+    tests_require=["pytest", "unittest"],
     entry_points={
         "console_scripts": ["converter = urdf_dummy.converter:main"],
     },
