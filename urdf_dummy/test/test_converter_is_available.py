@@ -18,7 +18,6 @@ from overlord100_msgs.msg import WheelsData
 from ament_index_python.packages import get_package_share_directory
 
 
-
 import os
 import sys
 import time
@@ -30,7 +29,6 @@ import rclpy
 
 @pytest.mark.rostest
 def generate_test_description():
-
 
     spawn_models_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -67,37 +65,26 @@ def generate_test_description():
         )
     )
 
-    
-    
-    converter = Node(
-        package="urdf_dummy",
-        executable="converter"
+    converter = Node(package="urdf_dummy", executable="converter")
+
+    return (
+        LaunchDescription(
+            [
+                spawn_models_node,
+                bridge_setup_node,
+                robot_state_publisher_node,
+                transforms,
+                converter,
+                ReadyToTest(),
+            ]
+        ),
+        {
+            "converter": converter,
+        },
     )
-
-    return (LaunchDescription(
-        [
-            spawn_models_node,
-            bridge_setup_node,
-            robot_state_publisher_node,
-            transforms,
-            converter,
-            
-            
-            ReadyToTest()
-        ]
-    ),{
-        "converter":converter,
-    }
-    )
-
-
-
-
-
 
 class TestSimulationTopics(unittest.TestCase):
 
-    
     @classmethod
     def setUpClass(cls) -> None:
         rclpy.init()
@@ -170,7 +157,7 @@ class TestSimulationTopics(unittest.TestCase):
             self.assertGreater(len(messages), 2)
 
         finally:
-            self.node.destroy_subscription(imu) 
+            self.node.destroy_subscription(imu)
 
     def test_converter_color_camera_data_received(self):
         messages = []
@@ -247,7 +234,6 @@ class TestSimulationTopics(unittest.TestCase):
         finally:
             self.node.destroy_subscription(sonar)
 
-                
     def test_converter_sonar2_data_received(self):
         messages = []
         sonar = self.node.create_subscription(
@@ -373,4 +359,3 @@ class TestSimulationTopics(unittest.TestCase):
 
         finally:
             self.node.destroy_subscription(sonar)
-
