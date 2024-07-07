@@ -146,11 +146,10 @@
   </joint>
 
 
-  <link name="lidar_front">
+  <!-- <link name="lidar_front">
     <visual>
       <geometry>
         <mesh filename = "model://front_lidar.dae"  />  
-        <!-- <cylinder length="0.06" radius="0.09" /> -->
       </geometry>
 
       
@@ -176,7 +175,7 @@
     <origin rpy="0 0 0" xyz="0.26 0.43 0" /> 
 
 
-  </joint>
+  </joint> -->
 
 
   <link name="lidar_back">
@@ -388,7 +387,7 @@
   </joint>
 
 
-  <gazebo reference="lidar_front">
+  <!-- <gazebo reference="lidar_front">
 
     <sensor name="lidar_sensor_front" type="gpu_lidar">
       <topic>laser_scan_front</topic>
@@ -411,7 +410,7 @@
       <always_on>1</always_on>
       <visualize>true</visualize>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 
   <gazebo reference="lidar_back">

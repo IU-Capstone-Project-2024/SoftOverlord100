@@ -20,7 +20,7 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/laser_scan_back@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
-            "/laser_scan_front@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
+            #"/laser_scan_front@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/sonar_1_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/sonar_2_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
             "/sonar_3_scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
