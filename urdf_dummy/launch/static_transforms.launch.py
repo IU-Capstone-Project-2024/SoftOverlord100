@@ -187,7 +187,8 @@ def generate_launch_description():
         [
             static_tf_node_realsense,
             static_tf_node_lidar_back,
-            static_tf_node_lidar_front,
+            #static_tf_node_lidar_front,
+
             static_tf_node_sonar_1,
             static_tf_node_sonar_2,
             static_tf_node_sonar_3,

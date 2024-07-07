@@ -37,7 +37,7 @@ pushHarbor:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/simoverlord:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/simoverlord:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 pushDockerHub:
   stage: pushDockerHub 
@@ -52,7 +52,7 @@ pushDockerHub:
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest 
   rules: 
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 
 build_image:
@@ -67,7 +67,7 @@ build_image:
     - docker build -t my-app:latest .
     - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build"
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
 
 unit_test:
   stage: unitTest
@@ -80,4 +80,4 @@ unit_test:
     - docker build -t my-app:latest .
     - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build && source install/local_setup.bash && launch_test urdf_dummy/test/test_converter_is_available.py"
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")

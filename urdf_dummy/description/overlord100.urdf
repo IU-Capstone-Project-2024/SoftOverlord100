@@ -146,11 +146,11 @@
   </joint>
 
 
-  <link name="lidar_front">
+  <!-- <link name="lidar_front">
     <visual>
       <geometry>
         <mesh filename = "model://front_lidar.dae"  />  
-        <!-- <cylinder length="0.06" radius="0.09" /> -->
+        
       </geometry>
 
       
@@ -176,14 +176,14 @@
     <origin rpy="0 0 0" xyz="0.26 0.43 0" /> 
 
 
-  </joint>
+  </joint> -->
 
 
   <link name="lidar_back">
     <visual>
       <geometry>
         <mesh filename = "model://back_lidar.dae"  />  
-        <!-- <cylinder length="0.06" radius="0.09" /> -->
+       
       </geometry>
 
       
@@ -206,7 +206,7 @@
 
     <parent link="chassis" />
     <child link="lidar_back" />
-    <origin rpy="0 0 0" xyz="-0.26 -0.42 0" /> 
+    <origin rpy="0 0 0" xyz="0 0 0" /> 
 
 
   </joint>
@@ -388,7 +388,7 @@
   </joint>
 
 
-  <gazebo reference="lidar_front">
+  <!-- <gazebo reference="lidar_front">
 
     <sensor name="lidar_sensor_front" type="gpu_lidar">
       <topic>laser_scan_front</topic>
@@ -411,7 +411,7 @@
       <always_on>1</always_on>
       <visualize>true</visualize>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 
   <gazebo reference="lidar_back">
@@ -424,12 +424,12 @@
           <horizontal>
             <samples>500</samples>
             <resolution>1</resolution>
-            <min_angle>-4.5</min_angle>
-            <max_angle>-0.1</max_angle>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.5</min>
+          <min>0.7</min>
           <max>12.0</max>
           <resolution>0.01</resolution>
         </range>
