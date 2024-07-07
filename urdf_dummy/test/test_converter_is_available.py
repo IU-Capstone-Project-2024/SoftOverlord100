@@ -143,7 +143,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -161,7 +161,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  40
+            end_time = time.time() + 40
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -179,7 +179,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -200,7 +200,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -218,7 +218,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -236,7 +236,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -255,7 +255,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -273,7 +273,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -291,7 +291,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -309,7 +309,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -327,7 +327,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -345,7 +345,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
@@ -363,7 +363,7 @@ class TestSimulationTopics(unittest.TestCase):
         )
 
         try:
-            end_time = time.time()  20
+            end_time = time.time() + 20
             while time.time() < end_time:
                 rclpy.spin_once(self.node, timeout_sec=0.1)
                 if len(messages) > 2:
