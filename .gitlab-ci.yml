@@ -4,8 +4,8 @@ default:
 
 stages:
   - checkLintPython
-  - build
   - unitTest
+  - build
   - pushHarbor
   - pushDockerHub
   
