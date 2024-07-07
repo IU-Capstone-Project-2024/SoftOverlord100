@@ -36,7 +36,7 @@ pushHarbor:
     - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/simoverlord:latest
     - docker push harbor.pg.innopolis.university/sim_overlord100/simoverlord:latest
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 pushDockerHub:
   stage: pushDockerHub 
@@ -51,7 +51,7 @@ pushDockerHub:
     - docker tag simoverlord simoverlord100/simoverlord:latest
     - docker push simoverlord100/simoverlord:latest 
   rules: 
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
 
 
 build_image:
@@ -65,7 +65,5 @@ build_image:
   script:
     - docker build -t my-app:latest .
     - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build"
-    - exit
-    - docker ps -a
   rules:
-    - if: ($CI_COMMIT_BRANCH == "urdf-dummy" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
