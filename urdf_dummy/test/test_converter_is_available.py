@@ -34,7 +34,7 @@ def generate_test_description():
         PythonLaunchDescriptionSource(
             [
                 os.path.join(get_package_share_directory("urdf_dummy"), "launch"),
-                "/spawn_model_with_diffdrive.launch.py",
+                "/spawn_model_with_diffdrive_headless.launch.py",
             ]
         ),
     )
