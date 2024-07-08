@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(overlord100_msgs)
+project(overlord100_logger)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,14 +7,20 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(overlord100_msgs REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/WheelsData.msg"
-  DEPENDENCIES  # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
+
+add_executable(log_collector src/log_collector.cpp)
+ament_target_dependencies(
+  log_collector
+  rclcpp
+  overlord100_msgs
+)
+
+install(TARGETS 
+  log_collector
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
