@@ -19,6 +19,12 @@
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.formatOnSave": true
     },
+
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
     "files.associations": {
         "chrono": "cpp"
     },

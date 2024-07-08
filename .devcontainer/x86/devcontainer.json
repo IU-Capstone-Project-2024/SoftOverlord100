@@ -19,7 +19,9 @@
                 "donjayamanne.python-extension-pack",
                 "eamodio.gitlens",
                 "ms-iot.vscode-ros",
-                "ms-python.black-formatter"
+                "ms-python.black-formatter",
+                "smilerobotics.urdf",
+                "redhat.vscode-xml"
             ]
         }
     },
@@ -42,4 +44,3 @@
     ],
     "postCreateCommand": "sudo rosdep update && sudo chown -R $(whoami) /home/ws/ && pip3 install black && sudo rosdep install --from-paths src --ignore-src -y "
 }
-
