@@ -68,10 +68,10 @@ def generate_launch_description():
         executable="diff_drive_controller",
     )
 
-    rqt_node = Node(
-        package="rqt_robot_steering",
-        executable="rqt_robot_steering",
-    )
+    # rqt_node = Node(
+    #     package="rqt_robot_steering",
+    #     executable="rqt_robot_steering",
+    # )
 
     return LaunchDescription(
         [
@@ -82,6 +82,6 @@ def generate_launch_description():
             converter,
             rviz_node,
             controller,
-            rqt_node,
+            # rqt_node,
         ]
     )

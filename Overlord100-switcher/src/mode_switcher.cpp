@@ -47,7 +47,7 @@ private:
     bool isVelocityValid(const geometry_msgs::msg::Twist::SharedPtr msg)
     {
         return (msg->angular.x == 0 && msg->angular.y == 0 && msg->linear.x < 100 &&
-                msg->linear.y < 0 && msg->linear.z == 0);
+                msg->linear.y < 100 && msg->linear.z == 0);
     }
 
     void manualControlCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
