@@ -20,7 +20,7 @@ private:
     void publishVelocity()
     {
         auto message = geometry_msgs::msg::Twist();
-        message.linear.x = 0.5;
+        message.linear.x = 100.5;
         message.angular.z = 0.1;
         RCLCPP_INFO(this->get_logger(), "Publishing: linear.x=%f, angular.z=%f", message.linear.x, message.angular.z);
         pub_->publish(message);

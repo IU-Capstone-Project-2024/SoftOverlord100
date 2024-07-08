@@ -17,7 +17,7 @@ public:
             "change_mode", std::bind(&NavigationController::changeModeCallback, this, std::placeholders::_1, std::placeholders::_2));
 
         manual_control_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
-            "cmd_vel_man", 10, std::bind(&NavigationController::manualControlCallback, this, std::placeholders::_1));
+            "man_cmd_vel", 10, std::bind(&NavigationController::manualControlCallback, this, std::placeholders::_1));
 
         autonomous_control_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
             "auto_cmd_vel", 10, std::bind(&NavigationController::autonomousControlCallback, this, std::placeholders::_1));
@@ -44,11 +44,21 @@ private:
         response->success = true;
     }
 
+    bool isVelocityValid(const geometry_msgs::msg::Twist::SharedPtr msg)
+    {
+        return (msg->angular.x == 0 && msg->angular.y == 0 && msg->linear.x < 100 &&
+                msg->linear.y < 0 && msg->linear.z == 0);
+    }
+
     void manualControlCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
     {
-        if (current_mode_ == 0)
+        if (current_mode_ == 0 && isVelocityValid(msg))
         {
             cmd_vel_pub_->publish(*msg);
+        }
+        else
+        {
+            RCLCPP_INFO(this->get_logger(), "Unreachable velocity");
         }
     }
 
