@@ -1,4 +1,4 @@
-FROM osrf/ros:humble-desktop-full
+FROM arm64v8/ros:humble
 ARG USERNAME=mobile
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
