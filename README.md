@@ -1,5 +1,5 @@
 # Software part of Overlord100 Mobile Platform. 
-This repository assembles different ROS packages to implement a backend part of Overlord100 Mobile Platform. This includes:
+This repository assembles different ROS packages to implement a backend part of Overlord100 Mobile Platform. This includes 3 main modules:
 1. Controller
 2. SLAM
 3. Path planner
@@ -8,11 +8,10 @@ This repository assembles different ROS packages to implement a backend part of 
 The backend is written using ROS2 Humble middleware with the following external dependencies:
    1. [Slam Toolbox](https://github.com/SteveMacenski/slam_toolbox) 
    2. [Nav2](https://github.com/ros-navigation/navigation2) 
-   3. [ROS2 Control](https://github.com/ros-controls/ros2_control)
 
 They could be installed at:
 ```bash
-RUN apt-get install -y ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-ros2-controllers ros-rolling-ros2-control
+RUN apt-get install -y ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup 
 ```
 
 ## Development: Devcontainer
@@ -226,29 +225,41 @@ source /opt/ros/humble/setup.bash
 
 Now you can move on to [Starting simultion](#starting-simulation)
 
-## Starting simulation
+## Starting manual control with simulation 
 
-To start simulation, open terminal and run `ros2 launch` command:
+First, you need to source ROS and build the packages:
+```
+source \opt\ros\humble\setup.bash
+colcon build
+```
+
+To start the simulation and backend logic for the platform's movement in manual mode, open a terminal and run the following commands:
 ```
 source install/local_setup.bash
-ros2 launch urdf_dummy <name_of_program>
+ros2 launch overlord100_bringup manual_control.launch.py
 ```
 
-You can choose 2 launch files: `sim_custom_controller.launch.py` and `sim_default_controller.launch.py`.
+The `overlord100_bringup` package is designed to launch the software, enabling users to control the platform in manual mode with frontend integration. It also includes a simulation component so you can visualize the robot's movements.
 
-The `sim_custom_controller.launch.py` is Python launch script that starts simulation with custom robot controller.
+With this package, you will be able to:
+- Set the mode to 0 (manual mode) or 1 (auto mode)
+- Set the desired velocity (for manual mode)
+- View log messages
 
-The `sim_default_controller.launch.py` is Python launch script that start simulation with predefined simple robot controller.
+The `overlord100_bringup` package integrates the following packages:
+- `urdf_dummy`
+- `overlord100_logger`
+- `overlord100_controller`
+- `overlord100_mode_switcher`
+- And also launches `rosbridge_server`
 
-After that, you will have several windows open. 
+After launching, you will have several windows open:
 
-In the `RViz` window, the readings of sensors and other systems are visualized.
+- **RViz window**: Visualizes sensor readings and other system data.
+- **Gazebo window**: Displays the simulation scene.
 
-In the `rqt_robot_steering` window (for launching `sim_default_controller.launch.py` only), you can control the robot by setting the speed and direction of movement. 
 
-To display the simulation window, you need to close the `Gazebo` window, after which a new one will open, with a scene.
-
-## Unit testing
+## *Unit testing
 
 To launch unit testing, open terminal and run `launch_test` command:
 ```
