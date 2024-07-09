@@ -19,6 +19,12 @@
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.formatOnSave": true
     },
+
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
+    },
     "files.associations": {
         "chrono": "cpp"
     },
@@ -32,5 +38,6 @@
     "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
     "C_Cpp.vcFormat.newLine.scopeBracesOnSeparateLines": true,
     "C_Cpp.vcFormat.space.afterCastCloseParenthesis": true,
+    "ros.distro": "humble",
 }
 

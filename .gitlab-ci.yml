@@ -1,0 +1,83 @@
+default:
+  tags:
+    - docker
+
+stages:
+  - checkLintPython
+  - unitTest
+  - build
+  - pushHarbor
+  - pushDockerHub
+  
+
+lint_black:
+  stage: checkLintPython
+  image: python:3.10
+  before_script:
+    - pip install black
+  script:
+    - black --check --diff .
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - "*.py"
+        - "**/*.py"
+
+pushHarbor:
+  stage: pushHarbor
+  image: docker:27.0.0-rc.1-cli
+  services:
+    - docker:27.0.0-rc.1-dind
+  before_script:
+    - docker system prune -f -a --volumes
+    - docker info
+    - echo "$HARBOR_PASSWORD" | docker login -u "$HARBOR_USERNAME" "$HARBOR_HOST" --password-stdin
+  script:
+    - docker build -t simoverlord .
+    - docker tag simoverlord $HARBOR_HOST/$HARBOR_PROJECT/simoverlord:latest
+    - docker push harbor.pg.innopolis.university/sim_overlord100/simoverlord:latest
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+
+pushDockerHub:
+  stage: pushDockerHub 
+  image: docker:27.0.0-rc.1-cli 
+  services: 
+    - docker:27.0.0-rc.1-dind
+  before_script: 
+    - docker system prune -f -a --volumes
+    - docker login -u simoverlord100 -p "$DOCKER_HUB_PASSWORD" 
+  script: 
+    - docker build -t simoverlord .
+    - docker tag simoverlord simoverlord100/simoverlord:latest
+    - docker push simoverlord100/simoverlord:latest 
+  rules: 
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push")
+
+
+build_image:
+  stage: build
+  image: docker:27.0.0-rc.1-cli
+  services:
+    - docker:27.0.0-rc.1-dind
+  before_script:
+    - docker system prune -f -a --volumes
+    - apk add --no-cache --upgrade sudo
+  script:
+    - docker build -t my-app:latest .
+    - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")
+
+unit_test:
+  stage: unitTest
+  image: docker:27.0.0-rc.1-cli
+  services:
+    - docker:27.0.0-rc.1-dind
+  before_script:
+    - docker system prune -f -a --volumes
+  script:
+    - docker build -t my-app:latest .
+    - docker run --rm -u 0 my-app:latest bash -c "source /opt/ros/humble/setup.bash && colcon build && source install/local_setup.bash && launch_test urdf_dummy/test/test_converter_is_available.py"
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "pull_request")

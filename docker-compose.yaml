@@ -1,0 +1,8 @@
+services: 
+  ros:
+    build: .
+    restart: always
+    volumes: 
+      - ./maps:/home/ws/src/maps
+    ports:
+      - "9090:9090"

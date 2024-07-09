@@ -1,0 +1,13 @@
+- gz_topic_name: "/imu"
+  ros_topic_name: "/model/vehicle/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+
+
+- topic_name: "/model/vehicle_blue/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "ignition.msgs.Twist"
+
+- topic_name: "/lidar"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
