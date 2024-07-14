@@ -31,7 +31,6 @@ def generate_launch_description():
             #     cmd=['ros2', 'run', 'overlord100_mode_switcher', 'change_mode_client', '0'],  # Change '0' to '1' if needed
             #     output='screen'
             # ),
-            
             # Start log_collector node
             Node(
                 package="overlord100_logger",
@@ -39,7 +38,6 @@ def generate_launch_description():
                 name="log_collector",
                 output="screen",
             ),
-
             # Start ROSBridge server
             ExecuteProcess(
                 cmd=[
