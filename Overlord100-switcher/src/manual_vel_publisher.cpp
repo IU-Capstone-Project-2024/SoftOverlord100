@@ -1,30 +1,27 @@
 #include <chrono>
 #include <functional>
-#include <memory>
-#include <string>
-#include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
+#include <memory>
+#include <rclcpp/rclcpp.hpp>
+#include <string>
 
 using namespace std::chrono_literals;
 
-class ManualVelocityPublisher : public rclcpp::Node
-{
-public:
-    ManualVelocityPublisher()
-        : Node("manual_velocity_publisher")
-    {
+class ManualVelocityPublisher : public rclcpp::Node {
+  public:
+    ManualVelocityPublisher() : Node("manual_velocity_publisher") {
         // Declare parameters
         this->declare_parameter<double>("linear_x", 0.0);
         this->declare_parameter<double>("angular_z", 0.0);
         this->declare_parameter<double>("linear_y", 0.0);
 
         pub_ = this->create_publisher<geometry_msgs::msg::Twist>("man_cmd_vel", 10);
-        timer_ = this->create_wall_timer(500ms, std::bind(&ManualVelocityPublisher::publishVelocity, this));
+        timer_ = this->create_wall_timer(
+                     500ms, std::bind(&ManualVelocityPublisher::publishVelocity, this));
     }
 
-private:
-    void publishVelocity()
-    {
+  private:
+    void publishVelocity() {
         // Get the parameter values
         double linear_x = this->get_parameter("linear_x").as_double();
         double linear_y = this->get_parameter("linear_y").as_double();
@@ -38,7 +35,8 @@ private:
         message.angular.y = 0;
         message.linear.z = 0;
 
-        RCLCPP_INFO(this->get_logger(), "Publishing: linear.x=%f, angular.z=%f", message.linear.x, message.angular.z);
+        RCLCPP_INFO(this->get_logger(), "Publishing: linear.x=%f, angular.z=%f",
+                    message.linear.x, message.angular.z);
         pub_->publish(message);
     }
 
@@ -46,8 +44,7 @@ private:
     rclcpp::TimerBase::SharedPtr timer_;
 };
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
 
     // Create the node and set the parameters from the command line if provided

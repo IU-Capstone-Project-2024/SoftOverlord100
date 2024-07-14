@@ -26,7 +26,8 @@
         "editor.formatOnSave": true
     },
     "files.associations": {
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "functional": "cpp"
     },
     "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": false,

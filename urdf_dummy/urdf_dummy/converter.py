@@ -74,8 +74,11 @@ class Converter(Node):
 
         left = Float64()
         left.data = (msg.left * 2 * math.pi) / 60
+        # left.data = msg.left
         right = Float64()
         right.data = (msg.right * 2 * math.pi) / 60
+        # right.data = msg.right
+
         self.left_wheel.publish(left)
         self.right_wheel.publish(right)
 
