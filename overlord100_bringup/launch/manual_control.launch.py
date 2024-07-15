@@ -26,11 +26,6 @@ def generate_launch_description():
                 name="mode_switcher",
                 output="screen",
             ),
-            # # Start mode change client with parameter (default to 0, change to 1 if needed)
-            # ExecuteProcess(
-            #     cmd=['ros2', 'run', 'overlord100_mode_switcher', 'change_mode_client', '0'],  # Change '0' to '1' if needed
-            #     output='screen'
-            # ),
             # Start log_collector node
             Node(
                 package="overlord100_logger",
