@@ -1,0 +1,27 @@
+{
+    "name": "ROS 2 Development Container, ARM64",
+    "privileged": true,
+    "remoteUser": "mobile",
+    "dockerComposeFile": [
+        "docker-compose-amd64.yml"
+      ],
+    "service": "ros2",  
+    "workspaceFolder": "/home/ws/src",
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "ms-iot.vscode-ros",
+                "ms-python.black-formatter"
+            ]
+        }
+    },
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/home/mobile/.local/bin"
+    },
+    "forwardPorts": [3000, 3001],
+    "postCreateCommand": "sudo rosdep update && sudo rosdep install --from-paths src --ignore-src -y && sudo chown -R $(whoami) /home/ws/ && source /opt/ros/humble/setup.bash && pip3 install black"
+}

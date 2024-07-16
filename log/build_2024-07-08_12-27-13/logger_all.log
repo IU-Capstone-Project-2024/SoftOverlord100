@@ -1,0 +1,234 @@
+[0.135s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'overlord100_controller']
+[0.135s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['overlord100_controller'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x71e648925510>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x71e648924fa0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x71e648924fa0>>, mixin_verb=('build',))
+[0.349s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.349s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.349s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.350s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.350s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.350s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.350s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/ws/src'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['ignore', 'ignore_ament_install']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'ignore'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'ignore_ament_install'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['colcon_pkg']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'colcon_pkg'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['colcon_meta']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'colcon_meta'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['ros']
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'ros'
+[0.363s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['cmake', 'python']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'cmake'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'python'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extensions ['python_setup_py']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-PathPlanner) by extension 'python_setup_py'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extensions ['ignore', 'ignore_ament_install']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extension 'ignore'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extension 'ignore_ament_install'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extensions ['colcon_pkg']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extension 'colcon_pkg'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extensions ['colcon_meta']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extension 'colcon_meta'
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extensions ['ros']
+[0.364s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-controller) by extension 'ros'
+[0.367s] DEBUG:colcon.colcon_core.package_identification:Package 'Overlord100-controller' with type 'ros.ament_cmake' and name 'overlord100_controller'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['ignore', 'ignore_ament_install']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'ignore'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'ignore_ament_install'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['colcon_pkg']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'colcon_pkg'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['colcon_meta']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'colcon_meta'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['ros']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'ros'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['cmake', 'python']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'cmake'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'python'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extensions ['python_setup_py']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-database) by extension 'python_setup_py'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extension 'ignore'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extension 'ignore_ament_install'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extensions ['colcon_pkg']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extension 'colcon_pkg'
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extensions ['colcon_meta']
+[0.368s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extension 'colcon_meta'
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extensions ['ros']
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-interfaces) by extension 'ros'
+[0.369s] DEBUG:colcon.colcon_core.package_identification:Package 'Overlord100-interfaces' with type 'ros.ament_cmake' and name 'overlord100_interfaces'
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['ignore', 'ignore_ament_install']
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'ignore'
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'ignore_ament_install'
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['colcon_pkg']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'colcon_pkg'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['colcon_meta']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'colcon_meta'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['ros']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'ros'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['cmake', 'python']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'cmake'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'python'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extensions ['python_setup_py']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam) by extension 'python_setup_py'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['ignore', 'ignore_ament_install']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'ignore'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'ignore_ament_install'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['colcon_pkg']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'colcon_pkg'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['colcon_meta']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'colcon_meta'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['ros']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'ros'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['cmake', 'python']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'cmake'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'python'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extensions ['python_setup_py']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src) by extension 'python_setup_py'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extensions ['ignore', 'ignore_ament_install']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extension 'ignore'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extension 'ignore_ament_install'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extensions ['colcon_pkg']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extension 'colcon_pkg'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extensions ['colcon_meta']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extension 'colcon_meta'
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extensions ['ros']
+[0.371s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-slam/src/map_publisher) by extension 'ros'
+[0.372s] DEBUG:colcon.colcon_core.package_identification:Package 'Overlord100-slam/src/map_publisher' with type 'ros.ament_python' and name 'map_publisher'
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extensions ['ignore', 'ignore_ament_install']
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extension 'ignore'
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extension 'ignore_ament_install'
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extensions ['colcon_pkg']
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extension 'colcon_pkg'
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extensions ['colcon_meta']
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extension 'colcon_meta'
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extensions ['ros']
+[0.372s] Level 1:colcon.colcon_core.package_identification:_identify(Overlord100-switcher) by extension 'ros'
+[0.373s] DEBUG:colcon.colcon_core.package_identification:Package 'Overlord100-switcher' with type 'ros.ament_cmake' and name 'overlord100_mode_switcher'
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extensions ['ignore', 'ignore_ament_install']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extension 'ignore'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extension 'ignore_ament_install'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extensions ['colcon_pkg']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extension 'colcon_pkg'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extensions ['colcon_meta']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extension 'colcon_meta'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extensions ['ros']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_logger) by extension 'ros'
+[0.375s] DEBUG:colcon.colcon_core.package_identification:Package 'overlord100_logger' with type 'ros.ament_cmake' and name 'overlord100_logger'
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extension 'ignore'
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extension 'ignore_ament_install'
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extensions ['colcon_pkg']
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extension 'colcon_pkg'
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extensions ['colcon_meta']
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extension 'colcon_meta'
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extensions ['ros']
+[0.375s] Level 1:colcon.colcon_core.package_identification:_identify(overlord100_msgs) by extension 'ros'
+[0.375s] DEBUG:colcon.colcon_core.package_identification:Package 'overlord100_msgs' with type 'ros.ament_cmake' and name 'overlord100_msgs'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extensions ['ignore', 'ignore_ament_install']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extension 'ignore'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extension 'ignore_ament_install'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extensions ['colcon_pkg']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extension 'colcon_pkg'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extensions ['colcon_meta']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extension 'colcon_meta'
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extensions ['ros']
+[0.376s] Level 1:colcon.colcon_core.package_identification:_identify(software_overlord100) by extension 'ros'
+[0.377s] DEBUG:colcon.colcon_core.package_identification:Package 'software_overlord100' with type 'ros.ament_cmake' and name 'software_overlord100'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extensions ['ignore', 'ignore_ament_install']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extension 'ignore'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extension 'ignore_ament_install'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extensions ['colcon_pkg']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extension 'colcon_pkg'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extensions ['colcon_meta']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extension 'colcon_meta'
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extensions ['ros']
+[0.377s] Level 1:colcon.colcon_core.package_identification:_identify(urdf_dummy) by extension 'ros'
+[0.378s] DEBUG:colcon.colcon_core.package_identification:Package 'urdf_dummy' with type 'ros.ament_python' and name 'urdf_dummy'
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'map_publisher' in 'Overlord100-slam/src/map_publisher'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'overlord100_interfaces' in 'Overlord100-interfaces'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'overlord100_logger' in 'overlord100_logger'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'overlord100_msgs' in 'overlord100_msgs'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'software_overlord100' in 'software_overlord100'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'urdf_dummy' in 'urdf_dummy'
+[0.418s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'overlord100_mode_switcher' in 'Overlord100-switcher'
+[0.418s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_args' from command line to 'None'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_target' from command line to 'None'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_clean_first' from command line to 'False'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'cmake_force_configure' from command line to 'False'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'ament_cmake_args' from command line to 'None'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[0.419s] Level 5:colcon.colcon_core.verb:set package 'overlord100_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.419s] DEBUG:colcon.colcon_core.verb:Building package 'overlord100_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ws/src/build/overlord100_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ws/src/install/overlord100_controller', 'merge_install': False, 'path': '/home/ws/src/Overlord100-controller', 'symlink_install': False, 'test_result_base': None}
+[0.419s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.421s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.421s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/ws/src/Overlord100-controller' with build type 'ament_cmake'
+[0.421s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/ws/src/Overlord100-controller'
+[0.424s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.425s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.425s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.430s] ERROR:colcon.colcon_cmake.task.cmake.build:Failed to find the following files:
+- /home/ws/src/install/overlord100_msgs/share/overlord100_msgs/package.sh
+Check that the following packages have been built:
+- overlord100_msgs
+[0.430s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(overlord100_controller)
+[0.433s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller' for CMake module files
+[0.433s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller' for CMake config files
+[0.434s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller/bin'
+[0.434s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller/lib/pkgconfig/overlord100_controller.pc'
+[0.436s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller/lib/python3.10/site-packages'
+[0.436s] Level 1:colcon.colcon_core.environment:checking '/home/ws/src/install/overlord100_controller/bin'
+[0.437s] INFO:colcon.colcon_core.shell:Creating package script '/home/ws/src/install/overlord100_controller/share/overlord100_controller/package.ps1'
+[0.438s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ws/src/install/overlord100_controller/share/overlord100_controller/package.dsv'
+[0.439s] INFO:colcon.colcon_core.shell:Creating package script '/home/ws/src/install/overlord100_controller/share/overlord100_controller/package.sh'
+[0.439s] INFO:colcon.colcon_core.shell:Creating package script '/home/ws/src/install/overlord100_controller/share/overlord100_controller/package.bash'
+[0.440s] INFO:colcon.colcon_core.shell:Creating package script '/home/ws/src/install/overlord100_controller/share/overlord100_controller/package.zsh'
+[0.441s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ws/src/install/overlord100_controller/share/colcon-core/packages/overlord100_controller)
+[0.452s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[0.452s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[0.452s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '1'
+[0.452s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.467s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[0.468s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[0.468s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[0.468s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[0.475s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.Spawn.ExecFailed: /usr/bin/dbus-launch terminated abnormally without any error message
+[0.476s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.477s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ws/src/install/local_setup.ps1'
+[0.479s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ws/src/install/_local_setup_util_ps1.py'
+[0.482s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ws/src/install/setup.ps1'
+[0.484s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ws/src/install/local_setup.sh'
+[0.485s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ws/src/install/_local_setup_util_sh.py'
+[0.486s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ws/src/install/setup.sh'
+[0.488s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ws/src/install/local_setup.bash'
+[0.489s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ws/src/install/setup.bash'
+[0.492s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ws/src/install/local_setup.zsh'
+[0.493s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ws/src/install/setup.zsh'

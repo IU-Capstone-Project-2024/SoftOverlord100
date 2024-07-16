@@ -19,7 +19,9 @@
                 "donjayamanne.python-extension-pack",
                 "eamodio.gitlens",
                 "ms-iot.vscode-ros",
-                "ms-python.black-formatter"
+                "ms-python.black-formatter",
+                "smilerobotics.urdf",
+                "redhat.vscode-xml"
             ]
         }
     },
