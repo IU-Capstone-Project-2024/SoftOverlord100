@@ -43,5 +43,10 @@ def generate_launch_description():
                 ],
                 output="screen",
             ),
+            # Launch SLAM
+            ExecuteProcess(
+                cmd=["ros2", "launch", "overlord100_slam", "slam_launch.launch.py"],
+                output="screen",
+            ),
         ]
     )

@@ -16,7 +16,10 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/WheelsData.msg"
   "msg/LogMessage.msg"
   "msg/Mode.msg"
+  "msg/MapName.msg"
+  "msg/SaveMap.msg"
   "srv/ChangeMode.srv"
+  "srv/PubliishMap.srv"
   DEPENDENCIES  # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
 )
 
