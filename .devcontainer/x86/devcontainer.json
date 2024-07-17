@@ -1,0 +1,46 @@
+{
+    "name": "ROS 2 Development Container, Intel & AMD",
+    "privileged": true,
+    "remoteUser": "mobile",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "USERNAME": "mobile"
+        }
+    },
+    "workspaceFolder": "/home/ws",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/ws/src,type=bind",
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros",
+                "ms-python.black-formatter",
+                "smilerobotics.urdf",
+                "redhat.vscode-xml"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "unix:0",
+        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+        "ROS_DOMAIN_ID": "42"
+    },
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/home/mobile/.local/bin"
+    },
+    "runArgs": [
+        "--net=host",
+        "-e", "DISPLAY=${env:DISPLAY}"
+    ],
+    "mounts": [
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/.vscode,target=/home/ws/.vscode,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "sudo rosdep update && sudo chown -R $(whoami) /home/ws/ && pip3 install black && sudo rosdep install --from-paths src --ignore-src -y "
+}

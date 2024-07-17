@@ -43,5 +43,31 @@ def generate_launch_description():
                 cmd=["ros2", "launch", "overlord100_slam", "slam_launch.launch.py"],
                 output="screen",
             ),
+            # Launch lidars
+            ExecuteProcess(
+                cmd=["ros2", "launch", "sllidar_ros2", "sllidar_c1_launch.py"],
+                output="screen",
+            ),
+            # Start ros2socketcan_bridge node
+            Node(
+                package="ros2socketcan_bridge",
+                executable="ros2socketcan",
+                name="ros2socketcan",
+                output="screen",
+            ),
+            # Start ros2socketcan_bridge node
+            Node(
+                package="zlac8015d",
+                executable="motors_driver_node",
+                name="motors_driver_node",
+                output="screen",
+            ),
+            # Start battery_node
+            Node(
+                package="ads1115",
+                executable="battery_monitor",
+                name="battery_monitor",
+                output="screen",
+            ),
         ]
     )
