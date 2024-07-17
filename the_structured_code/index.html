@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROS</title>
+  </head>
+  <body>
+    <div id="app" class="root">
+      <main class="main-container">
+        <div class="container map-container">
+          <canvas id="map" />
+        </div>
+        <div class="container logs-container">
+          <h3>Logs</h3>
+          <pre class="logs" id="logs"></pre>
+          <button id="clear-logs-btn">Clear logs</button>
+        </div>
+        <div class="container joystick-container">
+          <div class="joystick">
+            <button id="joystick-btn-forward">↑</button>
+            <button id="joystick-btn-left">←</button>
+            <button id="joystick-btn-right">→</button>
+            <button id="joystick-btn-backward">↓</button>
+          </div>
+        </div>
+        <div class="container velocity-container">
+          <h3>Velocity Control</h3>
+          <span id="status" class="status-text">Connecting...</span>
+          <div class="velocity-inputs">
+            <label for="input-linear-x">
+              <span>Linear X</span><br />
+              <input id="input-linear-x" type="number" placeholder="Linear X" value="0.0" />
+            </label>
+            <label for="input-linear-y">
+              <span>Linear Y</span><br />
+              <input id="input-linear-y" type="number" placeholder="Linear Y" value="0.0" />
+            </label>
+            <label for="input-linear-z">
+              <span>Linear Z</span><br />
+              <input id="input-linear-z" type="number" placeholder="Linear Z" value="0.0" />
+            </label>
+            <label for="input-angular-x">
+              <span>Angular X</span><br />
+              <input id="input-angular-x" type="number" placeholder="Angular X" value="0.0" />
+            </label>
+            <label for="input-angular-y">
+              <span>Angular Y</span><br />
+              <input id="input-angular-y" type="number" placeholder="Angular Y" value="0.0" />
+            </label>
+            <label for="input-angular-z">
+              <span>Angular Z</span><br />
+              <input id="input-angular-z" type="number" placeholder="Angular Z" value="0.0" />
+            </label>
+            <button id="velocity-button">Set velocity</button>
+            <br />
+            <button id="btn-auto">Set auto mode</button>
+            <button id="btn-manual">Set manual mode</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
