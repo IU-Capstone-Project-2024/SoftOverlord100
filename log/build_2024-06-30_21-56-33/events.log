@@ -1,8 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.001739] (-) JobUnselected: {'identifier': 'overlord100_msgs'}
-[0.002184] (-) JobUnselected: {'identifier': 'path_planner'}
-[0.002221] (-) JobUnselected: {'identifier': 'software_overlord100'}
-[0.002262] (overlord100_controller) JobQueued: {'identifier': 'overlord100_controller', 'dependencies': OrderedDict([('overlord100_msgs', '/home/ekaterina/Workspace/overlord/SoftOverlord100/install/overlord100_msgs')])}
-[0.002308] (overlord100_controller) JobStarted: {'identifier': 'overlord100_controller'}
-[0.047846] (overlord100_controller) JobEnded: {'identifier': 'overlord100_controller', 'rc': 1}
-[0.058828] (-) EventReactorShutdown: {}
