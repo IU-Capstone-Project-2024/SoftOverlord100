@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(overlord100_msgs REQUIRED)
+find_package(nav2_msgs REQUIRED)
 
 add_executable(map_saver src/map_saver.cpp)
 

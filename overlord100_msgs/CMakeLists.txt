@@ -13,13 +13,12 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/WheelsData.msg"
   "msg/LogMessage.msg"
   "msg/Mode.msg"
   "msg/MapName.msg"
-  "msg/SaveMap.msg"
+  "msg/SaveMapFrontSide.msg"
+  "msg/WheelsData.msg"
   "srv/ChangeMode.srv"
-  "srv/PubliishMap.srv"
   DEPENDENCIES  # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
 )
 
