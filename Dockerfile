@@ -12,7 +12,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
-RUN apt-get update && apt-get upgrade -y && apt-get install -y python3-pip ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-rqt-robot-steering ros-humble-ros-gz --fix-missing
+RUN apt-get update && apt-get upgrade -y && apt-get install -y python3-pip ros-humble-slam-toolbox ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-rosbridge-suite ros-humble-rqt-robot-steering ros-humble-ros-gz --fix-missing
 
 WORKDIR /home/ws/src
 COPY . /home/ws/src
