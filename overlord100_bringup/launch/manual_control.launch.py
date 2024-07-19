@@ -2,7 +2,9 @@ import os
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
-
+from launch.actions import IncludeLaunchDescription
+from launch_ros.substitutions import FindPackageShare
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     return LaunchDescription(
@@ -44,10 +46,14 @@ def generate_launch_description():
                 output="screen",
             ),
             # Launch lidars
-            ExecuteProcess(
-                cmd=["ros2", "launch", "sllidar_ros2", "sllidar_c1_launch.py"],
-                output="screen",
-            ),
+            # ExecuteProcess(
+            #     cmd=["ros2", "launch", "sllidar_ros2", "sllidar_c1_launch.py"],
+            #     output="screen",
+            # ),
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([
+                    FindPackageShare("overlord100_bringup"), '/launch', '/lidars.launch.py'])
+            )
             # Start ros2socketcan_bridge node
             Node(
                 package="ros2socketcan_bridge",

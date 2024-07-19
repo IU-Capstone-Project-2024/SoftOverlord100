@@ -1,0 +1,9 @@
+sllidar_ros2:
+  ros_parameters:
+    channel_type: serial
+    serial_port: /dev/ttyUSB0
+    serial_baudrate: 460800
+    frame_id: laser
+    inverted: false
+    angle_compensate: true
+    scan_mode: Standard
