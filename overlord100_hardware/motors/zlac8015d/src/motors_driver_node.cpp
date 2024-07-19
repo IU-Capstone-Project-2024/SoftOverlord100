@@ -46,7 +46,7 @@ class MotorsDriverNode : public rclcpp::Node
       int right = std::round(msg.right);
 
       //Bound velocity between -255 and 255 rev/min
-      left = std::clamp(left, -0xFF, 0xFF);
+      left = -std::clamp(left, -0xFF, 0xFF);
       right = std::clamp(right, -0xFF, 0xFF);
 
       //Send data over CAN
