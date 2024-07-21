@@ -106,9 +106,9 @@ velocityButton.addEventListener("click", () => {
 
 buttonAuto.addEventListener("click", () => {
   const req = new ROSLIB.ServiceRequest({ mode: 1 });
-  console.log("Setting manual mode...")
+  console.log("Setting auto mode...")
   changeModeService.callService(req, (res) => {
-    console.log("Set manual mode response:", res)
+    console.log("Set auto mode response:", res)
   });
 })
 
@@ -129,11 +129,11 @@ function receiveLog(log) {
 
   const nodeName = document.createElement("span")
   nodeName.classList.add("log-entry_node")
-  nodeName.innerText = `${log.node_name} `
+  nodeName.innerText = log.node_name 
 
   const level = document.createElement("span")
   level.classList.add("log-entry_level")
-  level.innerText = `${log.level}\n`
+  level.innerText = log.level + "\n"
 
   const content = document.createElement("span")
   content.innerText = log.message
@@ -180,115 +180,55 @@ for (const [dir, btnEl] of Object.entries(joystick)) {
   })
 }
 
-/*function drawMap(map) {
-  const canvas = mapEl;
-  const ctx = canvas.getContext('2d');
+function drawMap(map) {
+  const canvas = mapEl; // Ensure we are getting the correct canvas element
+  const ctx = canvas.getContext('2d'); // Get the 2D context
 
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const width = map.info.width;
+  const height = map.info.height;
+  const data = map.data;
 
-  const mapWidth = map.info.width;
-  const mapHeight = map.info.height;
-  const resolution = map.info.resolution;
+  // Create imageData object to store map data
+  const imageData = ctx.createImageData(width, height);
 
-  const canvasWidth = 800;
-  const canvasHeight = 800;
-  const scaleX = canvasWidth / mapWidth;
-  const scaleY = canvasHeight / mapHeight;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const index = x + y * width;
+      const value = data[index];
+      
+      let gray;
+      // Determine the color based on the value
+      if (value === -1) {
+        gray = 127; // Gray for unknown cells
+      } else if (value > 50) {
+        gray = 0; // Black for occupied cells
+      } else {
+        gray = 255; // White for free cells
+      }
 
-  // Draw map
-  const imageData = ctx.createImageData(mapWidth, mapHeight);
-  for (let y = 0; y < mapHeight; y++) {
-    for (let x = 0; x < mapWidth; x++) {
-      const i = y * mapWidth + x;
-      const value = map.data[i];
-      const color = value === -1 ? 127 : value > 50 ? 0 : 255;
-      const index = (y * mapWidth + x) * 4;
-      imageData.data[index] = color;
-      imageData.data[index + 1] = color;
-      imageData.data[index + 2] = color;
-      imageData.data[index + 3] = 255;
+      // Set the pixel color in the image data object
+      const pixelIndex = (x + (height - y - 1) * width) * 4;
+      imageData.data[pixelIndex] = gray;
+      imageData.data[pixelIndex + 1] = gray;
+      imageData.data[pixelIndex + 2] = gray;
+      imageData.data[pixelIndex + 3] = 255; // Fully opaque
     }
   }
 
-  // Scale the image data to fit the canvas
+  // Clear the entire canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Create a temporary canvas to draw the imageData and scale it
   const tempCanvas = document.createElement('canvas');
-  tempCanvas.width = mapWidth;
-  tempCanvas.height = mapHeight;
   const tempCtx = tempCanvas.getContext('2d');
+  tempCanvas.width = width;
+  tempCanvas.height = height;
   tempCtx.putImageData(imageData, 0, 0);
 
-  ctx.save();
-  ctx.scale(scaleX, scaleY);
-  ctx.drawImage(tempCanvas, 0, 0);
-  ctx.restore();
+  // Calculate the scaling factor to fit the map into the canvas
+  const scaleX = canvas.width / width;
+  const scaleY = canvas.height / height;
 
-  // Draw axes
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(canvas.width, 0);
-  ctx.moveTo(0, 0);
-  ctx.lineTo(0, canvas.height);
-  ctx.strokeStyle = 'black';
-  ctx.stroke();
-
-  // Label axes
-  ctx.fillStyle = 'black';
-  ctx.fillText('X', canvas.width - 20, 20);
-  ctx.fillText('Y', 20, canvas.height - 20);
-}*/
-     
-     
-     
-
-
-       function drawMap(map) {
-            var width = map.info.width;
-            var height = map.info.height;
-            var data = map.data;
-
-            // Create imageData object to store map data
-            var imageData = ctx.createImageData(width, height);
-
-            for (var y = 0; y < height; y++) {
-                for (var x = 0; x < width; x++) {
-                    var index = x + y * width;
-                    var value = data[index];
-                    
-                    var gray; // Declare the gray variable
-                    
-                    // Determine the color based on the value
-                    if (value === -1) {
-                        gray = 127; // Gray for unknown cells
-                    } else if (value > 50) {
-                        gray = 0; // Black for occupied cells
-                    } else {
-                        gray = 255; // White for free cells
-                    }
-
-                    // Set the pixel color in the image data object
-                    var pixelIndex = (x + (height - y - 1) * width) * 4;
-                    imageData.data[pixelIndex] = gray;
-                    imageData.data[pixelIndex + 1] = gray;
-                    imageData.data[pixelIndex + 2] = gray;
-                    imageData.data[pixelIndex + 3] = 255; // Fully opaque
-                }
-            }
-
-            // Clear the entire canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Create a temporary canvas to draw the imageData and scale it
-            var tempCanvas = document.createElement('canvas');
-            var tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = width;
-            tempCanvas.height = height;
-            tempCtx.putImageData(imageData, 0, 0);
-
-            // Calculate the scaling factor to fit the map into the canvas
-            var scaleX = canvas.width / width;
-            var scaleY = canvas.height / height;
-
-            // Draw the scaled image onto the main canvas
-            ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
-        }
+  // Draw the scaled image onto the main canvas
+  ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, canvas.width, canvas.height);
+}
